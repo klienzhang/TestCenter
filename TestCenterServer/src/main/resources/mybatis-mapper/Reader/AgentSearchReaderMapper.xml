@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.berserker.server.dao.reader.tools.AgentSearchReaderMapper">
+
+    <select id="findDepartmentByIsHeadQuarter" resultType="com.berserker.server.model.tools.AgentDepartmentModel">
+        SELECT
+          a.id, a.name, a.isHeadQuarter, a.update_time, a.updater
+        FROM
+          tools_agent_department a
+        WHERE
+          1 = 1
+        <choose>
+            <when test="isHeadQuarter == null and isHeaderQuarter != ''">
+                AND a.isHeadQuarter = 1
+            </when>
+            <when test="isHeadQuarter != null">
+                AND a.isHeadQuarter = #{isHeadQuarter}
+            </when>
+        </choose>
+
+    </select>
+
+    <select id="findAllCity" resultType="com.berserker.server.model.tools.AgentCityModel">
+        SELECT
+          a.id id, a.city_name name, a.update_time update_time, a.updater updater
+        FROM
+          tools_agent_city a
+    </select>
+
+    <select id="findPositions" resultType="com.berserker.server.model.tools.AgentPositionModel">
+        SELECT
+          a.id, a.department_code, a.name, a.update_time, a.updater
+        FROM
+          tools_agent_position a
+    </select>
+
+    <select id="findAgentInfo" resultType="com.berserker.server.model.tools.AgentInfoModel">
+        SELECT
+          a.id, a.name, a.mobile, a.department_code, a.position_code,a.city_code, a.comment, a.update_time, a.updater,
+          d.name department_name, p.name position_name
+        FROM
+          tools_agent_collections a
+        join
+          TestCenter.tools_agent_department d on a.department_code = d.id
+        join
+          TestCenter.tools_agent_position p on p.id = a.position_code
+        WHERE
+          1 = 1
+        <if test="mobile != null and mobile != ''">
+            AND a.mobile = #{mobile}
+        </if>
+        <if test="department_code != null and department_code != ''">
+            AND a.department_code = #{department_code}
+        </if>
+        <if test="position_code != null and position_code != ''">
+            AND a.position_code = #{position_code}
+        </if>
+        <if test="city_code != null and city_code != ''">
+            AND a.city_code = #{city_code}
+        </if>
+    </select>
+
+    <select id="getAgentCityCount" parameterType="String" resultType="int">
+        SELECT
+          count(*)
+        FROM
+          tools_agent_city
+        WHERE
+          city_name = #{city_name}
+    </select>
+
+    <select id="getAgentDepartmentCount" resultType="int">
+        SELECT
+          count(*)
+        FROM
+          tools_agent_department
+        WHERE
+          name = #{name}
+        AND
+          isHeadQuarter = #{isHeadQuarter}
+    </select>
+
+    <select id="getAgentPositionCount" resultType="int">
+        SELECT
+        count(*)
+        FROM
+          tools_agent_position
+        WHERE
+          department_code = #{department_code}
+          AND
+          name = #{name}
+    </select>
+
+    <select id="getAgentInfoCount" parameterType="com.berserker.server.model.tools.AgentInfoModel" resultType="int">
+        SELECT
+          count(*)
+        FROM
+          tools_agent_collections a
+        WHERE
+          1 = 1
+        <if test="mobile != null and mobile != ''">
+            AND a.mobile = #{mobile}
+        </if>
+        <if test="department_code != null and department_code != ''">
+            AND a.department_code = #{department_code}
+        </if>
+        <if test="position_code != null and position_code != ''">
+            AND a.position_code = #{position_code}
+        </if>
+        <if test="city_code != null and city_code != ''">
+            AND a.city_code = #{city_code}
+        </if>
+    </select>
+</mapper>

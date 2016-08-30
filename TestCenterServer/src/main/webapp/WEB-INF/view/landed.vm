@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berserker</title>
+    <link rel="shortcut icon" href="$!{html.domain}/static/favicon.ico">
+    <link href="$!{html.domain}/static/css/bootstrap.min14ed.css" rel="stylesheet">
+    <link href="$!{html.domain}/static/css/font-awesome.min93e3.css" rel="stylesheet">
+    <link href="$!{html.domain}/static/css/animate.min.css" rel="stylesheet">
+    <link href="$!{html.domain}/static/css/style.min862f.css" rel="stylesheet">
+    <script src="$!{html.domain}/static/js/jquery.min.js"></script>
+    <script src="$!{html.domain}/static/js/bootstrap.min.js"></script>
+    <script src="$!{html.domain}/static/js/plugins/layer/layer.min.js"></script>
+    <script src="$!{html.domain}/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="$!{html.domain}/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="$!{html.domain}/static/js/hplus.min.js?v=4.1.0"></script>
+    <script src="$!{html.domain}/static/js/contabs.min.js"></script>
+    <script src="$!{html.domain}/static/js/content.min.js"></script>
+    <script type="text/javascript" src="$!{html.domain}/static/js/welcome.min.js" ></script>
+    <script type="text/javascript">
+        $(function(){
+            $(".J_tabExit").click(function(){
+                window.location.href = "${html.domain}/welcome.html";
+            });
+        });
+    </script>
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow: hidden;">
+<div id="wrapper">
+    <!--左侧导航开始-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close">
+            <i class="fa fa-times-circle"></i>
+        </div>
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <span><img alt="image" class="img-circle" src="${html.domain}/static/img/sculpture/admin.jpg" /></span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+							<span class="clear">
+							   <span class="block m-t-xs"><strong class="font-bold">秋名山老司机</strong></span>
+								<span class="text-muted text-xs block">管理员</span>
+							</span>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a class="J_menuTab" href="#">
+						<i class="fa fa-home"></i>
+						<span class="nav-label">工作人员</span>
+					</a>
+                </li>
+
+				#foreach(${menu} in ${navbar.list})
+					<li>
+                        <a href="#">
+                            <i class="fa fa-cutlery"></i>
+                            <span class="nav-label">${menu.group_name}</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+							#foreach(${item} in ${menu.group})
+                                <li>
+                                    <a class="J_menuItem" href="${html.domain}/${item.url}" data-animation="0">${item.name}</a>
+                                </li>
+							#end
+                        </ul>
+					</li>
+				#end
+            </ul>
+
+        </div>
+    </nav>
+    <!--左侧导航结束-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0;">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="row content-tabs">
+            <nav class="page-tabs J_menuTabs">
+                <div class="page-tabs-content">
+                    <a href="javascript:;" class="active J_menuTab" data-id="0">工作人员</a>
+                </div>
+            </nav>
+            <div class="btn-group roll-nav roll-right">
+                <button class="dropdown J_tabClose" data-toggle="dropdown">
+                    关闭操作<span class="caret"></span>
+                </button>
+                <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                    <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                    </li>
+                    <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                    </li>
+                </ul>
+            </div>
+            <a href="#" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+        </div>
+        <div class="row J_mainContent" id="content-main">
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="${html.domain}/tools/members.html" frameborder="0" data-id="0" seamless></iframe>
+        </div>
+
+        #parse("/basis/_footer.vm")
+    </div>
+
+</div>
+</body>
+</html>

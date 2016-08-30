@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        #parse("/basis/_import.vm")
+    </head>
+    <body class="gray-bg">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="contact-box">
+                        <div class="col-sm-4">
+                            <div class="text-center">
+                                <img alt="image" class="img-circle m-t-xs img-responsive" src="${html.domain}/static/img/sculpture/admin.jpg">
+                                <div class="m-t-xs font-bold">发起人</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <h3><strong>秋名山老司机</strong></h3>
+                            <address>
+                                <strong>跟你讲，你不要闹事哦</strong><br>
+                                E-mail:zhangqi2.sh@superjia.com<br>
+                                <abbr title="Phone">Tel:</abbr> XXXXXXXXXXXX
+                            </address>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="contact-box">
+                        <div class="col-sm-4">
+                            <div class="text-center">
+                                <img alt="image" class="img-circle m-t-xs img-responsive" src="${html.domain}/static/img/sculpture/AmyLiu.jpg">
+                                <div class="m-t-xs font-bold">合作人</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <h3><strong>AmyLiu</strong></h3>
+                            <address>
+                                <strong>XXXXX</strong><br>
+                                E-mail:XXXX.sh@superjia.com<br>
+                                <abbr title="Phone">Tel:</abbr> XXXXXXXXXXXX
+                            </address>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

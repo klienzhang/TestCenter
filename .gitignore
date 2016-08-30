@@ -1,0 +1,22 @@
+# Shared objects (inc. Windows DLLs)
+*.dll
+
+# Executables
+*.exe
+
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# common
+*.class
+jdbc.properties
+.DS_Store
+
+# idea
+.idea/
+target/
+*.log
+*.jar
+*.iml

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="OFF" monitorInterval="600">
+    <Properties>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--<ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>-->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <RollingFile name="Debug" fileName="logs/dev.log" append="false"
+                     filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout charset="UTF-8" pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level %C{36} %L %M - %msg%xEx%n"/>
+            <!--<PatternLayout charset="UTF-8" pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level %C{36} %L %M - %msg%xEx%n"/>-->
+            <SizeBasedTriggeringPolicy size="500 MB" />
+        </RollingFile>
+        <RollingFile name="Product" fileName="logs/stream.log"
+                     filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz" append="false">
+            <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level - %msg%xEx%n"/>
+            <SizeBasedTriggeringPolicy size="500 MB" />
+        </RollingFile>
+        <async name="Async_Debug">
+            <appender-ref ref="Debug" />
+        </async>
+        <async name="Async_Product">
+            <appender-ref ref="Product"/>
+        </async>
+    </Appenders>
+    <loggers>
+        <root level="DEBUG">
+            <appender-ref ref="Console"/>
+        </root>
+
+        <!-- 第三方日志系统 -->
+        <logger name="org.springframework.core" level="info"/>
+        <logger name="org.springframework.beans" level="info"/>
+        <logger name="org.springframework.context" level="info"/>
+        <logger name="org.springframework.web" level="info"/>
+        <logger name="org.jboss.netty" level="warn"/>
+        <logger name="org.apache.http" level="warn"/>
+
+        <logger name="service_log" level="info" includeLocation="true" additivity="true">
+            <appender-ref ref="Async_Product"/>
+        </logger>
+
+        <logger name="service_log" level="debug" includeLocation="true" additivity="false">
+            <appender-ref ref="Async_Debug"/>
+        </logger>
+    </loggers>
+</Configuration>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.berserker.server.dao.reader.common.PageComponentReaderMaper">
+
+    <resultMap id="menu_model" type="com.berserker.testcenterapi.model.common.MenuGroupWithChildNodesModel">
+        <result property="group_name" column="main_name"/>
+        <collection property="group" ofType="com.berserker.testcenterapi.model.common.ChildNodeModel" column="id">
+            <result column="sub_name" property="name"/>
+            <result column="url" property="url"/>
+        </collection>
+    </resultMap>
+
+    <!-- 获取快捷工具栏List -->
+    <select id="getQuickLinkElements" resultType="com.berserker.testcenterapi.model.common.ChildNodeModel">
+        SELECT
+        m.name name, m.url url
+        FROM
+        quicklink_menu m
+    </select>
+
+    <select id="getTopBarElements" resultType="java.lang.String">
+        SELECT
+        u.name
+        FROM
+        berserker_user u
+    </select>
+
+    <select id="getSideBar" resultMap="menu_model">
+        SELECT
+        m1.main_name, m2.sub_name, m2.url
+        FROM
+        component_sliderbar_main_menu m1
+        JOIN
+        component_sliderbar_sub_menu m2
+        ON
+        m1.parent_code = m2.parent_code
+    </select>
+
+</mapper>

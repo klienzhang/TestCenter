@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berserker</title>
+    <link rel="shortcut icon" href="$!{html.domain}/static/favicon.ico">
+    <link href="$!{html.domain}/static/css/bootstrap.min14ed.css" rel="stylesheet">
+    <link href="$!{html.domain}/static/css/font-awesome.min93e3.css" rel="stylesheet">
+    <link href="$!{html.domain}/static/css/animate.min.css" rel="stylesheet">
+    <link href="$!{html.domain}/static/css/style.min862f.css" rel="stylesheet">
+    <script src="$!{html.domain}/static/js/jquery.min.js"></script>
+    <script src="$!{html.domain}/static/js/bootstrap.min.js"></script>
+    <script src="$!{html.domain}/static/js/plugins/layer/layer.min.js"></script>
+    <script src="$!{html.domain}/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="$!{html.domain}/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="$!{html.domain}/static/js/hplus.min.js?v=4.1.0"></script>
+    <script src="$!{html.domain}/static/js/contabs.min.js"></script>
+    <script src="$!{html.domain}/static/js/content.min.js"></script>
+    <script type="text/javascript" src="$!{html.domain}/static/js/welcome.min.js" ></script>
+</head>
+    <body class="gray-bg">
+        <div class="row border-bottom white-bg dashboard-header">
+            <div class="col-sm-1">
+                <img src="${html.domain}/static/img/berserker.jpg" style="height: 50px; width: 100px;">
+            </div>
+            <div class="col-sm-8 border-left" style="height: 50px; margin-left: 20px; padding-left: 20px;">
+                <h1>测试中心</h1>
+            </div>
+            <div class="col-sm-2">
+                <div class="text-right">
+                    <a class="btn btn-primary" href="${html.domain}/allservices.html">进入系统</a>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>嘲讽模块</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <p>这个模块以后是用来拉仇恨的</p>
+                        </div>
+                    </div>
+                    <!-- Progress Code Start -->
+                    #if(${progress})
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>项目进度</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="project-list">
+                                    <table class="table table-hover">
+                                        <tbody>
+                                        #foreach(${p} in ${progress})
+                                            <tr>
+                                                <td class="project-status">
+                                                    #if(${p.status} == 0)
+                                                        <span class="label label-primary">进行中</span>
+                                                    #elseif(${p.status} == 1)
+                                                        <span class="label label-default">已取消</span>
+                                                    #elseif(${p.status} == 2)
+                                                        <span class="label label-default">项目筹备中</span>
+                                                    #else
+                                                        <span class="label label-success">已完成</span>
+                                                    #end
+                                                </td>
+                                                <td class="project-title" style="margin-left: 450px;">
+                                                    <a>${p.name}</a>
+                                                </td>
+                                                <td class="project-completion">
+                                                    <small>当前进度： ${p.progress}%</small>
+                                                    <div class="progress progress-mini">
+                                                        <div style="width: ${p.progress}%;" class="progress-bar"></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        #end
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    #end
+                    <!-- Progress Code Start -->
+
+                    <!-- ContactMe Code Start -->
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>联系我</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <p>
+                                <i class="fa fa-send-o"></i>
+                                站长：
+                                <a>
+                                    Klien Zhang
+                                </a>
+                            </p>
+                            <p>
+                                <i class="fa fa-qq"></i>
+                                QQ：
+                                <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=278204600&amp;site=qq&amp;menu=yes" target="_blank">278204600</a>
+                            </p>
+                            <p>
+                                <i class="fa fa-weixin"></i> 微信：<a href="javascript:;">尚明</a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- ContactMe Code Start -->
+                </div>
+
+                <!-- Notice Code Start -->
+                <div class="col-sm-8">
+                    <div class="ibox-heading">
+                        <h1>网站公告</h1>
+                    </div>
+                    <div class="" id="ibox-content">
+                        <div class="vertical-container light-timeline" id="vertical-timeline">
+
+                            #foreach(${n} in ${notice})
+                                <div class="vertical-timeline-block">
+                                    <div class="vertical-timeline-icon navy-bg">
+                                        #if(${n.icon} == 0)
+                                            <i class="fa fa-coffee"></i>
+                                        #elseif(${n.icon} == 1)
+                                            <i class="fa fa-file-text"></i>
+                                        #else
+                                            <i class="fa fa-briefcase"></i>
+                                        #end
+                                    </div>
+                                    <div class="vertical-timeline-content">
+                                        <h2>${n.title}</h2>
+                                        <p>${n.content}</p>
+                                        <span class="vertical-date">
+                                            <small>${n.date}</small>
+                                        </span>
+                                    </div>
+                                </div>
+                            #end
+                        </div>
+                    </div>
+                </div>
+                <!-- Notice Code End-->
+            </div>
+        </div>
+
+        #parse("/basis/_footer.vm")
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berserker</title>
+
+<link rel="shortcut icon" href="$!{html.domain}/static/favicon.ico">
+<link href="$!{html.domain}/static/css/bootstrap.min14ed.css" rel="stylesheet">
+<link href="$!{html.domain}/static/css/font-awesome.min93e3.css" rel="stylesheet">
+<link href="$!{html.domain}/static/css/animate.min.css" rel="stylesheet">
+<link href="$!{html.domain}/static/css/style.min862f.css" rel="stylesheet">
+<script src="$!{html.domain}/static/js/jquery.min.js"></script>
+<script src="$!{html.domain}/static/js/bootstrap.min.js"></script>
+<script src="$!{html.domain}/static/js/plugins/layer/layer.min.js"></script>
+<script src="$!{html.domain}/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="$!{html.domain}/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="$!{html.domain}/static/js/hplus.min.js?v=4.1.0"></script>
+<script src="$!{html.domain}/static/js/contabs.min.js"></script>
+<script src="$!{html.domain}/static/js/content.min.js"></script>
+<script type="text/javascript" src="$!{html.domain}/static/js/welcome.min.js" ></script>

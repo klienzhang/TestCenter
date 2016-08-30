@@ -1,0 +1,9 @@
+<div class="row white-bg dashboard-header">
+    <div class="col-sm-9">
+        <span>&copy; Klien Zhang</span>
+        <span>2016</span>
+    </div>
+    <p class="col-sm-3">
+    <p>Powered by Berserker Team</p>
+    </p>
+</div>
