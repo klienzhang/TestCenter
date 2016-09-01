@@ -4,6 +4,7 @@ import com.berserker.testcenterapi.util.HttpClientUtil.common.HttpResult;
 import com.berserker.testcenterapi.util.FastJsonUtil;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/8/10.
  */
-public class AgentTest {
+public class AgentTest{
 
     @Test
     public void testAgent() throws Exception {

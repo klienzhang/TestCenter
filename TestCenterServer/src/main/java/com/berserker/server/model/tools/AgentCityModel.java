@@ -10,7 +10,6 @@ public class AgentCityModel {
     private String name;
     private Date update_time;
     private int updater;
-    private int count;
 
     public int getId() {
         return id;
@@ -42,13 +41,5 @@ public class AgentCityModel {
 
     public void setUpdater(int updater) {
         this.updater = updater;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
     }
 }
