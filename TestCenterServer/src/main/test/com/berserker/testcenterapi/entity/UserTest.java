@@ -1,7 +1,7 @@
 package com.berserker.testcenterapi.entity;
 
 import com.berserker.server.dao.reader.common.PageComponentReaderMaper;
-import com.berserker.server.service.page.PageComponentService;
+import com.berserker.server.service.PageComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;

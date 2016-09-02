@@ -45,8 +45,7 @@ public class FastJsonUtil {
      * @return
      * @throws Exception
      */
-    public static <T> List<T> getBeanList(String jsonData, Class<T> clazz)
-            throws Exception {
+    public static <T> List<T> getBeanList(String jsonData, Class<T> clazz) {
         return JSON.parseArray(jsonData, clazz);
     }
 

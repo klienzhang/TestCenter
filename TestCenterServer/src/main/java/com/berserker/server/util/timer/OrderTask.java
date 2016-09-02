@@ -1,6 +1,5 @@
-package com.berserker.server.service.timer;
+package com.berserker.server.util.timer;
 
-import com.berserker.server.constants.KeyConstant;
 import com.berserker.server.constants.ValueConstant;
 import com.berserker.server.service.WelcomepageService;
 import com.berserker.testcenterapi.util.PropertiesUtil;
@@ -10,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.io.File;
 
 /**
  * @author klien

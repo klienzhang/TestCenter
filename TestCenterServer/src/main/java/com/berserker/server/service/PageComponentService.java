@@ -1,4 +1,4 @@
-package com.berserker.server.service.page;
+package com.berserker.server.service;
 
 import com.berserker.server.model.page.QuickLinkModel;
 import com.berserker.server.model.page.SideBarModel;

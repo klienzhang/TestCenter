@@ -1,4 +1,4 @@
-package com.berserker.server.model.common;
+package com.berserker.server.model;
 
 /**
  * @author klien

@@ -1,18 +1,17 @@
-package com.berserker.server.service.page;
+package com.berserker.server.service.impl;
 
 import com.berserker.server.dao.reader.common.PageComponentReaderMaper;
 import com.berserker.server.model.page.QuickLinkModel;
 import com.berserker.server.model.page.SideBarModel;
 import com.berserker.server.model.page.TopBarModel;
+import com.berserker.server.service.PageComponentService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
-public class PageComponentImpl implements PageComponentService{
+public class PageComponentImpl implements PageComponentService {
 
     @Autowired
     private PageComponentReaderMaper pageComponentReaderMaper;

@@ -4,7 +4,7 @@ import com.berserker.server.model.tools.AgentCityModel;
 import com.berserker.server.model.tools.AgentDepartmentModel;
 import com.berserker.server.model.tools.AgentInfoModel;
 import com.berserker.server.model.tools.AgentPositionModel;
-import com.berserker.server.service.tools.AgentSearchService;
+import com.berserker.server.service.AgentSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;

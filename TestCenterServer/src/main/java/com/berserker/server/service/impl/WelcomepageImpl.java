@@ -1,8 +1,9 @@
-package com.berserker.server.service;
+package com.berserker.server.service.impl;
 
 import com.berserker.server.dao.reader.WelcomeMapper;
 import com.berserker.server.model.WelcomeNoticeResponse;
 import com.berserker.server.model.WelcomeProjectProgressResponse;
+import com.berserker.server.service.WelcomepageService;
 import com.berserker.testcenterapi.model.common.ChildNodeModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
