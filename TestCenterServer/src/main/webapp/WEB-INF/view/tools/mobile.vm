@@ -46,9 +46,6 @@
                             <div class="col-sm-2" style="text-align:left;">
                                 <button type="button" style="margin-left:50px" id="add_mobile" class="btn btn-primary">新建手机</button>
                             </div>
-                            <div class="col-sm-2" style="text-align:left;">
-                                <button type="button" style="margin-left:50px" id="delete_mobile" class="btn btn-primary">删除手机</button>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -122,7 +119,13 @@
                                 valign: 'middle',
                             },
                             {
-                                title: '所有人',
+                                title: '手机型号',
+                                field: 'type',
+                                align: 'center',
+                                valign: 'middle',
+                            },
+                            {
+                                title: '手机归属',
                                 field: 'owner_name',
                                 align: 'center',
                                 valign: 'middle',

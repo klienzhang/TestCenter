@@ -50,12 +50,28 @@ public class AgentInfoModel {
         this.department_code = department_code;
     }
 
+    public String getDepartment_name() {
+        return department_name;
+    }
+
+    public void setDepartment_name(String department_name) {
+        this.department_name = department_name;
+    }
+
     public int getPosition_code() {
         return position_code;
     }
 
     public void setPosition_code(int position_code) {
         this.position_code = position_code;
+    }
+
+    public String getPosition_name() {
+        return position_name;
+    }
+
+    public void setPosition_name(String position_name) {
+        this.position_name = position_name;
     }
 
     public int getCity_code() {
@@ -88,21 +104,5 @@ public class AgentInfoModel {
 
     public void setUpdater(int updater) {
         this.updater = updater;
-    }
-
-    public String getDepartment_name() {
-        return department_name;
-    }
-
-    public void setDepartment_name(String department_name) {
-        this.department_name = department_name;
-    }
-
-    public String getPosition_name() {
-        return position_name;
-    }
-
-    public void setPosition_name(String position_name) {
-        this.position_name = position_name;
     }
 }

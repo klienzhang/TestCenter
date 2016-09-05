@@ -76,61 +76,6 @@ CREATE TABLE `TestCenter`.`tools_agent_search_prefix_config` (
   `description` VARCHAR(255) NULL,
   PRIMARY KEY (`id`));
 
-/*********************************************************************************/
-/*                         账号管理工具SQL                                         */
-/*********************************************************************************/
-CREATE TABLE `TestCenter`.`tools_agent_department`(
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `isHeadQuarter` INT,
-  `update_time` DATETIME DEFAULT current_timestamp,
-  `updater` INT DEFAULT 1,
-  PRIMARY KEY (`id`)
-)engine=InnoDB Default CHARSET = utf8;
 
-CREATE TABLE `TestCenter`.`tools_agent_city`(
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `city_name` VARCHAR(45) NULL,
-  `update_time` DATETIME DEFAULT current_timestamp,
-  `updater` INT DEFAULT 1,
-  PRIMARY KEY (`id`)
-)engine=InnoDB Default CHARSET = utf8;
 
-CREATE TABLE `TestCenter`.`tools_agent_position`(
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `department_code` INT,
-  `name` VARCHAR(255),
-  `update_time` DATETIME DEFAULT current_timestamp,
-  `updater` INT DEFAULT 1,
-  PRIMARY KEY (`id`)
-)engine=InnoDB Default CHARSET = utf8;
-
-CREATE TABLE `TestCenter`.`tools_agent_collections`(
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `mobile` VARCHAR(45) NULL,
-  `department_code` INT,
-  `position_code` INT,
-  `city_code` INT,
-  `comment` VARCHAR(255),
-  `update_time` DATETIME DEFAULT current_timestamp,
-  `updater` INT DEFAULT 1,
-  PRIMARY KEY (`id`)
-)engine=InnoDB Default CHARSET = utf8;
-/*********************************************************************************/
-
-/*********************************************************************************/
-/*                            手机管理SQL                                         */
-/*********************************************************************************/
-CREATE TABLE `TestCenter`.`test_mobile_management`(
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`mobile` VARCHAR(45) NULL,
-	`serial_code` VARCHAR(45) NULL,
-	`owner_group` INT,
-	`current_user` VARCHAR(255),
-	`update_time` DATETIME DEFAULT current_timestamp,
-	`updater` INT DEFAULT 1,
-	PRIMARY KEY (`id`)
-)engine=InnoDB Default CHARSET = utf8;
-/*********************************************************************************/
 

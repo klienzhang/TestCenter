@@ -1,45 +1,26 @@
 package com.berserker.server.model.tools;
 
-import java.util.Date;
-
 /**
- * Created by klien on 16/8/27.
+ * @author klien
+ * @since 16/8/27
  */
 public class AgentCityModel {
-    private int id;
-    private String name;
-    private Date update_time;
-    private int updater;
+    private int city_code;
+    private String city_name;
 
-    public int getId() {
-        return id;
+    public int getCity_code() {
+        return city_code;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCity_code(int city_code) {
+        this.city_code = city_code;
     }
 
-    public String getName() {
-        return name;
+    public String getCity_name() {
+        return city_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getUpdate_time() {
-        return update_time;
-    }
-
-    public void setUpdate_time(Date update_time) {
-        this.update_time = update_time;
-    }
-
-    public int getUpdater() {
-        return updater;
-    }
-
-    public void setUpdater(int updater) {
-        this.updater = updater;
+    public void setCity_name(String city_name) {
+        this.city_name = city_name;
     }
 }
