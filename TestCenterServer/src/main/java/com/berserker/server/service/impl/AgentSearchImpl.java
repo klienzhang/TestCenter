@@ -1,11 +1,9 @@
-package com.berserker.server.service.tools;
+package com.berserker.server.service.impl;
 
-import com.berserker.server.constants.ReturnCodeConstant;
 import com.berserker.server.dao.reader.tools.AgentSearchReaderMapper;
 import com.berserker.server.dao.writer.tools.AgentSearchWriterMapper;
-import com.berserker.server.model.common.CityModel;
 import com.berserker.server.model.tools.*;
-import com.github.pagehelper.PageHelper;
+import com.berserker.server.service.AgentSearchService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,7 @@ import java.util.List;
  * @since  2016-08-10
  */
 @Component
-public class AgentSearchImpl implements AgentSearchService{
+public class AgentSearchImpl implements AgentSearchService {
 
     @Autowired
     private AgentSearchReaderMapper readerMapper;

@@ -1,4 +1,4 @@
-package com.berserker.server.service.tools;
+package com.berserker.server.service;
 
 import com.berserker.server.model.tools.*;
 

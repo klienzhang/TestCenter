@@ -1,42 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.berserker.server.dao.reader.WelcomeMapper">
-
-    <resultMap id="notices" type="com.berserker.server.model.WelcomeNoticeResponse">
-        <id property="id" column="id"/>
-        <result property="icon" column="icon"/>
-        <result property="title" column="title"/>
-        <result property="content" column="content"/>
-        <result property="date" column="update_time"/>
-    </resultMap>
-
-    <select id="getNotices" resultMap="notices">
+<mapper namespace="com.berserker.server.dao.reader.tools.MobileMgrReaderMapper">
+    <select id="getMobileList" resultType="com.berserker.server.model.tools.ToolsMobileMgrModel">
         SELECT
-          b.id, b.icon, b.title, b.content, b.update_time
+          c.id id, c.mobile mobile, l.name owner_name, c.user user, c.update_time update_time, c.type type
         FROM
-          berserker_notice b
-        ORDER BY
-          b.update_time
-        DESC
-          limit 0, 10
+          tools_mobile_core c JOIN tools_mobile_leader l
+        on  c.owner = l.id
+        WHERE
+          1 = 1
+          <if test="leader_id != null and leader_id != ''">
+              AND l.id = #{leader_id}
+          </if>
     </select>
 
-    <select id="getQuickLink" resultType="com.berserker.testcenterapi.model.common.ChildNodeModel">
+    <select id="getLeaderList" resultType="com.berserker.server.model.tools.ToolsLeaderList">
         SELECT
-        m.name name, m.url url
+          id id, name leader_name
         FROM
-        quicklink_menu m
+         tools_mobile_leader l
     </select>
 
-    <select id="getProjectProgress" resultType="com.berserker.server.model.WelcomeProjectProgressResponse">
+    <select id="getMobileInfo" resultType="com.berserker.server.model.tools.ToolsMobileMgrModel">
         SELECT
-          id, status, name, progress
+          id, user user
         FROM
-          project_progress
-        ORDER BY
-          update_time
-        DESC
+          tools_mobile_core
+        WHERE
+          id = #{id}
     </select>
-
 </mapper>

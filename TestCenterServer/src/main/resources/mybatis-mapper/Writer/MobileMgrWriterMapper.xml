@@ -4,25 +4,16 @@
 <mapper namespace="com.berserker.server.dao.writer.tools.MobileMgrWriterMapper">
     <insert id="saveMobile" parameterType="com.berserker.server.model.tools.ToolsMobileMgrModel">
         INSERT INTO
-          tools_mobile_core(mobile,owner)
+        tools_mobile_core(mobile,owner)
         VALUES (#{mobile},#{owner_id})
     </insert>
-    <!--private int id;-->
-    <!--private String mobile;-->
-    <!--private int owner_id;-->
-    <!--private String owner_name;-->
-    <!--private String current_user;-->
-    <!--private Date update_time;-->
     <update id="updateMobile" parameterType="com.berserker.server.model.tools.ToolsMobileMgrModel">
-      INSERT INTO
-        tools_agent_city(city_name)
-      VALUES (#{name})
-      UPDATE
+        UPDATE
         tools_mobile_core
-      SET
+        SET
         id = #{id}
         <if test="mobile != null and mobile != ''">
-          , mobile = #{mobile}
+            , mobile = #{mobile}
         </if>
         <if test="owner_id != null and owner_id != ''">
             , owner = #{owner_id}
@@ -36,14 +27,16 @@
         <if test="comment != null and comment != ''">
             , comment = #{comment}
         </if>
-      WHERE
+        WHERE
         id = #{id}
     </update>
 
-    <delete id="deleteMobiel" parameterType="com.berserker.server.model.tools.ToolsMobileMgrModel">
-      DELETE
-      FROM tools_mobile_core
-      WHERE mobile = #{mobile}
+    <delete id="deleteMobile" parameterType="com.berserker.server.model.tools.ToolsMobileMgrModel">
+        DELETE
+        FROM tools_mobile_core
+        WHERE
+        mobile = #{mobile}
+        AND
+        id = #{id}
     </delete>
-
 </mapper>

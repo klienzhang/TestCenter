@@ -8,5 +8,5 @@ import com.berserker.server.model.tools.ToolsMobileMgrModel;
 public interface MobileMgrWriterMapper {
     int saveMobile(ToolsMobileMgrModel model);
     int updateMobile(ToolsMobileMgrModel model);
-    int deleteMobiel(ToolsMobileMgrModel model);
+    int deleteMobile(ToolsMobileMgrModel model);
 }

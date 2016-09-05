@@ -1,9 +1,7 @@
 package com.berserker.server.util;
 
 import com.berserker.server.model.PageResponse;
-import com.berserker.server.model.PagedResult;
-import com.berserker.server.model.tools.AgentCityModel;
-import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -16,7 +14,8 @@ public class PageResponseUtil {
 
     public static <T> PageResponse<T> listToPageResponse(List<T> list) {
         PageResponse<T> pageResponse = new PageResponse<T>();
-        pageResponse.setTotal(list.size());
+        PageInfo<T> info = new PageInfo<T>(list);
+        pageResponse.setTotal((int) info.getTotal());
         pageResponse.setRecords(list);
         return pageResponse;
     }

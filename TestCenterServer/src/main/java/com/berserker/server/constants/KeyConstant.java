@@ -19,5 +19,4 @@ public class KeyConstant {
     public static String KEY_QUICK_LINK = "quicklink";
     public static String KEY_WELCOME_NOTICE = "notice";
 
-
 }
