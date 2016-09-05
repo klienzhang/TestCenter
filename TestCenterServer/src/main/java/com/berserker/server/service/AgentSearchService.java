@@ -1,20 +1,21 @@
 package com.berserker.server.service;
 
+import com.berserker.server.model.PageResponse;
+import com.berserker.server.model.SOAResponse;
 import com.berserker.server.model.tools.*;
-
-import java.util.List;
 
 /**
  * @author klien
  * @since 2016-08-10
+ * @update 2016-09-05
  */
 public interface AgentSearchService {
-    List<AgentDepartmentModel> getDepartment(int isHeadQuarter);    //获取总部的部门和分城市的部门
-    List<AgentCityModel> getSubCityList();                          //获取所有分城市的名称
-    List<AgentPositionModel> getPositionList(int department_code);  //获取岗位列表
-    List<AgentInfoModel> getAgentInfos(AgentInfoModel model);       //获取账号列表
-    int addDepartment(AgentDepartmentModel model);
-    int addCity(AgentCityModel model);
-    int addPosition(AgentPositionModel model);
-    int addAgentInfo(AgentInfoModel model);
+    SOAResponse addCity(AgentCityModel model);
+    PageResponse<AgentCityModel> getSubCityList();
+    SOAResponse addDepartment(AgentDepartmentModel model);
+    PageResponse<AgentDepartmentModel> getDepartmentList(int isHeadQuarter);
+    SOAResponse addPosition(AgentPositionModel model);
+    PageResponse<AgentPositionModel> getPositionList(int department_code);
+    SOAResponse addAgentInfo(AgentInfoModel model);
+    PageResponse<AgentInfoModel> getAgentInfos(AgentInfoModel model);
 }

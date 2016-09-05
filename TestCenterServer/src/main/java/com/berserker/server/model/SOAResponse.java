@@ -3,23 +3,14 @@ package com.berserker.server.model;
 public class SOAResponse {
     private int status;
     private Object data;
-    private int errCode;
-    private Object errData;
+    private String msg;
 
-    public Object getErrData() {
-        return errData;
+    public int getStatus() {
+        return status;
     }
 
-    public void setErrData(Object errData) {
-        this.errData = errData;
-    }
-
-    public int getErrCode() {
-        return errCode;
-    }
-
-    public void setErrCode(int errCode) {
-        this.errCode = errCode;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public Object getData() {
@@ -30,11 +21,11 @@ public class SOAResponse {
         this.data = data;
     }
 
-    public int getStatus() {
-        return status;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

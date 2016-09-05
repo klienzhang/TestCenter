@@ -2,44 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.berserker.server.dao.writer.tools.AgentSearchWriterMapper">
+    <insert id="addCity" parameterType="com.berserker.server.model.tools.AgentCityModel">
+        INSERT INTO
+          tools_agent_city(city_name)
+        VALUES
+          (#{city_name})
+    </insert>
+
     <insert id="addDepartment" parameterType="com.berserker.server.model.tools.AgentDepartmentModel">
         INSERT INTO
           tools_agent_department(name,isHeadQuarter)
-        VALUES (#{name},#{isHeadQuarter})
-    </insert>
-
-    <insert id="addCity" parameterType="com.berserker.server.model.tools.AgentCityModel">
-      INSERT INTO
-        tools_agent_city(city_name)
-      VALUES (#{name})
+        VALUES
+          (#{name},#{isHeadQuarter})
     </insert>
 
     <insert id="addPosition" parameterType="com.berserker.server.model.tools.AgentPositionModel">
       INSERT INTO
         tools_agent_position(department_code,name)
-      VALUES (#{department_code},#{name})
+      VALUES
+        (#{department_code},#{name})
     </insert>
 
     <insert id="addAgentInfo" parameterType="com.berserker.server.model.tools.AgentInfoModel">
-        <selectKey keyProperty="count" resultType="int" order="BEFORE">
-            SELECT
-              count(*) as count
-            FROM
-              tools_agent_collections
-            WHERE
-              mobile = #{mobile}
-        </selectKey>
-        <if test="count>0">
-            UPDATE
-              tools_agent_collections a
-            SET
-              a.name = #{name}, a.mobile = #{mobile}, a.department_code = #{department_code},
-              a.position_code = #{position_code}, a.city_code = #{city_code}, a.comment = #{comment}
-        </if>
-        <if test="count==0">
-            INSERT INTO
-              tools_agent_collections(name,mobile,department_code,position_code,city_code,comment)
-            VALUES (#{name},#{mobile},#{department_code},#{position_code},#{city_code},#{comment})
-        </if>
+        INSERT INTO
+          tools_agent_collections(name,mobile,department_code,position_code,city_code,comment)
+        VALUES (#{name},#{mobile},#{department_code},#{position_code},#{city_code},#{comment})
     </insert>
+
+    <update id="updateAgentInfo" parameterType="com.berserker.server.model.tools.AgentInfoModel">
+      UPDATE
+      tools_agent_collections a
+      SET
+      a.name = #{name}, a.mobile = #{mobile}, a.department_code = #{department_code},
+      a.position_code = #{position_code}, a.city_code = #{city_code}
+      <if test="comment != null">
+          , a.comment = #{comment}
+      </if>
+      WHERE
+        id = #{id}
+    </update>
 </mapper>

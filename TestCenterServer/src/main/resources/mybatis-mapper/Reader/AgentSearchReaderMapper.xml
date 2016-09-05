@@ -3,39 +3,46 @@
 
 <mapper namespace="com.berserker.server.dao.reader.tools.AgentSearchReaderMapper">
 
-    <select id="findDepartmentByIsHeadQuarter" resultType="com.berserker.server.model.tools.AgentDepartmentModel">
+    <select id="getCityList" parameterType="com.berserker.server.model.tools.AgentCityModel"
+        resultType="com.berserker.server.model.tools.AgentCityModel">
+        SELECT
+          c.id city_code, c.city_name city_name
+        FROM
+          tools_agent_city c
+        <if test="city_name != null and city_name != ''">
+            WHERE
+            c.city_name = #{city_name}
+        </if>
+    </select>
+
+    <select id="getDepartmentList" parameterType="com.berserker.server.model.tools.AgentDepartmentModel"
+            resultType="com.berserker.server.model.tools.AgentDepartmentModel">
         SELECT
           a.id, a.name, a.isHeadQuarter, a.update_time, a.updater
         FROM
           tools_agent_department a
         WHERE
-          1 = 1
-        <choose>
-            <when test="isHeadQuarter == null and isHeaderQuarter != ''">
-                AND a.isHeadQuarter = 1
-            </when>
-            <when test="isHeadQuarter != null">
-                AND a.isHeadQuarter = #{isHeadQuarter}
-            </when>
-        </choose>
-
+          a.isHeadQuarter = #{isHeadQuarter}
+        <if test="name != null and name != ''">
+            AND a.name = #{name}
+        </if>
     </select>
 
-    <select id="findAllCity" resultType="com.berserker.server.model.tools.AgentCityModel">
-        SELECT
-          a.id id, a.city_name name, a.update_time update_time, a.updater updater
-        FROM
-          tools_agent_city a
-    </select>
-
-    <select id="findPositions" resultType="com.berserker.server.model.tools.AgentPositionModel">
+    <select id="getPositionList" parameterType="com.berserker.server.model.tools.AgentPositionModel"
+            resultType="com.berserker.server.model.tools.AgentPositionModel">
         SELECT
           a.id, a.department_code, a.name, a.update_time, a.updater
         FROM
           tools_agent_position a
+        WHERE
+          a.department_code = #{department_code}
+        <if test="name != null and name != ''">
+            AND a.name = #{name}
+        </if>
     </select>
 
-    <select id="findAgentInfo" resultType="com.berserker.server.model.tools.AgentInfoModel">
+    <select id="getAgentInfoList" parameterType="com.berserker.server.model.tools.AgentInfoModel"
+            resultType="com.berserker.server.model.tools.AgentInfoModel">
         SELECT
           a.id, a.name, a.mobile, a.department_code, a.position_code,a.city_code, a.comment, a.update_time, a.updater,
           d.name department_name, p.name position_name
@@ -46,67 +53,11 @@
         join
           TestCenter.tools_agent_position p on p.id = a.position_code
         WHERE
-          1 = 1
-        <if test="mobile != null and mobile != ''">
-            AND a.mobile = #{mobile}
-        </if>
-        <if test="department_code != null and department_code != ''">
-            AND a.department_code = #{department_code}
-        </if>
-        <if test="position_code != null and position_code != ''">
-            AND a.position_code = #{position_code}
-        </if>
-        <if test="city_code != null and city_code != ''">
-            AND a.city_code = #{city_code}
-        </if>
-    </select>
-
-    <select id="getAgentCityCount" parameterType="String" resultType="int">
-        SELECT
-          count(*)
-        FROM
-          tools_agent_city
-        WHERE
-          city_name = #{city_name}
-    </select>
-
-    <select id="getAgentDepartmentCount" resultType="int">
-        SELECT
-          count(*)
-        FROM
-          tools_agent_department
-        WHERE
-          name = #{name}
+          a.department_code = #{department_code}
         AND
-          isHeadQuarter = #{isHeadQuarter}
-    </select>
-
-    <select id="getAgentPositionCount" resultType="int">
-        SELECT
-        count(*)
-        FROM
-          tools_agent_position
-        WHERE
-          department_code = #{department_code}
-          AND
-          name = #{name}
-    </select>
-
-    <select id="getAgentInfoCount" parameterType="com.berserker.server.model.tools.AgentInfoModel" resultType="int">
-        SELECT
-          count(*)
-        FROM
-          tools_agent_collections a
-        WHERE
-          1 = 1
+          a.position_code = #{position_code}
         <if test="mobile != null and mobile != ''">
             AND a.mobile = #{mobile}
-        </if>
-        <if test="department_code != null and department_code != ''">
-            AND a.department_code = #{department_code}
-        </if>
-        <if test="position_code != null and position_code != ''">
-            AND a.position_code = #{position_code}
         </if>
         <if test="city_code != null and city_code != ''">
             AND a.city_code = #{city_code}

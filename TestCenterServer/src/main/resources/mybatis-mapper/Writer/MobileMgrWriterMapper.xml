@@ -15,11 +15,11 @@
         <if test="mobile != null and mobile != ''">
             , mobile = #{mobile}
         </if>
-        <if test="owner_id != null and owner_id != ''">
+        <if test="owner_id != null and owner_id != 0">
             , owner = #{owner_id}
         </if>
-        <if test="current_user != null and current_user != ''">
-            , current_user = #{current_user}
+        <if test="user != null and user != ''">
+            , user = #{user}
         </if>
         <if test="update_time != null and update_time != ''">
             , update_time = #{update_time}
@@ -27,8 +27,11 @@
         <if test="comment != null and comment != ''">
             , comment = #{comment}
         </if>
+        <if test="type != null and type != ''">
+            , type = #{type}
+        </if>
         WHERE
-        id = #{id}
+          id = #{id}
     </update>
 
     <delete id="deleteMobile" parameterType="com.berserker.server.model.tools.ToolsMobileMgrModel">

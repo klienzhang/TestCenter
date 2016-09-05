@@ -4,13 +4,13 @@
 <mapper namespace="com.berserker.server.dao.reader.tools.MobileMgrReaderMapper">
     <select id="getMobileList" resultType="com.berserker.server.model.tools.ToolsMobileMgrModel">
         SELECT
-          c.id id, c.mobile mobile, l.name owner_name, c.user user, c.update_time update_time, c.type type
+          c.id id, c.mobile mobile, l.name owner_name, c.user user, c.update_time update_time, c.type type, c.comment comment
         FROM
           tools_mobile_core c JOIN tools_mobile_leader l
         on  c.owner = l.id
         WHERE
           1 = 1
-          <if test="leader_id != null and leader_id != ''">
+          <if test="leader_id != null and leader_id != 0">
               AND l.id = #{leader_id}
           </if>
     </select>

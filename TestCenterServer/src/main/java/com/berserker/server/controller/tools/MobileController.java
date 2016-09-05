@@ -8,12 +8,14 @@ import com.berserker.server.model.tools.ToolsLeaderList;
 import com.berserker.server.model.tools.ToolsMobileMgrModel;
 import com.berserker.server.service.MobileMgrService;
 import com.berserker.server.util.PageResponseUtil;
+import com.berserker.testcenterapi.util.FastJsonUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -69,10 +71,13 @@ public class MobileController {
 
     @RequestMapping(value = "/mobile/updateMobileInfo")
     @ResponseBody
-    public ToolsMobileMgrModel updateMobileInfo(HttpServletRequest request){
-        logger.info("{} is visiting getMobileInfo. user:{}", request.getRemoteHost(), request.getParameter("user"));
-        System.out.println(request.getParameter("user"));
-        //ToolsMobileMgrModel model = mobileMgrService.getMobileInfo(Integer.valueOf(request.getParameter("id")));
-        return null;
+    public String updateMobileInfo(HttpServletRequest request, @RequestBody String order){
+        ToolsMobileMgrModel mobileMgrModel = FastJsonUtil.getSingleBean(order,ToolsMobileMgrModel.class);
+        System.out.println(mobileMgrModel.getUser());
+        int result = mobileMgrService.updateMobile(mobileMgrModel);
+        if(result > 0)
+            return "success";
+        else
+            return "fail";
     }
 }

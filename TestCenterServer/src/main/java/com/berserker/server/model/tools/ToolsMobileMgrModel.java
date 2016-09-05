@@ -42,6 +42,14 @@ public class ToolsMobileMgrModel {
         this.owner_id = owner_id;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getOwner_name() {
         return owner_name;
     }
@@ -50,12 +58,12 @@ public class ToolsMobileMgrModel {
         this.owner_name = owner_name;
     }
 
-    public String getCurrent_user() {
+    public String getUser() {
         return user;
     }
 
-    public void setCurrent_user(String current_user) {
-        this.user = current_user;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getUpdate_time() {
@@ -72,13 +80,5 @@ public class ToolsMobileMgrModel {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }

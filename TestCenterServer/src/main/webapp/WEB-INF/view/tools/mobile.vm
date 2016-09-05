@@ -29,8 +29,20 @@
                                                 <div class="row">
                                                     <div class="col-sm-10">
                                                         <div class="form-group">
+                                                            <label>id:</label>
+                                                            <label id="current_id"></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-group">
                                                             <label>当前使用者:</label>
                                                             <input type="text" id="mobile_current_user"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-group">
+                                                            <label>备注:</label>
+                                                            <input type="text" id="comment"></input>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -68,7 +80,9 @@
                     return false;
                 }
                 var jsonobject = {
+                    id: $("#current_id").text(),
                     user: $("#mobile_current_user").val(),
+                    comment: $("#comment").val()
                 };
                 $.ajax({
                     type:'post',
@@ -77,15 +91,18 @@
                     contentType : 'application/json',
                     data:JSON.stringify(jsonobject),
                     success:function(data){
-                        alert("ok");
+                        $("#myModal4").modal("hide");
+                        $("#mobileTable").bootstrapTable("refresh");
                     },
                     error:function(errorThrown){
                         console.log(errorThrown);
+                        alert("失败请重试");
                     }
                 });
             });
 
             function edit(id){
+                $("#current_id").text(id);
                 $.ajax({
                     type:'get',
                     url:"/iwjw/tools/mobile/getMobileInfo.action" + "?id=" + id,
@@ -93,7 +110,8 @@
                     contentType : 'application/json',
                     data:{},
                     success:function(data){
-                        $("#mobile_current_user").val(data.current_user);
+                        $("#mobile_current_user").val(data.user);
+                        $("#comment").val(data.comment);
                     },
                     error:function(errorThrown){
                         console.log(errorThrown);
@@ -176,7 +194,7 @@
                             },
                             {
                                 title: '当前使用者',
-                                field: 'current_user',
+                                field: 'user',
                                 align: 'center',
                                 valign: 'middle',
                             },
