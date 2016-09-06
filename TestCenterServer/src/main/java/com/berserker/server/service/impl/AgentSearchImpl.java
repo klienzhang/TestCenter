@@ -6,7 +6,7 @@ import com.berserker.server.model.PageResponse;
 import com.berserker.server.model.SOAResponse;
 import com.berserker.server.model.tools.*;
 import com.berserker.server.service.AgentSearchService;
-import com.berserker.server.util.PageResponseUtil;
+import com.berserker.server.util.ResponseUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,9 +63,9 @@ public class AgentSearchImpl implements AgentSearchService {
         PageResponse<AgentCityModel> response = null;
         try{
             List<AgentCityModel> list = readerMapper.getCityList(new AgentCityModel());
-            response = PageResponseUtil.listToPageResponse(list);
+            response = ResponseUtil.list2PageResponse(list);
         }catch (Exception e){
-            response = PageResponseUtil.listToPageResponse(Collections.EMPTY_LIST);
+            response = ResponseUtil.list2PageResponse(Collections.EMPTY_LIST);
         }
         return response;
     }
@@ -105,9 +105,9 @@ public class AgentSearchImpl implements AgentSearchService {
             AgentDepartmentModel model = new AgentDepartmentModel();
             model.setIsHeadQuarter(isHeadQuarter);
             List<AgentDepartmentModel> list = readerMapper.getDepartmentList(model);
-            response = PageResponseUtil.listToPageResponse(list);
+            response = ResponseUtil.list2PageResponse(list);
         }catch (Exception e){
-            response = PageResponseUtil.listToPageResponse(Collections.EMPTY_LIST);
+            response = ResponseUtil.list2PageResponse(Collections.EMPTY_LIST);
         }
         return response;
     }
@@ -147,9 +147,9 @@ public class AgentSearchImpl implements AgentSearchService {
             AgentPositionModel model = new AgentPositionModel();
             model.setDepartment_code(department_code);
             List<AgentPositionModel> list = readerMapper.getPositionList(model);
-            response = PageResponseUtil.listToPageResponse(list);
+            response = ResponseUtil.list2PageResponse(list);
         }catch (Exception e){
-            response = PageResponseUtil.listToPageResponse(Collections.EMPTY_LIST);
+            response = ResponseUtil.list2PageResponse(Collections.EMPTY_LIST);
         }
         return response;
     }
@@ -186,9 +186,9 @@ public class AgentSearchImpl implements AgentSearchService {
         PageResponse<AgentInfoModel> response = null;
         try{
             List<AgentInfoModel> list = readerMapper.getAgentInfoList(model);
-            response = PageResponseUtil.listToPageResponse(list);
+            response = ResponseUtil.list2PageResponse(list);
         }catch (Exception e){
-            response = PageResponseUtil.listToPageResponse(Collections.EMPTY_LIST);
+            response = ResponseUtil.list2PageResponse(Collections.EMPTY_LIST);
         }
         return response;
     }

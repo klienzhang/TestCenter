@@ -39,10 +39,10 @@ public class MobileMgrDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test(enabled = false)
     public void testSelectLeaderList(){
-        List<ToolsLeaderList> list = service.getLeaderList();
-        for(int i = 0; i< list.size(); i++){
-            System.out.println(list.get(i).getLeader_name());
-        }
+//        List<ToolsLeaderList> list = service.getLeaderList();
+//        for(int i = 0; i< list.size(); i++){
+//            System.out.println(list.get(i).getLeader_name());
+//        }
     }
 
     @Test

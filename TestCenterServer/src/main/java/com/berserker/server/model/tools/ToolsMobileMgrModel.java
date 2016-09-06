@@ -3,20 +3,20 @@ package com.berserker.server.model.tools;
 import com.berserker.testcenterapi.util.DateUtil;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
-/**
- * Created by klien on 16/9/1.
- */
 public class ToolsMobileMgrModel {
     private int id;
     private String mobile;
     private int owner_id;
-    private String type;
     private String owner_name;
     private String user;
     private Timestamp update_time;
     private String comment;
+    private String serial;
+    private int brandId;
+    private String brandName;
+    private int typeId;
+    private String typeName;
 
     public int getId() {
         return id;
@@ -40,14 +40,6 @@ public class ToolsMobileMgrModel {
 
     public void setOwner_id(int owner_id) {
         this.owner_id = owner_id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getOwner_name() {
@@ -80,5 +72,45 @@ public class ToolsMobileMgrModel {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getSerial() {
+        return serial;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
+    public int getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public int getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }

@@ -6,7 +6,7 @@
 //import com.berserker.server.model.tools.AgentInfoModel;
 //import com.berserker.server.model.tools.AgentPositionModel;
 //import com.berserker.server.service.AgentSearchService;
-//import com.berserker.server.util.PageResponseUtil;
+//import com.berserker.server.util.ResponseUtil;
 //import com.berserker.testcenterapi.util.FastJsonUtil;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Controller;
@@ -43,7 +43,7 @@
 //    @ResponseBody
 //    public PageResponse<AgentCityModel> getCity(HttpServletRequest request){
 //
-//        PageResponse<AgentCityModel> pageResponse = PageResponseUtil.listToPageResponse(searchService.getSubCityList());
+//        PageResponse<AgentCityModel> pageResponse = ResponseUtil.listToPageResponse(searchService.getSubCityList());
 //        return pageResponse;
 //    }
 //
@@ -53,7 +53,7 @@
 //
 //        int isHeadQuarter = Integer.parseInt(request.getParameter("isHeadQuarter"));
 //        PageResponse<AgentDepartmentModel> pageResponse =
-//                PageResponseUtil.listToPageResponse(searchService.getDepartment(isHeadQuarter));
+//                ResponseUtil.listToPageResponse(searchService.getDepartment(isHeadQuarter));
 //        return pageResponse;
 //    }
 //
@@ -62,7 +62,7 @@
 //    public PageResponse<AgentPositionModel> getPosition(HttpServletRequest request ,@RequestBody String json){
 //        AgentPositionModel model = FastJsonUtil.getSingleBean(json, AgentPositionModel.class);
 //        PageResponse<AgentPositionModel> pageResponse =
-//                PageResponseUtil.listToPageResponse(searchService.getPositionList(model.getDepartment_code()));
+//                ResponseUtil.listToPageResponse(searchService.getPositionList(model.getDepartment_code()));
 //        return pageResponse;
 //    }
 //
@@ -71,7 +71,7 @@
 //    public PageResponse<AgentInfoModel> getAgentInfoList(HttpServletRequest request, @RequestBody String json){
 //        AgentInfoModel model = FastJsonUtil.getSingleBean(json, AgentInfoModel.class);
 //        PageResponse<AgentInfoModel> pageResponse =
-//                PageResponseUtil.listToPageResponse(searchService.getAgentInfos(model));
+//                ResponseUtil.listToPageResponse(searchService.getAgentInfos(model));
 //        return pageResponse;
 //    }
 //

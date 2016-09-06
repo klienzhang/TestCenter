@@ -1,6 +1,7 @@
 package com.berserker.server.dao.writer.tools;
 
 import com.berserker.server.model.tools.ToolsMobileMgrModel;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * Created by klien on 16/9/1.
@@ -8,5 +9,5 @@ import com.berserker.server.model.tools.ToolsMobileMgrModel;
 public interface MobileMgrWriterMapper {
     int saveMobile(ToolsMobileMgrModel model);
     int updateMobile(ToolsMobileMgrModel model);
-    int deleteMobile(ToolsMobileMgrModel model);
+    int deleteMobile(@Param("id") int id, @Param("mobile") String mobile);
 }
