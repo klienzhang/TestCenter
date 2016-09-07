@@ -19,16 +19,16 @@
         <if test="owner_id != null and owner_id != 0">
             , owner = #{owner_id}
         </if>
-        <if test="user != null and user != ''">
+        <if test="user != null">
             , user = #{user}
         </if>
         <if test="comment != null">
             , comment = #{comment}
         </if>
-        <if test="type != null">
+        <if test="type != null and type != 0">
             , type = #{typeId}
         </if>
-        <if test="serial != null">
+        <if test="serial != null and serial != ''">
             , serial = #{serial}
         </if>
         WHERE

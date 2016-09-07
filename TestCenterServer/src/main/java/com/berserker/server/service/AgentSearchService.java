@@ -1,7 +1,7 @@
 package com.berserker.server.service;
 
-import com.berserker.server.model.PageResponse;
-import com.berserker.server.model.SOAResponse;
+import com.berserker.testcenterapi.model.PageResponse;
+import com.berserker.testcenterapi.model.ClientResponse;
 import com.berserker.server.model.tools.*;
 
 /**
@@ -10,12 +10,12 @@ import com.berserker.server.model.tools.*;
  * @update 2016-09-05
  */
 public interface AgentSearchService {
-    SOAResponse addCity(AgentCityModel model);
+    ClientResponse addCity(AgentCityModel model);
     PageResponse<AgentCityModel> getSubCityList();
-    SOAResponse addDepartment(AgentDepartmentModel model);
+    ClientResponse addDepartment(AgentDepartmentModel model);
     PageResponse<AgentDepartmentModel> getDepartmentList(int isHeadQuarter);
-    SOAResponse addPosition(AgentPositionModel model);
+    ClientResponse addPosition(AgentPositionModel model);
     PageResponse<AgentPositionModel> getPositionList(int department_code);
-    SOAResponse addAgentInfo(AgentInfoModel model);
+    ClientResponse addAgentInfo(AgentInfoModel model);
     PageResponse<AgentInfoModel> getAgentInfos(AgentInfoModel model);
 }

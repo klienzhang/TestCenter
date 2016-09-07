@@ -22,7 +22,7 @@
                             </div>
                             <label class="control-label col-sm-1" for="txt_search_departmentname">品牌</label>
                             <div class="col-sm-2">
-                                <select class="input-sm form-control input-s-sm inline" id="mobile_type">
+                                <select class="input-sm form-control input-s-sm inline" id="mobile_brand">
                                 </select>
                             </div>
                             <label class="control-label col-sm-1" for="txt_search_departmentname">型号</label>
@@ -121,14 +121,8 @@
                 });
             }
 
-            getSuffix = function (params) {
-                console.log(params);
-                var suffix = "currentPage=" + params.pageNumber + "&pageSize=" + params.pageSize
-                        + "&id=" + $("#leaderList").val() + "&type=" + $("#mobile_type").val();
-                return suffix;
-            };
-
             $(function(){
+                //初始化获取所有小组名称
                 $.ajax({
                     type:'post',
                     url:"${html.domain}/tools/mobile/getLeaderList.action",
@@ -152,6 +146,7 @@
                     }
                 });
 
+                //初始化手机品牌
                 $.ajax({
                     type:'post',
                     url:"${html.domain}/tools/mobile/getMobileTypeList.action",
@@ -165,7 +160,30 @@
                         });
                         var options_str = "";
                         $.each(select_option,function(i, item){
-                            options_str += "<option value=\"" + item.id + "\" >" + item.name + "</option>";
+                            options_str += "<option value=\"" + item.brandId + "\" >" + item.brandName + "</option>";
+                        });
+                        console.log(options_str);
+                        $("#mobile_brand").html("").append(options_str);
+                    },
+                    error:function(errorThrown){
+                        console.log(errorThrown);
+                    }
+                });
+
+                $.ajax({
+                    type:'post',
+                    url:"${html.domain}/tools/mobile/getMobileTypeList.action?brand=" + $("#mobile_brand").val(),
+                    datatype:'json',
+                    contentType:'text/html;charset=UTF-8',
+                    data:{},
+                    success:function(data){
+                        var select_option = new Array();
+                        $.each(data.records,function(i, item){
+                            select_option.push(item);
+                        });
+                        var options_str = "";
+                        $.each(select_option,function(i, item){
+                            options_str += "<option value=\"" + item.typeId + "\" >" + item.typeName + "</option>";
                         });
                         console.log(options_str);
                         $("#mobile_type").html("").append(options_str);
@@ -175,6 +193,39 @@
                     }
                 });
 
+                //渲染手机型号下拉列表
+                $("#mobile_brand").change(function(){
+                    $.ajax({
+                        type:'post',
+                        url:"${html.domain}/tools/mobile/getMobileTypeList.action?brand=" + $("#mobile_brand").val(),
+                        datatype:'json',
+                        contentType:'text/html;charset=UTF-8',
+                        data:{},
+                        success:function(data){
+                            var select_option = new Array();
+                            $.each(data.records,function(i, item){
+                                select_option.push(item);
+                            });
+                            var options_str = "";
+                            $.each(select_option,function(i, item){
+                                options_str += "<option value=\"" + item.typeId + "\" >" + item.typeName + "</option>";
+                            });
+                            console.log(options_str);
+                            $("#mobile_type").html("").append(options_str);
+                        },
+                        error:function(errorThrown){
+                            console.log(errorThrown);
+                        }
+                    });
+                });
+
+                getSuffix = function (params) {
+                    console.log(params);
+                    var suffix = "currentPage=" + params.pageNumber + "&pageSize=" + params.pageSize
+                            + "&id=" + $("#leaderList").val() + "&brandId=" + $("#mobile_brand").val()
+                            + "&typeId=" + $("#mobile_type").val();
+                    return suffix;
+                };
                 $("#btn_query").click(function(){
                     $("#mobileTable").bootstrapTable("refresh");
                     $("#mobileTable").bootstrapTable({

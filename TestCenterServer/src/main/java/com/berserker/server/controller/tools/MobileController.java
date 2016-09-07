@@ -3,14 +3,14 @@ package com.berserker.server.controller.tools;
 import com.berserker.server.constants.KeyConstant;
 import com.berserker.server.constants.ValueConstant;
 import com.berserker.server.model.HtmlModel;
-import com.berserker.server.model.PageResponse;
-import com.berserker.server.model.SOAResponse;
+import com.berserker.server.util.ResponseUtil;
+import com.berserker.testcenterapi.model.PageResponse;
+import com.berserker.testcenterapi.model.ClientResponse;
 import com.berserker.server.model.tools.MobileDeviceModel;
 import com.berserker.server.model.tools.ToolsLeaderList;
 import com.berserker.server.model.tools.ToolsMobileMgrModel;
 import com.berserker.server.service.MobileMgrService;
 import com.berserker.server.util.RequestConverter;
-import com.berserker.server.util.ResponseUtil;
 import com.berserker.testcenterapi.util.FastJsonUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "/tools")
@@ -65,11 +64,11 @@ public class MobileController {
     @ResponseBody
     public PageResponse<ToolsMobileMgrModel> getMobileList(HttpServletRequest request){
         ToolsMobileMgrModel model = new ToolsMobileMgrModel();
-        int owner_id = Integer.valueOf(request.getParameter("id"));
-        int brandId = Integer.valueOf(request.getParameter("brandId"));
-        int typeId = Integer.valueOf(request.getParameter("typeId"));
-        int currentPage = Integer.valueOf(request.getParameter("currentPage"));
-        int pageSize = Integer.valueOf(request.getParameter("pageSize"));
+        int owner_id = RequestConverter.string2Integer(request.getParameter("id"));
+        int brandId = RequestConverter.string2Integer(request.getParameter("brandId"));
+        int typeId = RequestConverter.string2Integer(request.getParameter("typeId"));
+        int currentPage = RequestConverter.string2Integer(request.getParameter("currentPage"));
+        int pageSize = RequestConverter.string2Integer(request.getParameter("pageSize"));
         logger.info("getMobileList. id:{}, brand:{}, type:{},currentPage:{}, pageSize:{}",
                 owner_id, brandId, typeId, currentPage, pageSize);
         model.setOwner_id(owner_id);
@@ -82,17 +81,21 @@ public class MobileController {
 
     @RequestMapping(value = "/mobile/getMobileInfo")
     @ResponseBody
-    public ToolsMobileMgrModel getMobileInfo(HttpServletRequest request){
-        int id = Integer.valueOf(request.getParameter("id"));
+    public ClientResponse getMobileInfo(HttpServletRequest request){
+        int id = RequestConverter.string2Integer(request.getParameter("id"));
         logger.info("getMobileInfo. id:{}",id);
-        ToolsMobileMgrModel model = mobileMgrService.getMobileInfo(id);
-        return model;
+        return mobileMgrService.getMobileInfo(id);
     }
 
     @RequestMapping(value = "/mobile/updateMobileInfo")
     @ResponseBody
-    public SOAResponse updateMobileInfo(HttpServletRequest request, @RequestBody String order){
-        ToolsMobileMgrModel mobileMgrModel = FastJsonUtil.getSingleBean(order,ToolsMobileMgrModel.class);
+    public ClientResponse updateMobileInfo(HttpServletRequest request, @RequestBody String order){
+        ToolsMobileMgrModel mobileMgrModel = null;
+        try{
+            mobileMgrModel = FastJsonUtil.getSingleBean(order,ToolsMobileMgrModel.class);
+        }catch (Exception e){
+            return ResponseUtil.object2SOAResponse(-1, e.getMessage());
+        }
         return mobileMgrService.updateMobile(mobileMgrModel);
     }
 }

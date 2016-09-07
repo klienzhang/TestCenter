@@ -19,8 +19,8 @@ CREATE TABLE `TestCenter`.`tools_mobile_leader` (
 
 CREATE TABLE `TestCenter`.`tools_mobile_type` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `branch_id` INT NULL,
-  `branch` VARCHAR(45) NULL COMMENT '',
+  `brand_id` INT NULL,
+  `brand` VARCHAR(45) NULL COMMENT '',
   `type` VARCHAR(45) NULL,
   PRIMARY KEY (`id`)  COMMENT '')
   ENGINE = InnoDB DEFAULT CHARSET = utf8;

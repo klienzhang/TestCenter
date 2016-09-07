@@ -1,4 +1,4 @@
-package com.berserker.server.model;
+package com.berserker.testcenterapi.model;
 
 import java.io.Serializable;
 import java.util.List;

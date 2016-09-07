@@ -1,6 +1,6 @@
 package com.berserker.server.service.impl;
 
-import com.berserker.server.dao.reader.common.PageComponentReaderMaper;
+import com.berserker.server.dao.reader.PageComponentReaderMaper;
 import com.berserker.server.model.page.QuickLinkModel;
 import com.berserker.server.model.page.SideBarModel;
 import com.berserker.server.model.page.TopBarModel;

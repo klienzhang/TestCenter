@@ -1,6 +1,6 @@
-package com.berserker.server.model;
+package com.berserker.testcenterapi.model;
 
-public class SOAResponse {
+public class ClientResponse {
     private int status;
     private Object data;
     private String msg;

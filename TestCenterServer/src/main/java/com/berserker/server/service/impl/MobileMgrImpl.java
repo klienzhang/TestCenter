@@ -2,8 +2,8 @@ package com.berserker.server.service.impl;
 
 import com.berserker.server.dao.reader.tools.MobileMgrReaderMapper;
 import com.berserker.server.dao.writer.tools.MobileMgrWriterMapper;
-import com.berserker.server.model.PageResponse;
-import com.berserker.server.model.SOAResponse;
+import com.berserker.testcenterapi.model.PageResponse;
+import com.berserker.testcenterapi.model.ClientResponse;
 import com.berserker.server.model.tools.MobileDeviceModel;
 import com.berserker.server.model.tools.ToolsLeaderList;
 import com.berserker.server.model.tools.ToolsMobileMgrModel;
@@ -23,8 +23,8 @@ public class MobileMgrImpl implements MobileMgrService{
     @Autowired
     private MobileMgrReaderMapper readerMapper;
 
-    public SOAResponse saveMobile(ToolsMobileMgrModel model) {
-        SOAResponse response = new SOAResponse();
+    public ClientResponse saveMobile(ToolsMobileMgrModel model) {
+        ClientResponse response = new ClientResponse();
         try{
             int result = writerMapper.saveMobile(model);
             response = ResponseUtil.object2SOAResponse(result,result);
@@ -34,8 +34,8 @@ public class MobileMgrImpl implements MobileMgrService{
         return response;
     }
 
-    public SOAResponse updateMobile(ToolsMobileMgrModel model) {
-        SOAResponse response = new SOAResponse();
+    public ClientResponse updateMobile(ToolsMobileMgrModel model) {
+        ClientResponse response = new ClientResponse();
         try{
             int result = writerMapper.updateMobile(model);
             response = ResponseUtil.object2SOAResponse(result,result);
@@ -45,8 +45,8 @@ public class MobileMgrImpl implements MobileMgrService{
         return response;
     }
 
-    public SOAResponse deleteMobile(ToolsMobileMgrModel model) {
-        SOAResponse response = new SOAResponse();
+    public ClientResponse deleteMobile(ToolsMobileMgrModel model) {
+        ClientResponse response = new ClientResponse();
         try{
             int result = writerMapper.deleteMobile(model.getId(),model.getMobile());
             response = ResponseUtil.object2SOAResponse(result,result);
@@ -66,8 +66,15 @@ public class MobileMgrImpl implements MobileMgrService{
         return  ResponseUtil.list2PageResponse(list);
     }
 
-    public ToolsMobileMgrModel getMobileInfo(int id){
-        return readerMapper.getMobileInfo(id);
+    public ClientResponse getMobileInfo(int id){
+        ClientResponse response = new ClientResponse();
+        try{
+            ToolsMobileMgrModel model = readerMapper.getMobileInfo(id);
+            response = ResponseUtil.object2SOAResponse(1,model);
+        }catch (Exception e){
+            response = ResponseUtil.object2SOAResponse(-1,e.getMessage());
+        }
+        return response;
     }
 
     public PageResponse<ToolsMobileMgrModel> getMobileList(ToolsMobileMgrModel mobileMgrModel, int currentPage, int pageSize) {

@@ -1,4 +1,4 @@
-package com.berserker.server.dao.reader.common;
+package com.berserker.server.dao.reader;
 
 import com.berserker.testcenterapi.model.common.ChildNodeModel;
 import com.berserker.testcenterapi.model.common.MenuGroupWithChildNodesModel;

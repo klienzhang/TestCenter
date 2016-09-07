@@ -2,8 +2,8 @@ package com.berserker.server.service.impl;
 
 import com.berserker.server.dao.reader.tools.AgentSearchReaderMapper;
 import com.berserker.server.dao.writer.tools.AgentSearchWriterMapper;
-import com.berserker.server.model.PageResponse;
-import com.berserker.server.model.SOAResponse;
+import com.berserker.testcenterapi.model.PageResponse;
+import com.berserker.testcenterapi.model.ClientResponse;
 import com.berserker.server.model.tools.*;
 import com.berserker.server.service.AgentSearchService;
 import com.berserker.server.util.ResponseUtil;
@@ -34,8 +34,8 @@ public class AgentSearchImpl implements AgentSearchService {
      * @param model
      * @return
      */
-    public SOAResponse addCity(AgentCityModel model) {
-        SOAResponse response = new SOAResponse();
+    public ClientResponse addCity(AgentCityModel model) {
+        ClientResponse response = new ClientResponse();
         try{
             //如果已有城市，则不插入
             if(readerMapper.getCityList(model).size() > 0){
@@ -75,8 +75,8 @@ public class AgentSearchImpl implements AgentSearchService {
      * @param model
      * @return
      */
-    public SOAResponse addDepartment(AgentDepartmentModel model) {
-        SOAResponse response = new SOAResponse();
+    public ClientResponse addDepartment(AgentDepartmentModel model) {
+        ClientResponse response = new ClientResponse();
         try {
             if(readerMapper.getDepartmentList(model).size() > 0){
                 response.setStatus(0);
@@ -117,8 +117,8 @@ public class AgentSearchImpl implements AgentSearchService {
      * @param model
      * @return
      */
-    public SOAResponse addPosition(AgentPositionModel model) {
-        SOAResponse response = new SOAResponse();
+    public ClientResponse addPosition(AgentPositionModel model) {
+        ClientResponse response = new ClientResponse();
         try {
             if(readerMapper.getPositionList(model).size() > 0){
                 response.setStatus(0);
@@ -159,8 +159,8 @@ public class AgentSearchImpl implements AgentSearchService {
      * @param model
      * @return
      */
-    public SOAResponse addAgentInfo(AgentInfoModel model) {
-        SOAResponse response = new SOAResponse();
+    public ClientResponse addAgentInfo(AgentInfoModel model) {
+        ClientResponse response = new ClientResponse();
         try {
             if(readerMapper.getAgentInfoList(model).size() > 0){
                 response.setStatus(0);

@@ -1,7 +1,7 @@
 package com.berserker.server.util;
 
-import com.berserker.server.model.PageResponse;
-import com.berserker.server.model.SOAResponse;
+import com.berserker.testcenterapi.model.PageResponse;
+import com.berserker.testcenterapi.model.ClientResponse;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
@@ -21,8 +21,8 @@ public class ResponseUtil {
         return pageResponse;
     }
 
-    public static SOAResponse object2SOAResponse(int status, Object data){
-        SOAResponse response = new SOAResponse();
+    public static ClientResponse object2SOAResponse(int status, Object data){
+        ClientResponse response = new ClientResponse();
         response.setStatus(status);
         if(status > 0){
             response.setData(data);

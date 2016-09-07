@@ -7,7 +7,7 @@ public class RequestConverter {
         try{
             target = Integer.valueOf(source);
         }catch (Exception e){
-            target = 0;
+            target = -1;
         }
         return target;
     }

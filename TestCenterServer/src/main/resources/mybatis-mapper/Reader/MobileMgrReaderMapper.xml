@@ -3,17 +3,21 @@
 
 <mapper namespace="com.berserker.server.dao.reader.tools.MobileMgrReaderMapper">
     <select id="getMobileDeviceList" resultType="com.berserker.server.model.tools.MobileDeviceModel">
-        SELECT
-        id typeId, brand_id brandId, brand brandName, type typeName
-        FROM
-        tools_mobile_type
-        WHERE
-        TRUE
-        <if test="brandId != null and brandId != 0">
-            AND brand_id = #{brandId}
+        <if test="brandId == -1">
+            SELECT
+              distinct brand_Id brandId, brand brandName
+            FROM
+              tools_mobile_type
         </if>
-        <if test="typeId != null and typeId != 0">
-            AND id = #{typeId}
+        <if test="brandId != -1">
+            SELECT
+              DISTINCT id typeId, type typeName
+            FROM
+              tools_mobile_type
+            <if test="brandId != 0">
+                WHERE
+                brand_id = #{brandId}
+            </if>
         </if>
     </select>
 
@@ -28,18 +32,18 @@
             resultType="com.berserker.server.model.tools.ToolsMobileMgrModel">
         SELECT
         c.id id, c.mobile mobile, c.owner owner_id, l.name owner_name, c.user user, c.update_time update_time,
-        t.id typeId, t.type typeName, t.brand_id brandId, t.brand brandName
+        t.id typeId, t.type typeName, t.brand_id brandId, t.brand brandName, c.serial serial, c.comment comment
         FROM
         tools_mobile_core c join tools_mobile_type t on c.type = t.id join tools_mobile_leader l on c.owner = l.id
         WHERE
           TRUE
-          <if test="owner_id != null and owner_id != 0">
+          <if test="owner_id != null and owner_id != -1">
               AND l.id = #{owner_id}
           </if>
-        <if test="typeId != null and typeId != 0">
+        <if test="typeId != null and typeId != -1">
             AND t.type = #{typeId}
         </if>
-        <if test="brandId != null and brandId != 0">
+        <if test="brandId != null and brandId != -1">
             AND t.brand_id = #{brandId}
         </if>
     </select>
@@ -47,10 +51,10 @@
     <select id="getMobileInfo" resultType="com.berserker.server.model.tools.ToolsMobileMgrModel">
         SELECT
             c.id id, c.mobile mobile, c.owner owner_id, l.name owner_name, c.user user, c.update_time update_time,
-            t.id typeId, t.type typeName, t.brand_id brandId, t.brand brandName
+            t.id typeId, t.type typeName, t.brand_id brandId, t.brand brandName, c.serial serial, c.comment comment
         FROM
             tools_mobile_core c join tools_mobile_type t on c.type = t.id join tools_mobile_leader l on c.owner = l.id
         WHERE
-          id = #{id}
+          c.id = #{id}
     </select>
 </mapper>

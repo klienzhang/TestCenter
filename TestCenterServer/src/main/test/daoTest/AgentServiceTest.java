@@ -1,11 +1,9 @@
 package daoTest;
 
-import com.berserker.server.dao.reader.tools.AgentSearchReaderMapper;
-import com.berserker.server.model.PageResponse;
-import com.berserker.server.model.SOAResponse;
+import com.berserker.testcenterapi.model.PageResponse;
+import com.berserker.testcenterapi.model.ClientResponse;
 import com.berserker.server.model.tools.AgentCityModel;
 import com.berserker.server.model.tools.AgentDepartmentModel;
-import com.berserker.server.model.tools.ToolsMobileMgrModel;
 import com.berserker.server.service.AgentSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -27,7 +25,7 @@ public class AgentServiceTest extends AbstractTestNGSpringContextTests {
     public void testInsertCity(){
         AgentCityModel model = new AgentCityModel();
         model.setCity_name("北京");
-        SOAResponse response = service.addCity(model);
+        ClientResponse response = service.addCity(model);
         System.out.println(response.getStatus());
     }
 
@@ -46,7 +44,7 @@ public class AgentServiceTest extends AbstractTestNGSpringContextTests {
         AgentDepartmentModel model = new AgentDepartmentModel();
 //        model.setName("财务部2");
 //        model.setIsHeadQuarter(1);
-        SOAResponse response = service.addDepartment(model);
+        ClientResponse response = service.addDepartment(model);
         System.out.println(response.getStatus());
     }
 
