@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/tools")
@@ -57,6 +58,7 @@ public class MobileController {
         int brand = RequestConverter.string2Integer(request.getParameter("brand"));
         int type = RequestConverter.string2Integer(request.getParameter("type"));
         logger.info("getMobileTypeList - brand:{}, type:{}", brand, type);
+
         return mobileMgrService.getMobileTypeList(brand,type);
     }
 
