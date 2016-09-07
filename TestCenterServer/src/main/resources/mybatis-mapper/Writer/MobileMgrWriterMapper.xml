@@ -13,7 +13,7 @@
         tools_mobile_core
         SET
           update_time = CURRENT_TIMESTAMP
-        <if test="mobile != null and mobile != ''">
+        <if test="mobile != null">
             , mobile = #{mobile}
         </if>
         <if test="owner_id != null and owner_id != 0">
@@ -25,7 +25,7 @@
         <if test="comment != null">
             , comment = #{comment}
         </if>
-        <if test="type != null and type != 0">
+        <if test="typeId != null and typeId != 0">
             , type = #{typeId}
         </if>
         <if test="serial != null and serial != ''">

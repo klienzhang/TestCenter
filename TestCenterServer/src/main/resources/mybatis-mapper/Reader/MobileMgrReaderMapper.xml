@@ -37,13 +37,13 @@
         tools_mobile_core c join tools_mobile_type t on c.type = t.id join tools_mobile_leader l on c.owner = l.id
         WHERE
           TRUE
-          <if test="owner_id != null and owner_id != -1">
+          <if test="owner_id != 0 and owner_id != -1">
               AND l.id = #{owner_id}
           </if>
-        <if test="typeId != null and typeId != -1">
-            AND t.type = #{typeId}
+        <if test="typeId != 0 and typeId != -1">
+            AND t.id = #{typeId}
         </if>
-        <if test="brandId != null and brandId != -1">
+        <if test="brandId != 0 and brandId != -1">
             AND t.brand_id = #{brandId}
         </if>
     </select>

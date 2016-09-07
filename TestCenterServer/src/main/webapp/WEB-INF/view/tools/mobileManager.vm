@@ -112,8 +112,9 @@
                     contentType : 'application/json',
                     data:{},
                     success:function(data){
-                        $("#mobile_current_user").val(data.user);
-                        $("#comment").val(data.comment);
+
+                        $("#mobile_current_user").val(data.data.user);
+                        $("#comment").val(data.data.comment);
                     },
                     error:function(errorThrown){
                         console.log(errorThrown);
@@ -135,6 +136,7 @@
                             select_option.push(item);
                         });
                         var options_str = "";
+                        options_str += "<option value=\"0\" >全部</option>";
                         $.each(select_option,function(i, item){
                             options_str += "<option value=\"" + item.id + "\" >" + item.leader_name + "</option>";
                         });
@@ -159,6 +161,7 @@
                             select_option.push(item);
                         });
                         var options_str = "";
+                        options_str += "<option value=\"0\" >全部品牌</option>";
                         $.each(select_option,function(i, item){
                             options_str += "<option value=\"" + item.brandId + "\" >" + item.brandName + "</option>";
                         });
@@ -172,7 +175,7 @@
 
                 $.ajax({
                     type:'post',
-                    url:"${html.domain}/tools/mobile/getMobileTypeList.action?brand=" + $("#mobile_brand").val(),
+                    url:"${html.domain}/tools/mobile/getMobileTypeList.action?brand=0",
                     datatype:'json',
                     contentType:'text/html;charset=UTF-8',
                     data:{},
@@ -182,6 +185,7 @@
                             select_option.push(item);
                         });
                         var options_str = "";
+                        options_str += "<option value=\"0\" >全部型号</option>";
                         $.each(select_option,function(i, item){
                             options_str += "<option value=\"" + item.typeId + "\" >" + item.typeName + "</option>";
                         });
@@ -207,6 +211,7 @@
                                 select_option.push(item);
                             });
                             var options_str = "";
+                            options_str += "<option value=\"0\" >全部型号</option>";
                             $.each(select_option,function(i, item){
                                 options_str += "<option value=\"" + item.typeId + "\" >" + item.typeName + "</option>";
                             });
@@ -260,7 +265,7 @@
                             },
                             {
                                 title: '手机型号',
-                                field: 'type',
+                                field: 'typeName',
                                 align: 'center',
                                 valign: 'middle',
                             },
