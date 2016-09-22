@@ -412,18 +412,18 @@
                         file.previewElement = Dropzone.createElement(this.options.previewTemplate.trim());
                         file.previewTemplate = file.previewElement;
                         this.previewsContainer.appendChild(file.previewElement);
-                        _ref = file.previewElement.querySelectorAll("[data-dz-name]");
+                        _ref = file.previewElement.querySelectorAll("[enums-dz-name]");
                         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
                             node = _ref[_i];
                             node.textContent = file.name;
                         }
-                        _ref1 = file.previewElement.querySelectorAll("[data-dz-size]");
+                        _ref1 = file.previewElement.querySelectorAll("[enums-dz-size]");
                         for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
                             node = _ref1[_j];
                             node.innerHTML = this.filesize(file.size);
                         }
                         if (this.options.addRemoveLinks) {
-                            file._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove>" + this.options.dictRemoveFile + "</a>");
+                            file._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" enums-dz-remove>" + this.options.dictRemoveFile + "</a>");
                             file.previewElement.appendChild(file._removeLink);
                         }
                         removeFileEvent = (function(_this) {
@@ -445,7 +445,7 @@
                                 }
                             };
                         })(this);
-                        _ref2 = file.previewElement.querySelectorAll("[data-dz-remove]");
+                        _ref2 = file.previewElement.querySelectorAll("[enums-dz-remove]");
                         _results = [];
                         for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
                             removeLink = _ref2[_k];
@@ -464,7 +464,7 @@
                         var thumbnailElement, _i, _len, _ref, _results;
                         file.previewElement.classList.remove("dz-file-preview");
                         file.previewElement.classList.add("dz-image-preview");
-                        _ref = file.previewElement.querySelectorAll("[data-dz-thumbnail]");
+                        _ref = file.previewElement.querySelectorAll("[enums-dz-thumbnail]");
                         _results = [];
                         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
                             thumbnailElement = _ref[_i];
@@ -479,7 +479,7 @@
                         if (typeof message !== "String" && message.error) {
                             message = message.error;
                         }
-                        _ref = file.previewElement.querySelectorAll("[data-dz-errormessage]");
+                        _ref = file.previewElement.querySelectorAll("[enums-dz-errormessage]");
                         _results = [];
                         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
                             node = _ref[_i];
@@ -497,7 +497,7 @@
                     processingmultiple: noop,
                     uploadprogress: function(file, progress, bytesSent) {
                         var node, _i, _len, _ref, _results;
-                        _ref = file.previewElement.querySelectorAll("[data-dz-uploadprogress]");
+                        _ref = file.previewElement.querySelectorAll("[enums-dz-uploadprogress]");
                         _results = [];
                         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
                             node = _ref[_i];
@@ -524,7 +524,7 @@
                     completemultiple: noop,
                     maxfilesexceeded: noop,
                     maxfilesreached: noop,
-                    previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-success-mark\"><span>✔</span></div>\n  <div class=\"dz-error-mark\"><span>✘</span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>"
+                    previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span enums-dz-name></span></div>\n    <div class=\"dz-size\" enums-dz-size></div>\n    <img enums-dz-thumbnail />\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" enums-dz-uploadprogress></span></div>\n  <div class=\"dz-success-mark\"><span>✔</span></div>\n  <div class=\"dz-error-mark\"><span>✘</span></div>\n  <div class=\"dz-error-message\"><span enums-dz-errormessage></span></div>\n</div>"
                 };
 
                 extend = function() {
@@ -659,7 +659,7 @@
                 Dropzone.prototype.init = function() {
                     var eventName, noPropagation, setupHiddenFileInput, _i, _len, _ref, _ref1;
                     if (this.element.tagName === "form") {
-                        this.element.setAttribute("enctype", "multipart/form-data");
+                        this.element.setAttribute("enctype", "multipart/form-enums");
                     }
                     if (this.element.classList.contains("dropzone") && !this.element.querySelector(".dz-message")) {
                         this.element.appendChild(Dropzone.createElement("<div class=\"dz-default dz-message\"><span>" + this.options.dictDefaultMessage + "</span></div>"));
@@ -845,10 +845,10 @@
                     fieldsString += "<input type=\"file\" name=\"" + this.options.paramName + (this.options.uploadMultiple ? "[]" : "") + "\" " + (this.options.uploadMultiple ? 'multiple="multiple"' : void 0) + " /><input type=\"submit\" value=\"Upload!\"></div>";
                     fields = Dropzone.createElement(fieldsString);
                     if (this.element.tagName !== "FORM") {
-                        form = Dropzone.createElement("<form action=\"" + this.options.url + "\" enctype=\"multipart/form-data\" method=\"" + this.options.method + "\"></form>");
+                        form = Dropzone.createElement("<form action=\"" + this.options.url + "\" enctype=\"multipart/form-enums\" method=\"" + this.options.method + "\"></form>");
                         form.appendChild(fields);
                     } else {
-                        this.element.setAttribute("enctype", "multipart/form-data");
+                        this.element.setAttribute("enctype", "multipart/form-enums");
                         this.element.setAttribute("method", this.options.method);
                     }
                     return form != null ? form : fields;

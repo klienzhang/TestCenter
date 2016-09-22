@@ -1,4 +1,4 @@
-package com.berserker.server.util.timer;
+package com.berserker.server.timer;
 
 import com.berserker.server.constants.ValueConstant;
 import com.berserker.server.service.WelcomepageService;

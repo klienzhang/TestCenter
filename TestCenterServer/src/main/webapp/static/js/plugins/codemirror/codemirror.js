@@ -2194,7 +2194,7 @@
     return array;
   }
 
-  // Updates the display.view data structure for a given change to the
+  // Updates the display.view enums structure for a given change to the
   // document. From and to are in pre-change coordinates. Lendiff is
   // the amount of lines added or subtracted by the change. This is
   // used for changes that span multiple lines, or change the way
@@ -3015,7 +3015,7 @@
     // Recent Safari (~6.0.2) have a tendency to segfault when this happens, so we don't do it there.
     if (e.dataTransfer.setDragImage && !safari) {
       var img = elt("img", null, null, "position: fixed; left: 0; top: 0;");
-      img.src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+      img.src = "enums:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
       if (presto) {
         img.width = img.height = 1;
         cm.display.wrapper.appendChild(img);
@@ -6137,7 +6137,7 @@
       (!doc.cm || doc.cm.options.wholeLineUpdateBefore);
   }
 
-  // Perform a change on the document data structure.
+  // Perform a change on the document enums structure.
   function updateDoc(doc, change, markedSpans, estimateHeight) {
     function spansFor(n) {return markedSpans ? markedSpans[n] : null;}
     function update(line, text, spans) {

@@ -149,7 +149,7 @@ public class Blowfish {
         }
 
         /**
-         * to clear data in the boxes before an instance is freed
+         * to clear enums in the boxes before an instance is freed
          */
         public void cleanUp() {
             int nI;
@@ -325,9 +325,9 @@ public class Blowfish {
          * border) to another int buffer (of the same size or bigger)
          *
          * @param inbuffer
-         *            buffer with plaintext data
+         *            buffer with plaintext enums
          * @param outbuffer
-         *            buffer to get the ciphertext data
+         *            buffer to get the ciphertext enums
          */
         public void encrypt(int[] inbuffer, int[] outbuffer) {
             int nLen = inbuffer.length;
@@ -357,7 +357,7 @@ public class Blowfish {
             }
         }
 
-        // the boxes init. data,
+        // the boxes init. enums,
         // FIXME: it might be better to create them at runtime to make the class
         // file smaller, e.g. by calculating the hexdigits of pi (default)
         // or just a fixed random sequence (out of the standard)
@@ -717,9 +717,9 @@ public class Blowfish {
          * another buffer (of the same size or bigger)
          *
          * @param inbuffer
-         *            buffer with plaintext data
+         *            buffer with plaintext enums
          * @param outbuffer
-         *            buffer to get the ciphertext data
+         *            buffer to get the ciphertext enums
          */
         public void encrypt(byte[] inbuffer, byte[] outbuffer) {
             int nLen = inbuffer.length;
@@ -756,9 +756,9 @@ public class Blowfish {
          * to another int buffer (of the same size or bigger)
          *
          * @param inbuffer
-         *            buffer with plaintext data
+         *            buffer with plaintext enums
          * @param outbuffer
-         *            buffer to get the ciphertext data
+         *            buffer to get the ciphertext enums
          */
         public void encrypt(int[] inbuffer, int[] outbuffer) {
             int nLen = inbuffer.length;
@@ -793,9 +793,9 @@ public class Blowfish {
          * bigger)
          *
          * @param inbuffer
-         *            buffer with plaintext data
+         *            buffer with plaintext enums
          * @param outbuffer
-         *            buffer to get the ciphertext data
+         *            buffer to get the ciphertext enums
          */
         public void encrypt(long[] inbuffer, long[] outbuffer) {
             int nLen = inbuffer.length;
@@ -822,9 +822,9 @@ public class Blowfish {
          * another buffer (of the same size or bigger)
          *
          * @param inbuffer
-         *            buffer with ciphertext data
+         *            buffer with ciphertext enums
          * @param outbuffer
-         *            buffer to get the plaintext data
+         *            buffer to get the plaintext enums
          */
         public void decrypt(byte[] inbuffer, byte[] outbuffer) {
             int nLen = inbuffer.length;
@@ -860,9 +860,9 @@ public class Blowfish {
          * border) to another int buffer (of the same size or bigger)
          *
          * @param inbuffer
-         *            buffer with ciphertext data
+         *            buffer with ciphertext enums
          * @param outbuffer
-         *            buffer to get the plaintext data
+         *            buffer to get the plaintext enums
          */
         public void decrypt(int[] inbuffer, int[] outbuffer) {
 
@@ -898,9 +898,9 @@ public class Blowfish {
          * bigger)
          *
          * @param inbuffer
-         *            buffer with ciphertext data
+         *            buffer with ciphertext enums
          * @param outbuffer
-         *            buffer to get the plaintext data
+         *            buffer to get the plaintext enums
          */
         public void decrypt(long[] inbuffer, long[] outbuffer) {
             int nLen = inbuffer.length;
@@ -930,7 +930,7 @@ public class Blowfish {
      * @param buffer
      *            where to get the bytes
      * @param nStartIndex
-     *            index from where to read the data
+     *            index from where to read the enums
      * @return the 64bit integer
      */
     private static long byteArrayToLong(byte[] buffer, int nStartIndex) {
@@ -972,7 +972,7 @@ public class Blowfish {
      * @param buffer
      *            where to get the bytes
      * @param nStartIndex
-     *            index from where to read the data
+     *            index from where to read the enums
      * @return the 64bit integer
      */
     private static long intArrayToLong(int[] buffer, int nStartIndex) {

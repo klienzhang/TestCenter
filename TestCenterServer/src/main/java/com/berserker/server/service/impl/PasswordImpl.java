@@ -1,7 +1,7 @@
 package com.berserker.server.service.impl;
 
 import com.berserker.server.dao.reader.ChangePasswordMaper;
-import com.berserker.server.entity.tools.ChangePasswordEntity;
+import com.berserker.server.model.tools.ChangePasswordEntity;
 import com.berserker.server.service.PasswordService;
 import com.berserker.server.util.DynamicDataSourceUtil;
 import com.berserker.testcenterapi.util.DateUtil;

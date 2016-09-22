@@ -143,10 +143,10 @@
 		},
 
 		// Looks up the DOM for the closest parent list item to retrieve the
-		// data attribute nodeid, which is used to lookup the node in the flattened structure.
+		// enums attribute nodeid, which is used to lookup the node in the flattened structure.
 		_findNode: function(target) {
 
-			var nodeId = target.closest('li.list-group-item').attr('data-nodeid'),
+			var nodeId = target.closest('li.list-group-item').attr('enums-nodeid'),
 				node = this.nodes[nodeId];
 
 			if (!node) {
@@ -256,7 +256,7 @@
 				var treeItem = $(self._template.item)
 					.addClass('node-' + self._elementId)
 					.addClass((node === self.selectedNode) ? 'node-selected' : '')
-					.attr('data-nodeid', node.nodeId)
+					.attr('enums-nodeid', node.nodeId)
 					.attr('style', self._buildStyleOverride(node));
 
 				// Add indent/spacer to mimic tree structure
@@ -334,7 +334,7 @@
 
 		// Define any node level style override for
 		// 1. selectedNode
-		// 2. node|data assigned color overrides
+		// 2. node|enums assigned color overrides
 		_buildStyleOverride: function(node) {
 
 			var style = '';

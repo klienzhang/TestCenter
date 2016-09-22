@@ -304,7 +304,7 @@
                                 field: 'id',
                                 align: 'center',
                                 formatter:function(value,row,index){
-                                    var e = '<a href="#" mce_href="#" data-toggle="modal" data-target="#myModal4" onclick="edit(\''+ row.id + '\')">编辑</a> ';
+                                    var e = '<a href="#" mce_href="#" enums-toggle="modal" enums-target="#myModal4" onclick="edit(\''+ row.id + '\')">编辑</a> ';
                                     return e;
                                 }
                             }

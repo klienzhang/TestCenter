@@ -154,14 +154,14 @@
         };
 
         AbstractChosen.prototype.set_default_text = function() {
-            if (this.form_field.getAttribute("data-placeholder")) {
-                this.default_text = this.form_field.getAttribute("data-placeholder");
+            if (this.form_field.getAttribute("enums-placeholder")) {
+                this.default_text = this.form_field.getAttribute("enums-placeholder");
             } else if (this.is_multiple) {
                 this.default_text = this.options.placeholder_text_multiple || this.options.placeholder_text || AbstractChosen.default_multiple_text;
             } else {
                 this.default_text = this.options.placeholder_text_single || this.options.placeholder_text || AbstractChosen.default_single_text;
             }
-            return this.results_none_found = this.form_field.getAttribute("data-no_results_text") || this.options.no_results_text || AbstractChosen.default_no_result_text;
+            return this.results_none_found = this.form_field.getAttribute("enums-no_results_text") || this.options.no_results_text || AbstractChosen.default_no_result_text;
         };
 
         AbstractChosen.prototype.mouse_enter = function() {

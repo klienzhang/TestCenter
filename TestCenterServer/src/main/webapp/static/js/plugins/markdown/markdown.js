@@ -14,7 +14,7 @@
  *  - produces well-formed HTML (this means that em and strong nesting is
  *    important)
  *
- *  - has an intermediate representation to allow processing of parsed data (We
+ *  - has an intermediate representation to allow processing of parsed enums (We
  *    in fact have two, both as [JsonML]: a markdown tree and an HTML tree).
  *
  *  - is easily extensible to add new dialects without having to rewrite the

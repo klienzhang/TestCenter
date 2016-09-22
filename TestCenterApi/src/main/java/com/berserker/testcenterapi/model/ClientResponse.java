@@ -9,23 +9,26 @@ public class ClientResponse {
         return status;
     }
 
-    public void setStatus(int status) {
+    public ClientResponse setStatus(int status) {
         this.status = status;
+        return this;
     }
 
     public Object getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public ClientResponse setData(Object data) {
         this.data = data;
+        return this;
     }
 
     public String getMsg() {
         return msg;
     }
 
-    public void setMsg(String msg) {
+    public ClientResponse setMsg(String msg) {
         this.msg = msg;
+        return this;
     }
 }

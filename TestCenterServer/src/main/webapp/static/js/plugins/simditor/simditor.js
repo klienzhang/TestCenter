@@ -326,15 +326,15 @@ Formatter = (function(_super) {
     this.editor = this._module;
     this._allowedTags = ['br', 'a', 'img', 'b', 'strong', 'i', 'u', 'font', 'p', 'ul', 'ol', 'li', 'blockquote', 'pre', 'h1', 'h2', 'h3', 'h4', 'hr'];
     this._allowedAttributes = {
-      img: ['src', 'alt', 'width', 'height', 'data-image-src', 'data-image-size', 'data-image-name', 'data-non-image'],
+      img: ['src', 'alt', 'width', 'height', 'enums-image-src', 'data-image-size', 'enums-image-name', 'enums-non-image'],
       a: ['href', 'target'],
       font: ['color'],
-      pre: ['data-lang', 'class'],
-      p: ['data-indent'],
-      h1: ['data-indent'],
-      h2: ['data-indent'],
-      h3: ['data-indent'],
-      h4: ['data-indent']
+      pre: ['enums-lang', 'class'],
+      p: ['enums-indent'],
+      h1: ['enums-indent'],
+      h2: ['enums-indent'],
+      h3: ['enums-indent'],
+      h4: ['enums-indent']
     };
     return this.editor.body.on('click', 'a', (function(_this) {
       return function(e) {
@@ -1787,12 +1787,12 @@ Util = (function(_super) {
       }
       this.editor.selection.restore();
     } else if ($blockEl.is('p, h1, h2, h3, h4')) {
-      indentLevel = (_ref = $blockEl.attr('data-indent')) != null ? _ref : 0;
+      indentLevel = (_ref = $blockEl.attr('enums-indent')) != null ? _ref : 0;
       indentLevel = indentLevel * 1 + 1;
       if (indentLevel > 10) {
         indentLevel = 10;
       }
-      $blockEl.attr('data-indent', indentLevel);
+      $blockEl.attr('enums-indent', indentLevel);
     } else if ($blockEl.is('table')) {
       range = this.editor.selection.getRange();
       $td = $(range.commonAncestorContainer).closest('td');
@@ -1840,12 +1840,12 @@ Util = (function(_super) {
       }
       this.editor.selection.restore();
     } else if ($blockEl.is('p, h1, h2, h3, h4')) {
-      indentLevel = (_ref = $blockEl.attr('data-indent')) != null ? _ref : 0;
+      indentLevel = (_ref = $blockEl.attr('enums-indent')) != null ? _ref : 0;
       indentLevel = indentLevel * 1 - 1;
       if (indentLevel < 0) {
         indentLevel = 0;
       }
-      $blockEl.attr('data-indent', indentLevel);
+      $blockEl.attr('enums-indent', indentLevel);
     } else if ($blockEl.is('table')) {
       range = this.editor.selection.getRange();
       $td = $(range.commonAncestorContainer).closest('td');
@@ -2992,7 +2992,7 @@ ColorButton = (function(_super) {
   };
 
   ColorButton.prototype.renderMenu = function() {
-    $('<ul class="color-list">\n  <li><a href="javascript:;" class="font-color font-color-1" data-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-2" data-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-3" data-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-4" data-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-5" data-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-6" data-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-7" data-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-default" data-color=""></a></li>\n</ul>').appendTo(this.menuWrapper);
+    $('<ul class="color-list">\n  <li><a href="javascript:;" class="font-color font-color-1" enums-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-2" enums-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-3" enums-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-4" enums-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-5" enums-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-6" enums-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-7" enums-color=""></a></li>\n  <li><a href="javascript:;" class="font-color font-color-default" enums-color=""></a></li>\n</ul>').appendTo(this.menuWrapper);
     this.menuWrapper.on('mousedown', '.color-list', function(e) {
       return false;
     });
@@ -3397,7 +3397,7 @@ CodeButton = (function(_super) {
 
   CodeButton.prototype.decorate = function($pre) {
     var lang;
-    lang = $pre.attr('data-lang');
+    lang = $pre.attr('enums-lang');
     $pre.removeClass();
     if (lang && lang !== -1) {
       return $pre.addClass('lang-' + lang);
@@ -3406,7 +3406,7 @@ CodeButton = (function(_super) {
 
   CodeButton.prototype.undecorate = function($pre) {
     var lang;
-    lang = $pre.attr('data-lang');
+    lang = $pre.attr('enums-lang');
     $pre.removeClass();
     if (lang && lang !== -1) {
       return $pre.addClass('lang-' + lang);
@@ -3489,10 +3489,10 @@ CodePopover = (function(_super) {
         var selected;
         _this.lang = _this.selectEl.val();
         selected = _this.target.hasClass('selected');
-        _this.target.removeClass().removeAttr('data-lang');
+        _this.target.removeClass().removeAttr('enums-lang');
         if (_this.lang !== -1) {
           _this.target.addClass('lang-' + _this.lang);
-          _this.target.attr('data-lang', _this.lang);
+          _this.target.attr('enums-lang', _this.lang);
         }
         if (selected) {
           return _this.target.addClass('selected');
@@ -3505,7 +3505,7 @@ CodePopover = (function(_super) {
     var args;
     args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
     CodePopover.__super__.show.apply(this, args);
-    this.lang = this.target.attr('data-lang');
+    this.lang = this.target.attr('enums-lang');
     if (this.lang != null) {
       return this.selectEl.val(this.lang);
     } else {
@@ -3739,7 +3739,7 @@ ImageButton = (function(_super) {
       this.menu = false;
     }
     this.defaultImage = this.editor.opts.defaultImage;
-    this.editor.body.on('click', 'img:not([data-non-image])', (function(_this) {
+    this.editor.body.on('click', 'img:not([enums-non-image])', (function(_this) {
       return function(e) {
         var $img, range;
         $img = $(e.currentTarget);
@@ -3752,7 +3752,7 @@ ImageButton = (function(_super) {
         return false;
       };
     })(this));
-    this.editor.body.on('mouseup', 'img:not([data-non-image])', (function(_this) {
+    this.editor.body.on('mouseup', 'img:not([enums-non-image])', (function(_this) {
       return function(e) {
         return false;
       };
@@ -3765,7 +3765,7 @@ ImageButton = (function(_super) {
           return;
         }
         $contents = $(range.cloneContents()).contents();
-        if ($contents.length === 1 && $contents.is('img:not([data-non-image])')) {
+        if ($contents.length === 1 && $contents.is('img:not([enums-non-image])')) {
           $img = $(range.startContainer).contents().eq(range.startOffset);
           return _this.popover.show($img);
         } else {
@@ -4586,25 +4586,25 @@ TableButton = (function(_super) {
   TableButton.prototype._initShortcuts = function() {
     this.editor.inputManager.addShortcut('ctrl+alt+up', (function(_this) {
       return function(e) {
-        _this.editMenu.find('.menu-item[data-param=insertRowAbove]').click();
+        _this.editMenu.find('.menu-item[enums-param=insertRowAbove]').click();
         return false;
       };
     })(this));
     this.editor.inputManager.addShortcut('ctrl+alt+down', (function(_this) {
       return function(e) {
-        _this.editMenu.find('.menu-item[data-param=insertRowBelow]').click();
+        _this.editMenu.find('.menu-item[enums-param=insertRowBelow]').click();
         return false;
       };
     })(this));
     this.editor.inputManager.addShortcut('ctrl+alt+left', (function(_this) {
       return function(e) {
-        _this.editMenu.find('.menu-item[data-param=insertColLeft]').click();
+        _this.editMenu.find('.menu-item[enums-param=insertColLeft]').click();
         return false;
       };
     })(this));
     return this.editor.inputManager.addShortcut('ctrl+alt+right', (function(_this) {
       return function(e) {
-        _this.editMenu.find('.menu-item[data-param=insertColRight]').click();
+        _this.editMenu.find('.menu-item[enums-param=insertColRight]').click();
         return false;
       };
     })(this));
@@ -4627,7 +4627,7 @@ TableButton = (function(_super) {
   };
 
   TableButton.prototype.renderMenu = function() {
-    $("<div class=\"menu-create-table\">\n</div>\n<div class=\"menu-edit-table\">\n  <ul>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" data-param=\"deleteRow\"><span>" + (this._t('deleteRow')) + " ( Ctrl + Alt + → )</span></a></li>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" data-param=\"insertRowAbove\"><span>" + (this._t('insertRowAbove')) + " ( Ctrl + Alt + ↑ )</span></a></li>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" data-param=\"insertRowBelow\"><span>" + (this._t('insertRowBelow')) + " ( Ctrl + Alt + ↓ )</span></a></li>\n    <li><span class=\"separator\"></span></li>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" data-param=\"deleteCol\"><span>" + (this._t('deleteColumn')) + "</span></a></li>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" data-param=\"insertColLeft\"><span>" + (this._t('insertColumnLeft')) + " ( Ctrl + Alt + ← )</span></a></li>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" data-param=\"insertColRight\"><span>" + (this._t('insertColumnRight')) + " ( Ctrl + Alt + → )</span></a></li>\n    <li><span class=\"separator\"></span></li>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" data-param=\"deleteTable\"><span>" + (this._t('deleteTable')) + "</span></a></li>\n  </ul>\n</div>").appendTo(this.menuWrapper);
+    $("<div class=\"menu-create-table\">\n</div>\n<div class=\"menu-edit-table\">\n  <ul>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" enums-param=\"deleteRow\"><span>" + (this._t('deleteRow')) + " ( Ctrl + Alt + → )</span></a></li>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" enums-param=\"insertRowAbove\"><span>" + (this._t('insertRowAbove')) + " ( Ctrl + Alt + ↑ )</span></a></li>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" enums-param=\"insertRowBelow\"><span>" + (this._t('insertRowBelow')) + " ( Ctrl + Alt + ↓ )</span></a></li>\n    <li><span class=\"separator\"></span></li>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" enums-param=\"deleteCol\"><span>" + (this._t('deleteColumn')) + "</span></a></li>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" enums-param=\"insertColLeft\"><span>" + (this._t('insertColumnLeft')) + " ( Ctrl + Alt + ← )</span></a></li>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" enums-param=\"insertColRight\"><span>" + (this._t('insertColumnRight')) + " ( Ctrl + Alt + → )</span></a></li>\n    <li><span class=\"separator\"></span></li>\n    <li><a tabindex=\"-1\" unselectable=\"on\" class=\"menu-item\" href=\"javascript:;\" enums-param=\"deleteTable\"><span>" + (this._t('deleteTable')) + "</span></a></li>\n  </ul>\n</div>").appendTo(this.menuWrapper);
     this.createMenu = this.menuWrapper.find('.menu-create-table');
     this.editMenu = this.menuWrapper.find('.menu-edit-table');
     this.createTable(6, 6).appendTo(this.createMenu);

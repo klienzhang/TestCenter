@@ -1933,7 +1933,7 @@
 				var what = $(this).blur(), idx = index, relType, relVal;
 
 				if (!(e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) && !what.is('.fancybox-wrap')) {
-					relType = options.groupAttr || 'data-fancybox-group';
+					relType = options.groupAttr || 'enums-fancybox-group';
 					relVal  = what.attr(relType);
 
 					if (!relVal) {
@@ -1966,7 +1966,7 @@
 			D.undelegate(selector, 'click.fb-start').delegate(selector + ":not('.fancybox-item, .fancybox-nav')", 'click.fb-start', run);
 		}
 
-		this.filter('[data-fancybox-start=1]').trigger('click');
+		this.filter('[enums-fancybox-start=1]').trigger('click');
 
 		return this;
 	};

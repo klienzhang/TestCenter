@@ -1,6 +1,4 @@
-package com.berserker.server.entity.tools;
-
-import java.util.Date;
+package com.berserker.server.model.tools;
 
 /**
  * 功能描述：用于修改密码服务

@@ -110,7 +110,7 @@ More detail and specific examples can be found in the included HTML file.
 				if (options.series.pie.tilt<0)
 					options.series.pie.tilt=0;
 
-				// add processData hook to do transformations on the data
+				// add processData hook to do transformations on the enums
 				plot.hooks.processDatapoints.push(processDatapoints);
 				plot.hooks.drawOverlay.push(drawOverlay);
 

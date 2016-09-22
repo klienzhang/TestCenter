@@ -29,18 +29,18 @@
         selectors: {
             container: '.player',
             controls: '.player-controls',
-            labels: '[data-player] .sr-only, label .sr-only',
+            labels: '[enums-player] .sr-only, label .sr-only',
             buttons: {
-                seek: '[data-player="seek"]',
-                play: '[data-player="play"]',
-                pause: '[data-player="pause"]',
-                restart: '[data-player="restart"]',
-                rewind: '[data-player="rewind"]',
-                forward: '[data-player="fast-forward"]',
-                mute: '[data-player="mute"]',
-                volume: '[data-player="volume"]',
-                captions: '[data-player="captions"]',
-                fullscreen: '[data-player="fullscreen"]'
+                seek: '[enums-player="seek"]',
+                play: '[enums-player="play"]',
+                pause: '[enums-player="pause"]',
+                restart: '[enums-player="restart"]',
+                rewind: '[enums-player="rewind"]',
+                forward: '[enums-player="fast-forward"]',
+                mute: '[enums-player="mute"]',
+                volume: '[enums-player="volume"]',
+                captions: '[enums-player="captions"]',
+                fullscreen: '[enums-player="fullscreen"]'
             },
             progress: {
                 container: '.player-progress',
@@ -109,7 +109,7 @@
         '<div class="player-controls">',
             '<div class="player-progress">',
                 '<label for="seek{id}" class="sr-only">Seek</label>',
-                '<input id="seek{id}" class="player-progress-seek" type="range" min="0" max="100" step="0.5" value="0" data-player="seek">',
+                '<input id="seek{id}" class="player-progress-seek" type="range" min="0" max="100" step="0.5" value="0" enums-player="seek">',
                 '<progress class="player-progress-played" max="100" value="0">',
                     '<span>0</span>% ' + config.i18n.played,
                 '</progress>',
@@ -122,7 +122,7 @@
         // Restart button
         if (_inArray(config.controls, 'restart')) {
             html.push(
-                '<button type="button" data-player="restart">',
+                '<button type="button" enums-player="restart">',
                 '<svg><use xlink:href="#' + config.iconPrefix + '-restart" /></svg>',
                 '<span class="sr-only">' + config.i18n.restart + '</span>',
                 '</button>'
@@ -132,7 +132,7 @@
         // Rewind button
         if (_inArray(config.controls, 'rewind')) {
             html.push(
-                '<button type="button" data-player="rewind">',
+                '<button type="button" enums-player="rewind">',
                 '<svg><use xlink:href="#' + config.iconPrefix + '-rewind" /></svg>',
                 '<span class="sr-only">' + config.i18n.rewind + '</span>',
                 '</button>'
@@ -142,11 +142,11 @@
         // Play/pause button
         if (_inArray(config.controls, 'play')) {
             html.push(
-                '<button type="button" data-player="play">',
+                '<button type="button" enums-player="play">',
                 '<svg><use xlink:href="#' + config.iconPrefix + '-play" /></svg>',
                 '<span class="sr-only">' + config.i18n.play + '</span>',
                 '</button>',
-                '<button type="button" data-player="pause">',
+                '<button type="button" enums-player="pause">',
                 '<svg><use xlink:href="#' + config.iconPrefix + '-pause" /></svg>',
                 '<span class="sr-only">' + config.i18n.pause + '</span>',
                 '</button>'
@@ -156,7 +156,7 @@
         // Fast forward button
         if (_inArray(config.controls, 'fast-forward')) {
             html.push(
-                '<button type="button" data-player="fast-forward">',
+                '<button type="button" enums-player="fast-forward">',
                 '<svg><use xlink:href="#' + config.iconPrefix + '-fast-forward" /></svg>',
                 '<span class="sr-only">' + config.i18n.forward + '</span>',
                 '</button>'
@@ -192,7 +192,7 @@
         // Toggle mute button
         if (_inArray(config.controls, 'mute')) {
             html.push(
-                '<button type="button" data-player="mute">',
+                '<button type="button" enums-player="mute">',
                 '<svg class="icon-muted"><use xlink:href="#' + config.iconPrefix + '-muted" /></svg>',
                 '<svg><use xlink:href="#' + config.iconPrefix + '-volume" /></svg>',
                 '<span class="sr-only">' + config.i18n.toggleMute + '</span>',
@@ -204,14 +204,14 @@
         if (_inArray(config.controls, 'volume')) {
             html.push(
                 '<label for="volume{id}" class="sr-only">' + config.i18n.volume + '</label>',
-                '<input id="volume{id}" class="player-volume" type="range" min="0" max="10" value="5" data-player="volume">'
+                '<input id="volume{id}" class="player-volume" type="range" min="0" max="10" value="5" enums-player="volume">'
             );
         }
 
         // Toggle captions button
         if (_inArray(config.controls, 'captions')) {
             html.push(
-                '<button type="button" data-player="captions">',
+                '<button type="button" enums-player="captions">',
                 '<svg class="icon-captions-on"><use xlink:href="#' + config.iconPrefix + '-captions-on" /></svg>',
                 '<svg><use xlink:href="#' + config.iconPrefix + '-captions-off" /></svg>',
                 '<span class="sr-only">' + config.i18n.toggleCaptions + '</span>',
@@ -222,7 +222,7 @@
         // Toggle fullscreen button
         if (_inArray(config.controls, 'fullscreen')) {
             html.push(
-                '<button type="button" data-player="fullscreen">',
+                '<button type="button" enums-player="fullscreen">',
                 '<svg class="icon-exit-fullscreen"><use xlink:href="#' + config.iconPrefix + '-exit-fullscreen" /></svg>',
                 '<svg><use xlink:href="#' + config.iconPrefix + '-enter-fullscreen" /></svg>',
                 '<span class="sr-only">' + config.i18n.toggleFullscreen + '</span>',
@@ -308,7 +308,7 @@
             majorVersion = parseInt(navigator.appVersion, 10);
         }
 
-        // Return data
+        // Return enums
         return {
             name: name,
             version: majorVersion,
@@ -873,7 +873,7 @@
 
             // YouTube
             if (player.type == 'youtube') {
-                _setupYouTube(player.media.getAttribute('data-video-id'));
+                _setupYouTube(player.media.getAttribute('enums-video-id'));
             }
 
             // Autoplay
@@ -1906,7 +1906,7 @@
             // Set media type
             var tagName = player.media.tagName.toLowerCase();
             if (tagName === 'div') {
-                player.type = player.media.getAttribute('data-type');
+                player.type = player.media.getAttribute('enums-type');
             } else {
                 player.type = tagName;
             }

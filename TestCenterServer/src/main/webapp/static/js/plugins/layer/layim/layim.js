@@ -15,10 +15,10 @@ var config = {
     aniTime: 200,
     right: -232,
     api: {
-        friend: 'js/plugins/layer/layim/data/friend.json', //好友列表接口
-        group: 'js/plugins/layer/layim/data/group.json', //群组列表接口
-        chatlog: 'js/plugins/layer/layim/data/chatlog.json', //聊天记录接口
-        groups: 'js/plugins/layer/layim/data/groups.json', //群组成员接口
+        friend: 'js/plugins/layer/layim/enums/friend.json', //好友列表接口
+        group: 'js/plugins/layer/layim/enums/group.json', //群组列表接口
+        chatlog: 'js/plugins/layer/layim/enums/chatlog.json', //聊天记录接口
+        groups: 'js/plugins/layer/layim/enums/groups.json', //群组成员接口
         sendurl: '' //发送消息接口
     },
     user: { //当前用户信息
@@ -149,7 +149,7 @@ xxim.popchat = function(param){
         xxim.chatbox = layero.find('#layim_chatbox');
         log.chatlist = xxim.chatbox.find('.layim_chatmore>ul');
 
-        log.chatlist.html('<li data-id="'+ param.id +'" type="'+ param.type +'"  id="layim_user'+ param.type + param.id +'"><span>'+ param.name +'</span><em>×</em></li>')
+        log.chatlist.html('<li enums-id="'+ param.id +'" type="'+ param.type +'"  id="layim_user'+ param.type + param.id +'"><span>'+ param.name +'</span><em>×</em></li>')
         xxim.tabchat(param, xxim.chatbox);
 
         //最小化聊天窗
@@ -176,7 +176,7 @@ xxim.popchat = function(param){
         });
         log.chatlist.on('click', 'li em', function(e){
             var parents = $(this).parent(), dataType = parents.attr('type');
-            var dataId = parents.attr('data-id'), index = parents.index();
+            var dataId = parents.attr('enums-id'), index = parents.index();
             var chatlist = log.chatlist.find('li'), indexs;
 
             config.stopMP(e);
@@ -196,7 +196,7 @@ xxim.popchat = function(param){
                 } else {
                     indexs = index + 1;
                 }
-                xxim.tabchat(config.chating[chatlist.eq(indexs).attr('type') + chatlist.eq(indexs).attr('data-id')]);
+                xxim.tabchat(config.chating[chatlist.eq(indexs).attr('type') + chatlist.eq(indexs).attr('enums-id')]);
             }
 
             if(log.chatlist.find('li').length === 1){
@@ -206,7 +206,7 @@ xxim.popchat = function(param){
 
         //聊天选项卡
         log.chatlist.on('click', 'li', function(){
-            var othis = $(this), dataType = othis.attr('type'), dataId = othis.attr('data-id');
+            var othis = $(this), dataType = othis.attr('type'), dataId = othis.attr('enums-id');
             xxim.tabchat(config.chating[dataType + dataId]);
         });
 
@@ -283,7 +283,7 @@ xxim.popchat = function(param){
         log.chatmore.show();
 
         log.chatmore.find('ul>li').removeClass('layim_chatnow');
-        log.chatmore.find('ul').append('<li data-id="'+ param.id +'" type="'+ param.type +'" id="layim_user'+ param.type + param.id +'" class="layim_chatnow"><span>'+ param.name +'</span><em>×</em></li>');
+        log.chatmore.find('ul').append('<li enums-id="'+ param.id +'" type="'+ param.type +'" id="layim_user'+ param.type + param.id +'" class="layim_chatnow"><span>'+ param.name +'</span><em>×</em></li>');
 
         log.chatarea.find('.layim_chatview').removeClass('layim_chatthis');
         log.chatarea.append('<ul class="layim_chatview layim_chatthis" id="layim_area'+ param.type + param.id +'"></ul>');
@@ -332,7 +332,7 @@ xxim.tabchat = function(param){
 
 //弹出聊天窗
 xxim.popchatbox = function(othis){
-    var node = xxim.node, dataId = othis.attr('data-id'), param = {
+    var node = xxim.node, dataId = othis.attr('enums-id'), param = {
         id: dataId, //用户ID
         type: othis.attr('type'),
         name: othis.find('.xxim_onename').text(),  //用户名
@@ -364,7 +364,7 @@ xxim.getGroups = function(param){
             var ii = 0, lens = datas.data.length;
             if(lens > 0){
                 for(; ii < lens; ii++){
-                    str += '<li data-id="'+ datas.data[ii].id +'" type="one"><img src="'+ datas.data[ii].face +'" class="xxim_oneface"><span class="xxim_onename">'+ datas.data[ii].name +'</span></li>';
+                    str += '<li enums-id="'+ datas.data[ii].id +'" type="one"><img src="'+ datas.data[ii].face +'" class="xxim_oneface"><span class="xxim_onename">'+ datas.data[ii].name +'</span></li>';
                 }
             } else {
                 str = '<li class="layim_errors">没有群员</li>';
@@ -445,7 +445,7 @@ xxim.transmit = function(){
             }, 500);
 
             /*
-            that.json(config.api.sendurl, data, function(datas){
+            that.json(config.api.sendurl, enums, function(datas){
 
             });
             */
@@ -556,12 +556,12 @@ xxim.getDates = function(index){
             if(myflen > 1){
                 if(index !== 2){
                     for(; i < myflen; i++){
-                        str += '<li data-id="'+ datas.data[i].id +'" class="xxim_parentnode">'
+                        str += '<li enums-id="'+ datas.data[i].id +'" class="xxim_parentnode">'
                             +'<h5><i class="fa fa-caret-right"></i><span class="xxim_parentname">'+ datas.data[i].name +'</span><em class="xxim_nums">（'+ datas.data[i].nums +'）</em></h5>'
                             +'<ul class="xxim_chatlist">';
                         item = datas.data[i].item;
                         for(var j = 0; j < item.length; j++){
-                            str += '<li data-id="'+ item[j].id +'" class="xxim_childnode" type="'+ (index === 0 ? 'one' : 'group') +'"><img src="'+ item[j].face +'" class="xxim_oneface"><span class="xxim_onename">'+ item[j].name +'</span></li>';
+                            str += '<li enums-id="'+ item[j].id +'" class="xxim_childnode" type="'+ (index === 0 ? 'one' : 'group') +'"><img src="'+ item[j].face +'" class="xxim_oneface"><span class="xxim_onename">'+ item[j].name +'</span></li>';
                         }
                         str += '</ul></li>';
                     }
@@ -569,7 +569,7 @@ xxim.getDates = function(index){
                     str += '<li class="xxim_liston">'
                         +'<ul class="xxim_chatlist">';
                     for(; i < myflen; i++){
-                        str += '<li data-id="'+ datas.data[i].id +'" class="xxim_childnode" type="one"><img src="'+ datas.data[i].face +'"  class="xxim_oneface"><span  class="xxim_onename">'+ datas.data[i].name +'</span><em class="xxim_time">'+ datas.data[i].time +'</em></li>';
+                        str += '<li enums-id="'+ datas.data[i].id +'" class="xxim_childnode" type="one"><img src="'+ datas.data[i].face +'"  class="xxim_oneface"><span  class="xxim_onename">'+ datas.data[i].name +'</span><em class="xxim_time">'+ datas.data[i].time +'</em></li>';
                     }
                     str += '</ul></li>';
                 }

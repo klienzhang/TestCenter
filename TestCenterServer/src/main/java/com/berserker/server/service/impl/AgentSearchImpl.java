@@ -40,7 +40,7 @@ public class AgentSearchImpl implements AgentSearchService {
             //如果已有城市，则不插入
             if(readerMapper.getCityList(model).size() > 0){
                 response.setStatus(0);
-                response.setMsg("existed data");
+                response.setMsg("existed enums");
                 return response;
             }
             int result = writerMapper.addCity(model);
@@ -80,7 +80,7 @@ public class AgentSearchImpl implements AgentSearchService {
         try {
             if(readerMapper.getDepartmentList(model).size() > 0){
                 response.setStatus(0);
-                response.setMsg("existed data");
+                response.setMsg("existed enums");
                 return response;
             }
             int result = writerMapper.addDepartment(model);
@@ -122,7 +122,7 @@ public class AgentSearchImpl implements AgentSearchService {
         try {
             if(readerMapper.getPositionList(model).size() > 0){
                 response.setStatus(0);
-                response.setMsg("existed data");
+                response.setMsg("existed enums");
                 return response;
             }
             int result = writerMapper.addPosition(model);
@@ -164,7 +164,7 @@ public class AgentSearchImpl implements AgentSearchService {
         try {
             if(readerMapper.getAgentInfoList(model).size() > 0){
                 response.setStatus(0);
-                response.setMsg("existed data");
+                response.setMsg("existed enums");
                 return response;
             }
             int result = writerMapper.addAgentInfo(model);

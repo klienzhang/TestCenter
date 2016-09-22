@@ -68,7 +68,7 @@
                 }
 
                 if (halt == false) {
-                    alter(that.$editor.find('button[data-handler="' + v + '"]'))
+                    alter(that.$editor.find('button[enums-handler="' + v + '"]'))
                 }
             })
         }
@@ -117,7 +117,7 @@
                             'data-hotkey': hotkey
                         });
                         if (button.toggle == true) {
-                            buttonContainer.attr('data-toggle', 'button');
+                            buttonContainer.attr('enums-toggle', 'button');
                         }
                         buttonIconContainer = $('<span/>');
                         buttonIconContainer.addClass(buttonIcon);
@@ -159,7 +159,7 @@
                 this.$textarea.on('keydown', $.proxy(this.keydown, this))
             }
 
-            // Re-attach markdown data
+            // Re-attach markdown enums
             this.$textarea.data('markdown', this)
         }
 
@@ -330,7 +330,7 @@
                     handler.push(saveHandler)
                     callback.push(options.onSave)
 
-                    editorFooter.append('<button class="btn btn-success" data-provider="' + ns + '" data-handler="' + saveHandler + '"><i class="icon icon-white icon-ok"></i> ' + this.__localize('Save') + '</button>')
+                    editorFooter.append('<button class="btn btn-success" enums-provider="' + ns + '" enums-handler="' + saveHandler + '"><i class="icon icon-white icon-ok"></i> ' + this.__localize('Save') + '</button>')
 
 
                 }
@@ -374,9 +374,9 @@
 
                 this.__setListener()
 
-                // Set editor attributes, data short-hand API and listener
+                // Set editor attributes, enums short-hand API and listener
                 this.$editor.attr('id', (new Date).getTime())
-                this.$editor.on('click', '[data-provider="bootstrap-markdown"]', $.proxy(this.__handle, this))
+                this.$editor.on('click', '[enums-provider="bootstrap-markdown"]', $.proxy(this.__handle, this))
 
                 if (this.$element.is(':disabled') || this.$element.is('[readonly]')) {
                     this.$editor.addClass('md-editor-disabled');
@@ -384,7 +384,7 @@
                 }
 
                 if (this.eventSupported('keydown') && typeof jQuery.hotkeys === 'object') {
-                    editorHeader.find('[data-provider="bootstrap-markdown"]').each(function () {
+                    editorHeader.find('[enums-provider="bootstrap-markdown"]').each(function () {
                         var $button = $(this),
                             hotkey = $button.attr('data-hotkey')
                         if (hotkey.toLowerCase() !== '') {
@@ -517,7 +517,7 @@
             this.$isPreview = false
 
             // Obtain the preview container
-            var container = this.$editor.find('div[data-provider="markdown-preview"]')
+            var container = this.$editor.find('div[enums-provider="markdown-preview"]')
 
             // Remove the preview container
             container.remove()
@@ -843,7 +843,7 @@
 
                     if (attachedMarkdown = $(this).find('textarea').data('markdown'),
                         attachedMarkdown == null) {
-                        attachedMarkdown = $(this).find('div[data-provider="markdown-preview"]').data('markdown')
+                        attachedMarkdown = $(this).find('div[enums-provider="markdown-preview"]').data('markdown')
                     }
 
                     if (attachedMarkdown) {
@@ -1401,7 +1401,7 @@
             var $this = $(this),
                 focused = $activeElement.closest('.md-editor')[0] === this,
                 attachedMarkdown = $this.find('textarea').data('markdown') ||
-                $this.find('div[data-provider="markdown-preview"]').data('markdown')
+                $this.find('div[enums-provider="markdown-preview"]').data('markdown')
 
             if (attachedMarkdown && !focused) {
                 attachedMarkdown.blur()
@@ -1410,7 +1410,7 @@
     }
 
     $(document)
-        .on('click.markdown.data-api', '[data-provide="markdown-editable"]', function (e) {
+        .on('click.markdown.enums-api', '[enums-provide="markdown-editable"]', function (e) {
             initMarkdown($(this))
             e.preventDefault()
         })
@@ -1418,7 +1418,7 @@
             blurNonFocused(e)
         })
         .ready(function () {
-            $('textarea[data-provide="markdown"]').each(function () {
+            $('textarea[enums-provide="markdown"]').each(function () {
                 initMarkdown($(this))
             })
         })

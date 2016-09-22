@@ -201,7 +201,7 @@
                 /* add main input element to form and store it in input */
                 var input = element.apply(form, [settings, self]);
 
-                /* set input content via POST, GET, given data or existing value */
+                /* set input content via POST, GET, given enums or existing value */
                 var input_content;
 
                 if (settings.loadurl) {
@@ -324,7 +324,7 @@
                                 var submitdata = {};
                                 submitdata[settings.name] = input.val();
                                 submitdata[settings.id] = self.id;
-                                /* add extra data to be POST:ed */
+                                /* add extra enums to be POST:ed */
                                 if ($.isFunction(settings.submitdata)) {
                                     $.extend(submitdata, settings.submitdata.apply(self, [self.revert, settings]));
                                 } else {

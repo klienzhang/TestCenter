@@ -57,7 +57,7 @@ public class ChangePWDController {
         }
 
         Map<String, String> result = new HashMap<String, String>();
-        result.put("data", returnContent);
+        result.put("enums", returnContent);
         return result;
     }
 }

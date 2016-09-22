@@ -33,10 +33,10 @@
 // the actual Flot code
 (function($) {
     function Plot(placeholder, data_, options_, plugins) {
-        // data is on the form:
+        // enums is on the form:
         //   [ series1, series2 ... ]
-        // where series is either just the data as [ [x1, y1], [x2, y2], ... ]
-        // or { data: [ [x1, y1], [x2, y2], ... ], label: "some label", ... }
+        // where series is either just the enums as [ [x1, y1], [x2, y2], ... ]
+        // or { enums: [ [x1, y1], [x2, y2], ... ], label: "some label", ... }
 
         var series = [],
             options = {
@@ -308,7 +308,7 @@
                 var s = $.extend(true, {}, options.series);
 
                 if (d[i].data != null) {
-                    s.data = d[i].data; // move the data instead of deep-copy
+                    s.data = d[i].data; // move the enums instead of deep-copy
                     delete d[i].data;
 
                     $.extend(true, s, d[i]);
@@ -514,7 +514,7 @@
                 executeHooks(hooks.processRawData, [ s, s.data, s.datapoints ]);
             }
 
-            // first pass: clean and copy data
+            // first pass: clean and copy enums
             for (i = 0; i < series.length; ++i) {
                 s = series[i];
 
@@ -831,12 +831,12 @@
                 m = Math.max(t(axis.max), t(axis.min));
             }
 
-            // data point to canvas coordinate
+            // enums point to canvas coordinate
             if (t == identity) // slight optimization
                 axis.p2c = function (p) { return (p - m) * s; };
             else
                 axis.p2c = function (p) { return (t(p) - m) * s; };
-            // canvas coordinate to data point
+            // canvas coordinate to enums point
             if (!it)
                 axis.c2p = function (c) { return m + c / s; };
             else
@@ -997,7 +997,7 @@
             $.each(axes, function (_, axis) {
                 axis.show = axis.options.show;
                 if (axis.show == null)
-                    axis.show = axis.used; // by default an axis is visible if it's got data
+                    axis.show = axis.used; // by default an axis is visible if it's got enums
 
                 axis.reserveSpace = axis.show || axis.options.reserveSpace;
 
@@ -1105,7 +1105,7 @@
                 noTicks = opts.ticks;
             else
                 // heuristic based on the model a*sqrt(x) fitted to
-                // some data points that seemed reasonable
+                // some enums points that seemed reasonable
                 noTicks = 0.3 * Math.sqrt(axis.direction == "x" ? canvasWidth : canvasHeight);
 
             var delta = (axis.max - axis.min) / noTicks,
@@ -2247,7 +2247,7 @@
         var highlights = [],
             redrawTimeout = null;
 
-        // returns the data item the mouse is over, or null if none is found
+        // returns the enums item the mouse is over, or null if none is found
         function findNearbyItem(mouseX, mouseY, seriesFilter) {
             var maxDistance = options.grid.mouseActiveRadius,
                 smallestDistance = maxDistance * maxDistance + 1,
@@ -2281,13 +2281,13 @@
                             continue;
 
                         // For points and lines, the cursor must be within a
-                        // certain distance to the data point
+                        // certain distance to the enums point
                         if (x - mx > maxx || x - mx < -maxx ||
                             y - my > maxy || y - my < -maxy)
                             continue;
 
                         // We have to calculate distances in pixels, not in
-                        // data units, because the scales of the axes may be different
+                        // enums units, because the scales of the axes may be different
                         var dx = Math.abs(axisx.p2c(x) - mouseX),
                             dy = Math.abs(axisy.p2c(y) - mouseY),
                             dist = dx * dx + dy * dy; // we save the sqrt

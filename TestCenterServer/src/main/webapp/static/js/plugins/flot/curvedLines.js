@@ -32,11 +32,11 @@
  curvedLines is a plugin for flot, that tries to display lines in a smoother way.
  The plugin is based on nergal.dev's work https://code.google.com/p/flot/issues/detail?id=226
  and further extended with a mode that forces the min/max points of the curves to be on the
- points. Both modes are achieved through adding of more data points
- => 1) with large data sets you may get trouble
- => 2) if you want to display the points too, you have to plot them as 2nd data series over the lines
+ points. Both modes are achieved through adding of more enums points
+ => 1) with large enums sets you may get trouble
+ => 2) if you want to display the points too, you have to plot them as 2nd enums series over the lines
 
- && 3) consecutive x data points are not allowed to have the same value
+ && 3) consecutive x enums points are not allowed to have the same value
 
  This is version 0.5 of curvedLines so it will probably not work in every case. However
  the basic form of use descirbed next works (:
@@ -52,7 +52,7 @@
 
  var options = { series: { curvedLines: {  active: true }}};
 
- $.plot($("#placeholder"), [{data = d1, lines: { show: true}, curvedLines: {apply: true}}], options);
+ $.plot($("#placeholder"), [{enums = d1, lines: { show: true}, curvedLines: {apply: true}}], options);
 
  _____________________________________________________
 
@@ -62,7 +62,7 @@
  active:           bool true => plugin can be used
  apply:            bool true => series will be drawn as curved line
  fit:              bool true => forces the max,mins of the curve to be on the datapoints
- curvePointFactor  int  defines how many "virtual" points are used per "real" data point to
+ curvePointFactor  int  defines how many "virtual" points are used per "real" enums point to
  emulate the curvedLines (points total = real points * curvePointFactor)
  fitPointDist:     int  defines the x axis distance of the additional two points that are used
  to enforce the min max condition.
@@ -170,8 +170,8 @@
             var j = 0;
 
             if (curvedLinesOptions.fit) {
-                //insert a point before and after the "real" data point to force the line
-                //to have a max,min at the data point.
+                //insert a point before and after the "real" enums point to force the line
+                //to have a max,min at the enums point.
 
                 var fpDist;
                 if(typeof curvedLinesOptions.fitPointDist == 'undefined') {
@@ -287,7 +287,7 @@
                 var h = (xdata[max] - xdata[min]);
 
                 if (h == 0) {
-                    //similar to above two points from original x data need some space between them
+                    //similar to above two points from original x enums need some space between them
                     return [];
                 }
 

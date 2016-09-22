@@ -1,7 +1,5 @@
 package com.berserker.server.service;
 
-import com.berserker.server.entity.tools.ChangePasswordEntity;
-
 /**
  * @author klien
  */

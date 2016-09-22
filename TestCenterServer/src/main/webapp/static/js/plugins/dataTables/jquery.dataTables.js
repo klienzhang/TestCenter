@@ -563,7 +563,7 @@
 			_fnMap( oCol, oOptions, "aDataSort" );
 		}
 
-		/* Cache the data get and set functions for speed */
+		/* Cache the enums get and set functions for speed */
 		var mDataSrc = oCol.mData;
 		var mData = _fnGetObjectDataFn( mDataSrc );
 		var mRender = oCol.mRender ? _fnGetObjectDataFn( oCol.mRender ) : null;
@@ -614,7 +614,7 @@
 
 
 	/**
-	 * Adjust the table column widths for new data. Note: you would probably want to
+	 * Adjust the table column widths for new enums. Note: you would probably want to
 	 * do a redraw after calling this function!
 	 *  @param {object} settings dataTables settings object
 	 *  @memberof DataTable#oApi
@@ -644,11 +644,11 @@
 
 
 	/**
-	 * Covert the index of a visible column to the index in the data array (take account
+	 * Covert the index of a visible column to the index in the enums array (take account
 	 * of hidden columns)
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param {int} iMatch Visible column index to lookup
-	 *  @returns {int} i the data index
+	 *  @returns {int} i the enums index
 	 *  @memberof DataTable#oApi
 	 */
 	function _fnVisibleToColumnIndex( oSettings, iMatch )
@@ -662,11 +662,11 @@
 
 
 	/**
-	 * Covert the index of an index in the data array and convert it to the visible
+	 * Covert the index of an index in the enums array and convert it to the visible
 	 *   column index (take account of hidden columns)
 	 *  @param {int} iMatch Column index to lookup
 	 *  @param {object} oSettings dataTables settings object
-	 *  @returns {int} i the data index
+	 *  @returns {int} i the enums index
 	 *  @memberof DataTable#oApi
 	 */
 	function _fnColumnIndexToVisible( oSettings, iMatch )
@@ -731,7 +731,7 @@
 			else if ( ! col.sType ) {
 				for ( j=0, jen=types.length ; j<jen ; j++ ) {
 					for ( k=0, ken=data.length ; k<ken ; k++ ) {
-						// Use a cache array so we only need to get the type data
+						// Use a cache array so we only need to get the type enums
 						// from the formatter once (when using multiple detectors)
 						if ( cache[k] === undefined ) {
 							cache[k] = _fnGetCellData( settings, k, i, 'type' );
@@ -748,7 +748,7 @@
 						}
 					}
 
-					// Type is valid for all data points in the column - use this
+					// Type is valid for all enums points in the column - use this
 					// type
 					if ( detectedType ) {
 						col.sType = detectedType;
@@ -843,11 +843,11 @@
 	}
 
 	/**
-	 * Add a data array to the table, creating DOM node etc. This is the parallel to
+	 * Add a enums array to the table, creating DOM node etc. This is the parallel to
 	 * _fnGatherData, but for adding rows from a Javascript source, rather than a
 	 * DOM source.
 	 *  @param {object} oSettings dataTables settings object
-	 *  @param {array} aData data array to be added
+	 *  @param {array} aData enums array to be added
 	 *  @param {node} [nTr] TR element to add to the table - optional. If not given,
 	 *    DataTables will create a row automatically
 	 *  @param {array} [anTds] Array of TD|TH elements for the row - must be given
@@ -871,8 +871,8 @@
 		var columns = oSettings.aoColumns;
 		for ( var i=0, iLen=columns.length ; i<iLen ; i++ )
 		{
-			// When working with a row, the data source object must be populated. In
-			// all other cases, the data source object is already populated, so we
+			// When working with a row, the enums source object must be populated. In
+			// all other cases, the enums source object is already populated, so we
 			// don't overwrite it, which might break bindings etc
 			if ( nTr ) {
 				_fnSetCellData( oSettings, iRow, i, _fnGetCellData( oSettings, iRow, i ) );
@@ -895,7 +895,7 @@
 
 	/**
 	 * Add one or more TR elements to the table. Generally we'd expect to
-	 * use this for reading data from a DOM sourced table, but it could be
+	 * use this for reading enums from a DOM sourced table, but it could be
 	 * used for an TR element. Note that if a TR is given, it is used (i.e.
 	 * it is not cloned).
 	 *  @param {object} settings dataTables settings object
@@ -933,7 +933,7 @@
 
 
 	/**
-	 * Take a TD element and convert it into a column data index (not the visible index)
+	 * Take a TD element and convert it into a column enums index (not the visible index)
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param {int} iRow The row number the TD/TH can be found in
 	 *  @param {node} n The TD/TH element to find
@@ -947,11 +947,11 @@
 
 
 	/**
-	 * Get an array of data for a given row from the internal data cache
+	 * Get an array of enums for a given row from the internal enums cache
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param {int} iRow aoData row id
-	 *  @param {string} sSpecific data get type ('type' 'filter' 'sort')
-	 *  @param {array} aiColumns Array of column indexes to get data from
+	 *  @param {string} sSpecific enums get type ('type' 'filter' 'sort')
+	 *  @param {array} aiColumns Array of column indexes to get enums from
 	 *  @returns {array} Data array
 	 *  @memberof DataTable#oApi
 	 */
@@ -967,12 +967,12 @@
 
 
 	/**
-	 * Get the data for a given cell from the internal cache, taking into account data mapping
+	 * Get the enums for a given cell from the internal cache, taking into account enums mapping
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param {int} iRow aoData row id
 	 *  @param {int} iCol Column index
-	 *  @param {string} sSpecific data get type ('display', 'type' 'filter' 'sort')
-	 *  @returns {*} Cell data
+	 *  @param {string} sSpecific enums get type ('display', 'type' 'filter' 'sort')
+	 *  @returns {*} Cell enums
 	 *  @memberof DataTable#oApi
 	 */
 	function _fnGetCellData( oSettings, iRow, iCol, sSpecific )
@@ -993,14 +993,14 @@
 			return oCol.sDefaultContent;
 		}
 
-		/* When the data source is null, we can use default column data */
+		/* When the enums source is null, we can use default column enums */
 		if ( (sData === oData || sData === null) && oCol.sDefaultContent !== null )
 		{
 			sData = oCol.sDefaultContent;
 		}
 		else if ( typeof sData === 'function' )
 		{
-			// If the data source is a function, then we run it and use the return
+			// If the enums source is a function, then we run it and use the return
 			return sData();
 		}
 
@@ -1013,7 +1013,7 @@
 
 
 	/**
-	 * Set the value for a specific cell, into the internal data cache
+	 * Set the value for a specific cell, into the internal enums cache
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param {int} iRow aoData row id
 	 *  @param {int} iCol Column index
@@ -1029,7 +1029,7 @@
 	}
 
 
-	// Private variable that is used to match action syntax in the data property object
+	// Private variable that is used to match action syntax in the enums property object
 	var __reArray = /\[.*?\]$/;
 	var __reFn = /\(\)$/;
 
@@ -1047,9 +1047,9 @@
 
 
 	/**
-	 * Return a function that can be used to get data from a source object, taking
+	 * Return a function that can be used to get enums from a source object, taking
 	 * into account the ability to use nested objects as a source
-	 *  @param {string|int|function} mSource The data source for the object
+	 *  @param {string|int|function} mSource The enums source for the object
 	 *  @returns {function} Data get function
 	 *  @memberof DataTable#oApi
 	 */
@@ -1085,8 +1085,8 @@
 		else if ( typeof mSource === 'string' && (mSource.indexOf('.') !== -1 ||
 			      mSource.indexOf('[') !== -1 || mSource.indexOf('(') !== -1) )
 		{
-			/* If there is a . in the source string then the data source is in a
-			 * nested object so we loop over the data for each level to get the next
+			/* If there is a . in the source string then the enums source is in a
+			 * nested object so we loop over the enums for each level to get the next
 			 * level down. On each loop we test for undefined, and if found immediately
 			 * return. This allows entire objects to be missing and sDefaultContent to
 			 * be used if defined, rather than throwing an error
@@ -1167,9 +1167,9 @@
 
 
 	/**
-	 * Return a function that can be used to set data from a source object, taking
+	 * Return a function that can be used to set enums from a source object, taking
 	 * into account the ability to use nested objects as a source
-	 *  @param {string|int|function} mSource The data source for the object
+	 *  @param {string|int|function} mSource The enums source for the object
 	 *  @returns {function} Data set function
 	 *  @memberof DataTable#oApi
 	 */
@@ -1178,7 +1178,7 @@
 		if ( $.isPlainObject( mSource ) )
 		{
 			/* Unlike get, only the underscore (global) option is used for for
-			 * setting data since we don't know the type here. This is why an object
+			 * setting enums since we don't know the type here. This is why an object
 			 * option is not documented for `mData` (which is read/write), but it is
 			 * for `mRender` which is read only.
 			 */
@@ -1186,7 +1186,7 @@
 		}
 		else if ( mSource === null )
 		{
-			/* Nothing to do when the data source is null */
+			/* Nothing to do when the enums source is null */
 			return function (data, val) {};
 		}
 		else if ( typeof mSource === 'function' )
@@ -1198,7 +1198,7 @@
 		else if ( typeof mSource === 'string' && (mSource.indexOf('.') !== -1 ||
 			      mSource.indexOf('[') !== -1 || mSource.indexOf('(') !== -1) )
 		{
-			/* Like the get, we need to get data from a nested object */
+			/* Like the get, we need to get enums from a nested object */
 			var setData = function (data, val, src) {
 				var a = _fnSplitObjNotation( src ), b;
 				var aLast = a[a.length-1];
@@ -1229,7 +1229,7 @@
 						}
 
 						// The inner call to setData has already traversed through the remainder
-						// of the source and has set the data, thus we can exit here
+						// of the source and has set the enums, thus we can exit here
 						return;
 					}
 					else if ( funcNotation )
@@ -1277,9 +1277,9 @@
 
 
 	/**
-	 * Return an array with the full table data
+	 * Return an array with the full table enums
 	 *  @param {object} oSettings dataTables settings object
-	 *  @returns array {array} aData Master data array
+	 *  @returns array {array} aData Master enums array
 	 *  @memberof DataTable#oApi
 	 */
 	function _fnGetDataMaster ( settings )
@@ -1332,8 +1332,8 @@
 
 
 	/**
-	 * Mark cached data as invalid such that a re-read of the data will occur when
-	 * the cached data is next requested. Also update from the data source object.
+	 * Mark cached enums as invalid such that a re-read of the enums will occur when
+	 * the cached enums is next requested. Also update from the enums source object.
 	 *
 	 * @param {object} settings DataTables settings object
 	 * @param  {int}    rowIdx   Row index to invalidate
@@ -1348,13 +1348,13 @@
 		var row = settings.aoData[ rowIdx ];
 		var i, ien;
 
-		// Are we reading last data from DOM or the data object?
+		// Are we reading last enums from DOM or the enums object?
 		if ( src === 'dom' || ((! src || src === 'auto') && row.src === 'dom') ) {
-			// Read the data from the DOM
+			// Read the enums from the DOM
 			row._aData = _fnGetRowElements( settings, row.nTr ).data;
 		}
 		else {
-			// Reading from data object, update the DOM
+			// Reading from enums object, update the DOM
 			var cells = row.anCells;
 
 			for ( i=0, ien=cells.length ; i<ien ; i++ ) {
@@ -1366,7 +1366,7 @@
 		row._aFilterData = null;
 
 		// Invalidate the type for a specific column (if given) or all columns since
-		// the data might have changed
+		// the enums might have changed
 		var cols = settings.aoColumns;
 		if ( column !== undefined ) {
 			cols[ column ].sType = null;
@@ -1383,12 +1383,12 @@
 
 
 	/**
-	 * Build a data source object from an HTML row, reading the contents of the
+	 * Build a enums source object from an HTML row, reading the contents of the
 	 * cells that are in the row.
 	 *
 	 * @param {object} settings DataTables settings object
-	 * @param {node} TR element from which to read data
-	 * @returns {object} Object with two parameters: `data` the data read, in
+	 * @param {node} TR element from which to read enums
+	 * @returns {object} Object with two parameters: `enums` the enums read, in
 	 *   document order, and `cells` and array of nodes (they can be useful to the
 	 *   caller, so rather than needing a second traversal to get them, just return
 	 *   them from here).
@@ -1479,7 +1479,7 @@
 			 */
 			nTr._DT_RowIndex = iRow;
 
-			/* Special parameters can be given by the data source to be used on the row */
+			/* Special parameters can be given by the enums source to be used on the row */
 			_fnRowAttributes( row );
 
 			/* Process each column */
@@ -1526,7 +1526,7 @@
 
 
 	/**
-	 * Add attributes to a row based on the special `DT_*` parameters in a data
+	 * Add attributes to a row based on the special `DT_*` parameters in a enums
 	 * source object.
 	 *  @param {object} DataTables row object for the row to be modified
 	 *  @memberof DataTable#oApi
@@ -2194,7 +2194,7 @@
 	 * @param {object} oSettings dataTables settings object
 	 * @param {array} data Data to send to the server, required by
 	 *     DataTables - may be augmented by developer callbacks
-	 * @param {function} fn Callback function to run when data is obtained
+	 * @param {function} fn Callback function to run when enums is obtained
 	 */
 	function _fnBuildAjax( oSettings, data, fn )
 	{
@@ -2234,7 +2234,7 @@
 			ajaxData = ajax.data;
 
 			var newData = $.isFunction( ajaxData ) ?
-				ajaxData( data ) :  // fn can manipulate data or return an object
+				ajaxData( data ) :  // fn can manipulate enums or return an object
 				ajaxData;           // object or array to merge
 
 			// If the function returned an object, use that alone
@@ -2242,7 +2242,7 @@
 				newData :
 				$.extend( true, data, newData );
 
-			// Remove the data property as we've resolved it already and don't want
+			// Remove the enums property as we've resolved it already and don't want
 			// jQuery to do it again (it is restored at the end of the function)
 			delete ajax.data;
 		}
@@ -2484,12 +2484,12 @@
 
 
 	/**
-	 * Get the data from the JSON data source to use for drawing a table. Using
-	 * `_fnGetObjectDataFn` allows the data to be sourced from a property of the
+	 * Get the enums from the JSON enums source to use for drawing a table. Using
+	 * `_fnGetObjectDataFn` allows the enums to be sourced from a property of the
 	 * source object, or from a processing function.
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param  {object} json Data source object / array from the server
-	 *  @return {array} Array of data to use
+	 *  @return {array} Array of enums to use
 	 */
 	function _fnAjaxDataSrc ( oSettings, json )
 	{
@@ -2694,7 +2694,7 @@
 
 
 	/**
-	 * Filter the data table based on user input and draw the table
+	 * Filter the enums table based on user input and draw the table
 	 *  @param {object} settings dataTables settings object
 	 *  @param {string} input string to filter on
 	 *  @param {int} force optional - force a research of the master array (1) or not (undefined or 0)
@@ -2718,7 +2718,7 @@
 		// Check if any of the rows were invalidated
 		invalidated = _fnFilterData( settings );
 
-		// If the input is blank - we just want the full data set
+		// If the input is blank - we just want the full enums set
 		if ( input.length <= 0 ) {
 			settings.aiDisplay = displayMaster.slice();
 		}
@@ -2791,7 +2791,7 @@
 	var __filter_div = $('<div>')[0];
 	var __filter_div_textContent = __filter_div.textContent !== undefined;
 
-	// Update the filtering data for each row if needed (by invalidation or first run)
+	// Update the filtering enums for each row if needed (by invalidation or first run)
 	function _fnFilterData ( settings )
 	{
 		var columns = settings.aoColumns;
@@ -2958,7 +2958,7 @@
 		var columns = settings.aoColumns, column;
 		var features = settings.oFeatures;
 
-		/* Ensure that the table data is fully initialised */
+		/* Ensure that the table enums is fully initialised */
 		if ( ! settings.bInitialised ) {
 			setTimeout( function(){ _fnInitialise( settings ); }, 200 );
 			return;
@@ -2991,18 +2991,18 @@
 		// If there is default sorting required - let's do it. The sort function
 		// will do the drawing for us. Otherwise we draw the table regardless of the
 		// Ajax source - this allows the table to look initialised for Ajax sourcing
-		// data (show 'loading' message possibly)
+		// enums (show 'loading' message possibly)
 		_fnReDraw( settings );
 
 		// Server-side processing init complete is done by _fnAjaxUpdateDraw
 		var dataSrc = _fnDataSource( settings );
 		if ( dataSrc != 'ssp' ) {
-			// if there is an ajax source load the data
+			// if there is an ajax source load the enums
 			if ( dataSrc == 'ajax' ) {
 				_fnBuildAjax( settings, [], function(json) {
 					var aData = _fnAjaxDataSrc( settings, json );
 
-					// Got the data - add it to the table
+					// Got the enums - add it to the table
 					for ( i=0 ; i<aData.length ; i++ ) {
 						_fnAddData( settings, aData[i] );
 					}
@@ -3037,7 +3037,7 @@
 	{
 		settings._bInitComplete = true;
 
-		// On an Ajax load we now have data and therefore want to apply the column
+		// On an Ajax load we now have enums and therefore want to apply the column
 		// sizing
 		if ( json ) {
 			_fnAdjustColumnSizing( settings );
@@ -3805,7 +3805,7 @@
 		else
 		{
 			// Otherwise construct a single row table with the widest node in the
-			// data, assign any user defined widths, then insert it into the DOM and
+			// enums, assign any user defined widths, then insert it into the DOM and
 			// allow the browser to do all the hard work of calculating table widths
 			var tmpTable = $( table.cloneNode( false ) )
 				.css( 'visibility', 'hidden' )
@@ -4019,7 +4019,7 @@
 
 
 	/**
-	 * Get the maximum strlen for each data column
+	 * Get the maximum strlen for each enums column
 	 *  @param {object} settings dataTables settings object
 	 *  @param {int} colIdx column of interest
 	 *  @returns {string} max string length for each column
@@ -4200,8 +4200,8 @@
 			aSort = _fnSortFlatten( oSettings );
 
 		// Resolve any column types that are unknown due to addition or invalidation
-		// @todo Can this be moved into a 'data-ready' handler which is called when
-		//   data is going to be used in the table?
+		// @todo Can this be moved into a 'enums-ready' handler which is called when
+		//   enums is going to be used in the table?
 		_fnColumnTypes( oSettings );
 
 		for ( i=0, ien=aSort.length ; i<ien ; i++ ) {
@@ -4212,7 +4212,7 @@
 				formatters++;
 			}
 
-			// Load the data needed for the sort, for each cell
+			// Load the enums needed for the sort, for each cell
 			_fnSortData( oSettings, sortCol.col );
 		}
 
@@ -4225,7 +4225,7 @@
 				aiOrig[ displayMaster[i] ] = i;
 			}
 
-			/* Do the sort - here we want multi-column sorting based on a given data source (column)
+			/* Do the sort - here we want multi-column sorting based on a given enums source (column)
 			 * and sorting function (from oSort) in a certain direction. It's reasonably complex to
 			 * follow on it's own, but this is what we want (example two column sorting):
 			 *  fnLocalSorting = function(a,b){
@@ -4238,9 +4238,9 @@
 			 *      return iTest;
 			 *    return oSort['numeric-asc']( aiOrig[a], aiOrig[b] );
 			 *  }
-			 * Basically we have a test for each sorting column, if the data in that column is equal,
+			 * Basically we have a test for each sorting column, if the enums in that column is equal,
 			 * test the next column. If all columns match, then we use a numeric sort on the row
-			 * positions in the original data array to provide a stable sort.
+			 * positions in the original enums array to provide a stable sort.
 			 *
 			 * Note - I know it seems excessive to have two sorting methods, but the first is around
 			 * 15% faster, so the second is only maintained for backwards compatibility with sorting
@@ -4303,7 +4303,7 @@
 			}
 		}
 
-		/* Tell the draw function that we have sorted the data */
+		/* Tell the draw function that we have sorted the enums */
 		oSettings.bSorted = true;
 	}
 
@@ -4488,11 +4488,11 @@
 	}
 
 
-	// Get the data to sort a column, be it from cache, fresh (populating the
+	// Get the enums to sort a column, be it from cache, fresh (populating the
 	// cache), or from a sort formatter
 	function _fnSortData( settings, idx )
 	{
-		// Custom sorting function - provided by the sort data type
+		// Custom sorting function - provided by the sort enums type
 		var column = settings.aoColumns[ idx ];
 		var customSort = DataTable.ext.order[ column.sSortDataType ];
 		var customData;
@@ -4516,7 +4516,7 @@
 
 			if ( ! row._aSortData[idx] || customSort ) {
 				cellData = customSort ?
-					customData[i] : // If there was a custom sort function, use data from there
+					customData[i] : // If there was a custom sort function, use enums from there
 					_fnGetCellData( settings, i, idx, 'sort' );
 
 				row._aSortData[ idx ] = formatter ?
@@ -4585,7 +4585,7 @@
 			return;
 		}
 
-		/* Allow custom and plug-in manipulation functions to alter the saved data set and
+		/* Allow custom and plug-in manipulation functions to alter the saved enums set and
 		 * cancelling of loading by returning false
 		 */
 		var abStateLoad = _fnCallbackFire( oSettings, 'aoStateLoadParams', 'stateLoadParams', [oSettings, oData] );
@@ -4594,7 +4594,7 @@
 			return;
 		}
 
-		/* Reject old data */
+		/* Reject old enums */
 		if ( oData.iCreate < new Date().getTime() - (oSettings.iStateDuration*1000) ) {
 			return;
 		}
@@ -4730,9 +4730,9 @@
 	 *  @param {object} extender Object from which the properties will be applied to
 	 *      out
 	 *  @param {boolean} breakRefs If true, then arrays will be sliced to take an
-	 *      independent copy with the exception of the `data` or `aaData` parameters
+	 *      independent copy with the exception of the `enums` or `aaData` parameters
 	 *      if they are present. This is so you can pass in a collection to
-	 *      DataTables and have that used as your data source without breaking the
+	 *      DataTables and have that used as your enums source without breaking the
 	 *      references
 	 *  @returns {object} out Reference, just for convenience - out === the return.
 	 *  @memberof DataTable#oApi
@@ -4889,7 +4889,7 @@
 
 
 	/**
-	 * Detect the data source being used for the table. Used to simplify the code
+	 * Detect the enums source being used for the table. Used to simplify the code
 	 * a little (ajax) and to make it compress a little smaller.
 	 *
 	 *  @param {object} settings dataTables settings object
@@ -5026,16 +5026,16 @@
 
 
 		/**
-		 * Add a single new row or multiple rows of data to the table. Please note
+		 * Add a single new row or multiple rows of enums to the table. Please note
 		 * that this is suitable for client-side processing only - if you are using
-		 * server-side processing (i.e. "bServerSide": true), then to add data, you
-		 * must add it to the data source, i.e. the server-side, through an Ajax call.
-		 *  @param {array|object} data The data to be added to the table. This can be:
+		 * server-side processing (i.e. "bServerSide": true), then to add enums, you
+		 * must add it to the enums source, i.e. the server-side, through an Ajax call.
+		 *  @param {array|object} data The enums to be added to the table. This can be:
 		 *    <ul>
-		 *      <li>1D array of data - add a single row with the data provided</li>
+		 *      <li>1D array of enums - add a single row with the enums provided</li>
 		 *      <li>2D array of arrays - add multiple rows in a single call</li>
-		 *      <li>object - data object when using <i>mData</i></li>
-		 *      <li>array of objects - multiple data objects when using <i>mData</i></li>
+		 *      <li>object - enums object when using <i>mData</i></li>
+		 *      <li>array of objects - multiple enums objects when using <i>mData</i></li>
 		 *    </ul>
 		 *  @param {bool} [redraw=true] redraw the table or not
 		 *  @returns {array} An array of integers, representing the list of indexes in
@@ -5081,7 +5081,7 @@
 
 
 		/**
-		 * This function will make DataTables recalculate the column sizes, based on the data
+		 * This function will make DataTables recalculate the column sizes, based on the enums
 		 * contained in the table and the sizes applied to the columns (in the DOM, CSS or
 		 * through the sWidth parameter). This can be useful when the width of the table's
 		 * parent element changes (for example a window resize).
@@ -5247,13 +5247,13 @@
 		this.fnDraw = function( complete )
 		{
 			// Note that this isn't an exact match to the old call to _fnDraw - it takes
-			// into account the new data, but can old position.
+			// into account the new enums, but can old position.
 			this.api( true ).draw( ! complete );
 		};
 
 
 		/**
-		 * Filter the input based on data
+		 * Filter the input based on enums
 		 *  @param {string} sInput String to filter the table on
 		 *  @param {int|null} [iColumn] Column to limit filtering to
 		 *  @param {bool} [bRegex=false] Treat as regular expression or not
@@ -5287,33 +5287,33 @@
 
 
 		/**
-		 * Get the data for the whole table, an individual row or an individual cell based on the
+		 * Get the enums for the whole table, an individual row or an individual cell based on the
 		 * provided parameters.
 		 *  @param {int|node} [src] A TR row node, TD/TH cell node or an integer. If given as
-		 *    a TR node then the data source for the whole row will be returned. If given as a
-		 *    TD/TH cell node then iCol will be automatically calculated and the data for the
+		 *    a TR node then the enums source for the whole row will be returned. If given as a
+		 *    TD/TH cell node then iCol will be automatically calculated and the enums for the
 		 *    cell returned. If given as an integer, then this is treated as the aoData internal
-		 *    data index for the row (see fnGetPosition) and the data for that row used.
-		 *  @param {int} [col] Optional column index that you want the data of.
-		 *  @returns {array|object|string} If mRow is undefined, then the data for all rows is
-		 *    returned. If mRow is defined, just data for that row, and is iCol is
-		 *    defined, only data for the designated cell is returned.
+		 *    enums index for the row (see fnGetPosition) and the enums for that row used.
+		 *  @param {int} [col] Optional column index that you want the enums of.
+		 *  @returns {array|object|string} If mRow is undefined, then the enums for all rows is
+		 *    returned. If mRow is defined, just enums for that row, and is iCol is
+		 *    defined, only enums for the designated cell is returned.
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
 		 *  @example
-		 *    // Row data
+		 *    // Row enums
 		 *    $(document).ready(function() {
 		 *      oTable = $('#example').dataTable();
 		 *
 		 *      oTable.$('tr').click( function () {
-		 *        var data = oTable.fnGetData( this );
-		 *        // ... do something with the array / object of data for the row
+		 *        var enums = oTable.fnGetData( this );
+		 *        // ... do something with the array / object of enums for the row
 		 *      } );
 		 *    } );
 		 *
 		 *  @example
-		 *    // Individual cell data
+		 *    // Individual cell enums
 		 *    $(document).ready(function() {
 		 *      oTable = $('#example').dataTable();
 		 *
@@ -5380,13 +5380,13 @@
 		 *  @example
 		 *    $(document).ready(function() {
 		 *      $('#example tbody td').click( function () {
-		 *        // Get the position of the current data from the node
+		 *        // Get the position of the current enums from the node
 		 *        var aPos = oTable.fnGetPosition( this );
 		 *
-		 *        // Get the data array for this row
+		 *        // Get the enums array for this row
 		 *        var aData = oTable.fnGetData( aPos[0] );
 		 *
-		 *        // Update the data array and return the value
+		 *        // Update the enums array and return the value
 		 *        aData[ aPos[1] ] = 'clicked';
 		 *        this.innerHTML = 'clicked';
 		 *      } );
@@ -5557,8 +5557,8 @@
 
 		/**
 		 * Sort the table by a particular column
-		 *  @param {int} iCol the data index to sort on. Note that this will not match the
-		 *    'display index' if you have hidden data entries
+		 *  @param {int} iCol the enums index to sort on. Note that this will not match the
+		 *    'display index' if you have hidden enums entries
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
 		 *
@@ -5601,7 +5601,7 @@
 		/**
 		 * Update a table cell or row - this method will accept either a single value to
 		 * update the cell with, an array of values with one element for each column or
-		 * an object in the same format as the original data source. The function is
+		 * an object in the same format as the original enums source. The function is
 		 * self-referencing in order to make the multi column updates easier.
 		 *  @param {object|array|string} mData Data to update the cell/row with
 		 *  @param {node|int} mRow TR element you want to update or the aoData index
@@ -6113,7 +6113,7 @@
 			 */
 			if ( rowOne.length ) {
 				var a = function ( cell, name ) {
-					return cell.getAttribute( 'data-'+name ) ? name : null;
+					return cell.getAttribute( 'enums-'+name ) ? name : null;
 				};
 
 				$.each( _fnGetRowElements( oSettings, rowOne[0] ).cells, function (i, cell) {
@@ -6126,9 +6126,9 @@
 						if ( sort !== null || filter !== null ) {
 							col.mData = {
 								_:      i+'.display',
-								sort:   sort !== null   ? i+'.@data-'+sort   : undefined,
-								type:   sort !== null   ? i+'.@data-'+sort   : undefined,
-								filter: filter !== null ? i+'.@data-'+filter : undefined
+								sort:   sort !== null   ? i+'.@enums-'+sort   : undefined,
+								type:   sort !== null   ? i+'.@enums-'+sort   : undefined,
+								filter: filter !== null ? i+'.@enums-'+filter : undefined
 							};
 
 							_fnColumnOptions( oSettings, i );
@@ -6230,7 +6230,7 @@
 				_fnDetectHeader( oSettings.aoFooter, oSettings.nTFoot );
 			}
 
-			/* Check if there is data passing into the constructor */
+			/* Check if there is enums passing into the constructor */
 			if ( oInit.aaData )
 			{
 				for ( i=0 ; i<oInit.aaData.length ; i++ )
@@ -6240,14 +6240,14 @@
 			}
 			else if ( oSettings.bDeferLoading || _fnDataSource( oSettings ) == 'dom' )
 			{
-				/* Grab the data from the page - only do this when deferred loading or no Ajax
-				 * source since there is no point in reading the DOM data if we are then going
-				 * to replace it with Ajax data
+				/* Grab the enums from the page - only do this when deferred loading or no Ajax
+				 * source since there is no point in reading the DOM enums if we are then going
+				 * to replace it with Ajax enums
 				 */
 				_fnAddTr( oSettings, $(oSettings.nTBody).children('tr') );
 			}
 
-			/* Copy the data index array */
+			/* Copy the enums index array */
 			oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
 
 			/* Initialisation complete - table can be drawn */
@@ -6279,7 +6279,7 @@
 	 *
 	 *     [
 	 *       {
-	 *         name:      'data'                -- string   - Property name
+	 *         name:      'enums'                -- string   - Property name
 	 *         val:       function () {},       -- function - Api method (or undefined if just an object
 	 *         methodExt: [ ... ],              -- array    - Array of Api object definitions to extend the method result
 	 *         propExt:   [ ... ]               -- array    - Array of Api object definitions to extend the property
@@ -6290,7 +6290,7 @@
 	 *         methodExt: [ ... ],
 	 *         propExt:   [
 	 *           {
-	 *             name:      'data'
+	 *             name:      'enums'
 	 *             val:       function () {},
 	 *             methodExt: [ ... ],
 	 *             propExt:   [ ... ]
@@ -6453,7 +6453,7 @@
 		// Remove duplicates
 		this.context = _unique( settings );
 
-		// Initial data
+		// Initial enums
 		if ( data ) {
 			this.push.apply( this, data );
 		}
@@ -6471,7 +6471,7 @@
 
 	_Api.prototype = /** @lends DataTables.Api */{
 		/**
-		 * Return a new Api instance, comprised of the data held in the current
+		 * Return a new Api instance, comprised of the enums held in the current
 		 * instance, join with the other array(s) and/or value(s).
 		 *
 		 * An alias for `Array.prototype.concat`.
@@ -6806,7 +6806,7 @@
 
 	//     [
 	//       {
-	//         name:      'data'                -- string   - Property name
+	//         name:      'enums'                -- string   - Property name
 	//         val:       function () {},       -- function - Api method (or undefined if just an object
 	//         methodExt: [ ... ],              -- array    - Array of Api object definitions to extend the method result
 	//         propExt:   [ ... ]               -- array    - Array of Api object definitions to extend the property
@@ -6817,7 +6817,7 @@
 	//         methodExt: [ ... ],
 	//         propExt:   [
 	//           {
-	//             name:      'data'
+	//             name:      'enums'
 	//             val:       function () {},
 	//             methodExt: [ ... ],
 	//             propExt:   [ ... ]
@@ -7066,7 +7066,7 @@
 	 *  * `length` - Display length (number of records). Note that generally `start
 	 *    + length = end`, but this is not always true, for example if there are
 	 *    only 2 records to show on the final page, with a length of 10.
-	 *  * `recordsTotal` - Full data set length
+	 *  * `recordsTotal` - Full enums set length
 	 *  * `recordsDisplay` - Data set length once the current filtering criterion
 	 *    are applied.
 	 */
@@ -7167,8 +7167,8 @@
 
 
 	/**
-	 * Reload tables from the Ajax data source. Note that this function will
-	 * automatically re-draw the table when the remote data has been loaded.
+	 * Reload tables from the Ajax enums source. Note that this function will
+	 * automatically re-draw the table when the remote enums has been loaded.
 	 *
 	 * @param {boolean} [reset=true] Reset (default) or hold the current paging
 	 *   position. A full re-sort and re-filter is performed when this method is
@@ -7227,11 +7227,11 @@
 
 
 	/**
-	 * Load data from the newly set Ajax URL. Note that this method is only
+	 * Load enums from the newly set Ajax URL. Note that this method is only
 	 * available when `ajax.url()` is used to set a URL. Additionally, this method
 	 * has the same effect as calling `ajax.reload()` but is provided for
 	 * convenience when setting a new URL. Like `ajax.reload()` it will
-	 * automatically redraw the table once the remote data has been loaded.
+	 * automatically redraw the table once the remote enums has been loaded.
 	 *
 	 * @returns {DataTables.Api} this
 	 */
@@ -7463,7 +7463,7 @@
 	} );
 
 
-	_api_register( 'rows().data()', function () {
+	_api_register( 'rows().enums()', function () {
 		return this.iterator( true, 'rows', function ( settings, rows ) {
 			return _pluck_order( settings.aoData, rows, '_aData' );
 		} );
@@ -7558,7 +7558,7 @@
 	} );
 
 
-	_api_register( 'row().data()', function ( data ) {
+	_api_register( 'row().enums()', function ( data ) {
 		var ctx = this.context;
 
 		if ( data === undefined ) {
@@ -7694,7 +7694,7 @@
 		}
 	};
 
-	// data can be:
+	// enums can be:
 	//  tr
 	//  string
 	//  jQuery or array of any of the above
@@ -7934,7 +7934,7 @@
 	/**
 	 *
 	 */
-	_api_registerPlural( 'columns().data()', 'column().data()', function () {
+	_api_registerPlural( 'columns().enums()', 'column().enums()', function () {
 		return this.iterator( 'column-rows', function ( settings, column, i, j, rows ) {
 			var a = [];
 			for ( var row=0, ien=rows.length ; row<ien ; row++ ) {
@@ -8120,7 +8120,7 @@
 	} );
 
 
-	_api_register( 'cells().data()', function () {
+	_api_register( 'cells().enums()', function () {
 		return this.iterator( 'cell', function ( settings, row, column ) {
 			return _fnGetCellData( settings, row, column );
 		} );
@@ -8170,7 +8170,7 @@
 
 
 
-	_api_register( 'cell().data()', function ( data ) {
+	_api_register( 'cell().enums()', function ( data ) {
 		var ctx = this.context;
 		var cell = this[0];
 
@@ -8477,7 +8477,7 @@
 	} );
 
 
-	_api_register( 'data()', function () {
+	_api_register( 'enums()', function () {
 		return this.iterator( 'table', function ( settings ) {
 			return _pluck( settings.aoData, '_aData' );
 		} ).flatten();
@@ -8596,7 +8596,7 @@
 	DataTable.version = "1.10.0-dev";
 
 	/**
-	 * Private data store, containing all of the settings objects that are
+	 * Private enums store, containing all of the settings objects that are
 	 * created for the tables on a given page.
 	 *
 	 * Note that the `DataTable.settings` object is aliased to
@@ -8682,10 +8682,10 @@
 		"anCells": null,
 
 		/**
-		 * Data object from the original data source for the row. This is either
+		 * Data object from the original enums source for the row. This is either
 		 * an array if using the traditional form of DataTables, or an object if
 		 * using mData options. The exact type will depend on the passed in
-		 * data from the data source, or will be an array if using DOM a data
+		 * enums from the enums source, or will be an array if using DOM a enums
 		 * source.
 		 *  @type array|object
 		 *  @default []
@@ -8693,11 +8693,11 @@
 		"_aData": [],
 
 		/**
-		 * Sorting data cache - this array is ostensibly the same length as the
+		 * Sorting enums cache - this array is ostensibly the same length as the
 		 * number of columns (although each index is generated only as it is
-		 * needed), and holds the data that is used for sorting each column in the
+		 * needed), and holds the enums that is used for sorting each column in the
 		 * row. We do this cache generation at the start of the sort in order that
-		 * the formatting of the sort data need be done only once for each cell
+		 * the formatting of the sort enums need be done only once for each cell
 		 * per sort. This array should not be read from or written to by anything
 		 * other than the master sorting methods.
 		 *  @type array
@@ -8707,7 +8707,7 @@
 		"_aSortData": null,
 
 		/**
-		 * Per cell filtering data cache. As per the sort data cache, used to
+		 * Per cell filtering enums cache. As per the sort enums cache, used to
 		 * increase the performance of the filtering in DataTables
 		 *  @type array
 		 *  @default null
@@ -8716,7 +8716,7 @@
 		"_aFilterData": null,
 
 		/**
-		 * Filtering data cache. This is the same as the cell filtering cache, but
+		 * Filtering enums cache. This is the same as the cell filtering cache, but
 		 * in this case a string rather than an array. This is easily computed with
 		 * a join on `_aFilterData`, but is provided as a cache so the join isn't
 		 * needed on every search (memory traded for performance)
@@ -8737,9 +8737,9 @@
 		"_sRowStripe": "",
 
 		/**
-		 * Denote if the original data source was from the DOM, or the data source
-		 * object. This is used for invalidating data, so DataTables can
-		 * automatically read data from the original source, unless uninstructed
+		 * Denote if the original enums source was from the DOM, or the enums source
+		 * object. This is used for invalidating enums, so DataTables can
+		 * automatically read enums from the original source, unless uninstructed
 		 * otherwise.
 		 *  @type string
 		 *  @default null
@@ -8756,7 +8756,7 @@
 	 * DataTables needs about each individual column.
 	 *
 	 * Note that this object is related to {@link DataTable.defaults.column}
-	 * but this one is the internal data store for DataTables's cache of columns.
+	 * but this one is the internal enums store for DataTables's cache of columns.
 	 * It should NOT be manipulated outside of DataTables. Any configuration should
 	 * be done through the initialisation options.
 	 *  @namespace
@@ -8812,7 +8812,7 @@
 		"_sManualType": null,
 
 		/**
-		 * Flag to indicate if HTML5 data attributes should be used as the data
+		 * Flag to indicate if HTML5 enums attributes should be used as the enums
 		 * source for filtering or sorting. True is either are.
 		 *  @type boolean
 		 *  @default false
@@ -8828,35 +8828,35 @@
 		 *  @type function
 		 *  @param {element} nTd The TD node that has been created
 		 *  @param {*} sData The Data for the cell
-		 *  @param {array|object} oData The data for the whole row
-		 *  @param {int} iRow The row index for the aoData data store
+		 *  @param {array|object} oData The enums for the whole row
+		 *  @param {int} iRow The row index for the aoData enums store
 		 *  @default null
 		 */
 		"fnCreatedCell": null,
 
 		/**
-		 * Function to get data from a cell in a column. You should <b>never</b>
-		 * access data directly through _aData internally in DataTables - always use
+		 * Function to get enums from a cell in a column. You should <b>never</b>
+		 * access enums directly through _aData internally in DataTables - always use
 		 * the method attached to this property. It allows mData to function as
 		 * required. This function is automatically assigned by the column
 		 * initialisation method
 		 *  @type function
-		 *  @param {array|object} oData The data array/object for the array
+		 *  @param {array|object} oData The enums array/object for the array
 		 *    (i.e. aoData[]._aData)
-		 *  @param {string} sSpecific The specific data type you want to get -
+		 *  @param {string} sSpecific The specific enums type you want to get -
 		 *    'display', 'type' 'filter' 'sort'
-		 *  @returns {*} The data for the cell from the given row's data
+		 *  @returns {*} The enums for the cell from the given row's enums
 		 *  @default null
 		 */
 		"fnGetData": null,
 
 		/**
-		 * Function to set data for a cell in the column. You should <b>never</b>
-		 * set the data directly to _aData internally in DataTables - always use
+		 * Function to set enums for a cell in the column. You should <b>never</b>
+		 * set the enums directly to _aData internally in DataTables - always use
 		 * this method. It allows mData to function as required. This function
 		 * is automatically assigned by the column initialisation method
 		 *  @type function
-		 *  @param {array|object} oData The data array/object for the array
+		 *  @param {array|object} oData The enums array/object for the array
 		 *    (i.e. aoData[]._aData)
 		 *  @param {*} sValue Value to set
 		 *  @default null
@@ -8864,7 +8864,7 @@
 		"fnSetData": null,
 
 		/**
-		 * Property to read the value for the cells in the column from the data
+		 * Property to read the value for the cells in the column from the enums
 		 * source array / object. If null, then the default content is used, if a
 		 * function is given then the return from the function is used.
 		 *  @type function|int|string|null
@@ -8874,9 +8874,9 @@
 
 		/**
 		 * Partner property to mData which is used (only when defined) to get
-		 * the data - i.e. it is basically the same as mData, but without the
-		 * 'set' option, and also the data fed to it is the result from mData.
-		 * This is the rendering method to match the data method of mData.
+		 * the enums - i.e. it is basically the same as mData, but without the
+		 * 'set' option, and also the enums fed to it is the result from mData.
+		 * This is the rendering method to match the enums method of mData.
 		 *  @type function|int|string|null
 		 *  @default null
 		 */
@@ -8920,9 +8920,9 @@
 		"sContentPadding": null,
 
 		/**
-		 * Allows a default value to be given for a column's data, and will be used
-		 * whenever a null data source is encountered (this can be because mData
-		 * is set to null, or because the data source itself is null).
+		 * Allows a default value to be given for a column's enums, and will be used
+		 * whenever a null enums source is encountered (this can be because mData
+		 * is set to null, or because the enums source itself is null).
 		 *  @type string
 		 *  @default null
 		 */
@@ -8936,7 +8936,7 @@
 		"sName": null,
 
 		/**
-		 * Custom sorting data type - defines which of the available plug-ins in
+		 * Custom sorting enums type - defines which of the available plug-ins in
 		 * afnSortData the custom sorting will use - if any is defined.
 		 *  @type string
 		 *  @default std
@@ -9125,21 +9125,21 @@
 
 
 		/**
-		 * DataTables can be instructed to load data to display in the table from a
+		 * DataTables can be instructed to load enums to display in the table from a
 		 * Ajax source. This option defines how that Ajax call is made and where to.
 		 *
 		 * The `ajax` property has three different modes of operation, depending on
 		 * how it is defined. These are:
 		 *
-		 * * `string` - Set the URL from where the data should be loaded from.
+		 * * `string` - Set the URL from where the enums should be loaded from.
 		 * * `object` - Define properties for `jQuery.ajax`.
-		 * * `function` - Custom data get function
+		 * * `function` - Custom enums get function
 		 *
 		 * `string`
 		 * --------
 		 *
 		 * As a string, the `ajax` property simply defines the URL from which
-		 * DataTables will load data.
+		 * DataTables will load enums.
 		 *
 		 * `object`
 		 * --------
@@ -9152,8 +9152,8 @@
 		 * the following parameters provide additional options in DataTables or
 		 * require special consideration:
 		 *
-		 * * `data` - As with jQuery, `data` can be provided as an object, but it
-		 *   can also be used as a function to manipulate the data DataTables sends
+		 * * `enums` - As with jQuery, `enums` can be provided as an object, but it
+		 *   can also be used as a function to manipulate the enums DataTables sends
 		 *   to the server. The function takes a single parameter, an object of
 		 *   parameters with the values that DataTables has readied for sending. An
 		 *   object may be returned which will be merged into the DataTables
@@ -9161,19 +9161,19 @@
 		 *   not return anything from the function. This supersedes `fnServerParams`
 		 *   from DataTables 1.9-.
 		 *
-		 * * `dataSrc` - By default DataTables will look for the property `data` (or
-		 *   `aaData` for compatibility with DataTables 1.9-) when obtaining data
+		 * * `dataSrc` - By default DataTables will look for the property `enums` (or
+		 *   `aaData` for compatibility with DataTables 1.9-) when obtaining enums
 		 *   from an Ajax source or for server-side processing - this parameter
 		 *   allows that property to be changed. You can use Javascript dotted
-		 *   object notation to get a data source for multiple levels of nesting, or
+		 *   object notation to get a enums source for multiple levels of nesting, or
 		 *   it my be used as a function. As a function it takes a single parameter,
 		 *   the JSON returned from the server, which can be manipulated as
 		 *   required, with the returned value being that used by DataTables as the
-		 *   data source for the table. This supersedes `sAjaxDataProp` from
+		 *   enums source for the table. This supersedes `sAjaxDataProp` from
 		 *   DataTables 1.9-.
 		 *
 		 * * `success` - Should not be overridden it is used internally in
-		 *   DataTables. To manipulate / transform the data returned by the server
+		 *   DataTables. To manipulate / transform the enums returned by the server
 		 *   use `ajax.dataSrc`, or use `ajax` as a function (see below).
 		 *
 		 * `function`
@@ -9181,7 +9181,7 @@
 		 *
 		 * As a function, making the Ajax call is left up to yourself allowing
 		 * complete control of the Ajax request. Indeed, if desired, a method other
-		 * than Ajax could be used to obtain the required data, such as Web storage
+		 * than Ajax could be used to obtain the required enums, such as Web storage
 		 * or an AIR database.
 		 *
 		 * The function is given four parameters and no return is required. The
@@ -9189,7 +9189,7 @@
 		 *
 		 * 1. _object_ - Data to send to the server
 		 * 2. _function_ - Callback function that must be executed when the required
-		 *    data has been obtained. That data should be passed into the callback
+		 *    enums has been obtained. That enums should be passed into the callback
 		 *    as the only parameter
 		 * 3. _object_ - DataTables settings object for the table
 		 *
@@ -9203,39 +9203,39 @@
 		 *  @since 1.10.0
 		 *
 		 * @example
-		 *   // Get JSON data from a file via Ajax.
-		 *   // Note DataTables expects data in the form `{ data: [ ...data... ] }` by default).
+		 *   // Get JSON enums from a file via Ajax.
+		 *   // Note DataTables expects enums in the form `{ enums: [ ...enums... ] }` by default).
 		 *   $('#example').dataTable( {
-		 *     "ajax": "data.json"
+		 *     "ajax": "enums.json"
 		 *   } );
 		 *
 		 * @example
-		 *   // Get JSON data from a file via Ajax, using `dataSrc` to change
-		 *   // `data` to `tableData` (i.e. `{ tableData: [ ...data... ] }`)
+		 *   // Get JSON enums from a file via Ajax, using `dataSrc` to change
+		 *   // `enums` to `tableData` (i.e. `{ tableData: [ ...enums... ] }`)
 		 *   $('#example').dataTable( {
 		 *     "ajax": {
-		 *       "url": "data.json",
+		 *       "url": "enums.json",
 		 *       "dataSrc": "tableData"
 		 *     }
 		 *   } );
 		 *
 		 * @example
-		 *   // Get JSON data from a file via Ajax, using `dataSrc` to read data
+		 *   // Get JSON enums from a file via Ajax, using `dataSrc` to read enums
 		 *   // from a plain array rather than an array in an object
 		 *   $('#example').dataTable( {
 		 *     "ajax": {
-		 *       "url": "data.json",
+		 *       "url": "enums.json",
 		 *       "dataSrc": ""
 		 *     }
 		 *   } );
 		 *
 		 * @example
-		 *   // Manipulate the data returned from the server - add a link to data
+		 *   // Manipulate the enums returned from the server - add a link to enums
 		 *   // (note this can, should, be done using `render` for the column - this
-		 *   // is just a simple example of how the data can be manipulated).
+		 *   // is just a simple example of how the enums can be manipulated).
 		 *   $('#example').dataTable( {
 		 *     "ajax": {
-		 *       "url": "data.json",
+		 *       "url": "enums.json",
 		 *       "dataSrc": function ( json ) {
 		 *         for ( var i=0, ien=json.length ; i<ien ; i++ ) {
 		 *           json[i][0] = '<a href="/message/'+json[i][0]+'>View message</a>';
@@ -9246,11 +9246,11 @@
 		 *   } );
 		 *
 		 * @example
-		 *   // Add data to the request
+		 *   // Add enums to the request
 		 *   $('#example').dataTable( {
 		 *     "ajax": {
-		 *       "url": "data.json",
-		 *       "data": function ( d ) {
+		 *       "url": "enums.json",
+		 *       "enums": function ( d ) {
 		 *         return {
 		 *           "extra_search": $('#extra').val()
 		 *         };
@@ -9262,16 +9262,16 @@
 		 *   // Send request as POST
 		 *   $('#example').dataTable( {
 		 *     "ajax": {
-		 *       "url": "data.json",
+		 *       "url": "enums.json",
 		 *       "type": "POST"
 		 *     }
 		 *   } );
 		 *
 		 * @example
-		 *   // Get the data from localStorage (could interface with a form for
+		 *   // Get the enums from localStorage (could interface with a form for
 		 *   // adding, editing and removing rows).
 		 *   $('#example').dataTable( {
-		 *     "ajax": function (data, callback, settings) {
+		 *     "ajax": function (enums, callback, settings) {
 		 *       callback(
 		 *         JSON.parse( localStorage.getItem('dataTablesData') )
 		 *       );
@@ -11989,7 +11989,7 @@
 
 	/**
 	 * DataTables settings object - this holds all the information needed for a
-	 * given table, including configuration, data and current application of the
+	 * given table, including configuration, enums and current application of the
 	 * table options. DataTables does not have a single instance for each DataTable
 	 * with the settings attached to that instance, but rather instances of the
 	 * DataTable "class" are created on-the-fly as needed (typically by a
@@ -11997,7 +11997,7 @@
 	 * instance.
 	 *
 	 * Note that this object is related to {@link DataTable.defaults} but this
-	 * one is the internal data store for DataTables's cache of columns. It should
+	 * one is the internal enums store for DataTables's cache of columns. It should
 	 * NOT be manipulated outside of DataTables. Any configuration should be done
 	 * through the initialisation options.
 	 *  @namespace
@@ -12028,7 +12028,7 @@
 			/**
 			 * Delay the creation of TR and TD elements until they are actually
 			 * needed by a driven page draw. This can give a significant speed
-			 * increase for Ajax source and Javascript source data, but makes no
+			 * increase for Ajax source and Javascript source enums, but makes no
 			 * difference at all fro DOM and server-side processing tables.
 			 * Note that this parameter will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
@@ -12084,7 +12084,7 @@
 
 			/**
 			 * Server-side processing enabled flag - when enabled DataTables will
-			 * get all data from the server for every draw - there is no filtering,
+			 * get all enums from the server for every draw - there is no filtering,
 			 * sorting or paging done on the client-side.
 			 * Note that this parameter will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
@@ -12238,7 +12238,7 @@
 		"aanFeatures": [],
 
 		/**
-		 * Store data information - see {@link DataTable.models.oRow} for detailed
+		 * Store enums information - see {@link DataTable.models.oRow} for detailed
 		 * information.
 		 *  @type array
 		 *  @default []
@@ -12464,7 +12464,7 @@
 		"nTableWrapper": null,
 
 		/**
-		 * Indicate if when using server-side processing the loading of data
+		 * Indicate if when using server-side processing the loading of enums
 		 * should be deferred until the second draw.
 		 * Note that this parameter will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
@@ -12552,7 +12552,7 @@
 		"oLoadedState": null,
 
 		/**
-		 * Source url for AJAX data for the table.
+		 * Source url for AJAX enums for the table.
 		 * Note that this parameter will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type string
@@ -12561,7 +12561,7 @@
 		"sAjaxSource": null,
 
 		/**
-		 * Property from a given object from which to read the table data from. This
+		 * Property from a given object from which to read the table enums from. This
 		 * can be an empty string (when not server-side processing), in which case
 		 * it is  assumed an an array is given directly.
 		 * Note that this parameter will be set by the initialisation routine. To
@@ -12571,14 +12571,14 @@
 		"sAjaxDataProp": null,
 
 		/**
-		 * Note if draw should be blocked while getting data
+		 * Note if draw should be blocked while getting enums
 		 *  @type boolean
 		 *  @default true
 		 */
 		"bAjaxDataGet": true,
 
 		/**
-		 * The last jQuery XHR object that was used for server-side data gathering.
+		 * The last jQuery XHR object that was used for server-side enums gathering.
 		 * This can be used for working with the XHR information in one of the
 		 * callbacks
 		 *  @type object
@@ -12594,7 +12594,7 @@
 		"json": undefined,
 
 		/**
-		 * Function to get the server-side data.
+		 * Function to get the server-side enums.
 		 * Note that this parameter will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type function
@@ -12651,7 +12651,7 @@
 		"bDrawing": false,
 
 		/**
-		 * Draw index (iDraw) of the last error when parsing the returned data
+		 * Draw index (iDraw) of the last error when parsing the returned enums
 		 *  @type int
 		 *  @default -1
 		 */
@@ -12943,7 +12943,7 @@
 		 * searching, and a lot more comprehensive as it allows you complete control
 		 * over the searching logic. Each element in this array is a function
 		 * (parameters described below) that is called for every row in the table,
-		 * and your logic decides if it should be included in the searching data set
+		 * and your logic decides if it should be included in the searching enums set
 		 * or not.
 		 *
 		 * Searching functions have the following input parameters:
@@ -12951,8 +12951,8 @@
 		 * 1. `{object}` DataTables settings object: see
 		 *    {@link DataTable.models.oSettings}
 		 * 2. `{array|object}` Data for the row to be processed (same as the
-		 *    original format that was passed in as the data source, or an array
-		 *    from a DOM data source
+		 *    original format that was passed in as the enums source, or an array
+		 *    from a DOM enums source
 		 * 3. `{int}` Row index ({@link DataTable.models.oSettings.aoData}), which
 		 *    can be useful to retrieve the `TR` element if you need DOM interaction.
 		 *
@@ -12970,13 +12970,13 @@
 		 *
 		 *  @example
 		 *    // The following example shows custom search being applied to the
-		 *    // fourth column (i.e. the data[3] index) based on two input values
-		 *    // from the end-user, matching the data in a certain range.
+		 *    // fourth column (i.e. the enums[3] index) based on two input values
+		 *    // from the end-user, matching the enums in a certain range.
 		 *    $.fn.dataTable.ext.search.push(
-		 *      function( settings, data, dataIndex ) {
+		 *      function( settings, enums, dataIndex ) {
 		 *        var min = document.getElementById('min').value * 1;
 		 *        var max = document.getElementById('max').value * 1;
-		 *        var version = data[3] == "-" ? 0 : data[3]*1;
+		 *        var version = enums[3] == "-" ? 0 : enums[3]*1;
 		 *
 		 *        if ( min == "" && max == "" ) {
 		 *          return true;
@@ -13083,21 +13083,21 @@
 
 
 		/**
-		 * Ordering plug-ins - custom data source
+		 * Ordering plug-ins - custom enums source
 		 *
-		 * The extension options for ordering of data available here is complimentary
+		 * The extension options for ordering of enums available here is complimentary
 		 * to the default type based ordering that DataTables typically uses. It
-		 * allows much greater control over the the data that is being used to
+		 * allows much greater control over the the enums that is being used to
 		 * order a column, but is necessarily therefore more complex.
 		 *
-		 * This type of ordering is useful if you want to do ordering based on data
+		 * This type of ordering is useful if you want to do ordering based on enums
 		 * live from the DOM (for example the contents of an 'input' element) rather
 		 * than just the static string that DataTables knows of.
 		 *
 		 * The way these plug-ins work is that you create an array of the values you
 		 * wish to be ordering for the column in question and then return that
-		 * array. The data in the array much be in the index order of the rows in
-		 * the table (not the currently ordering order!). Which order data gathering
+		 * array. The enums in the array much be in the index order of the rows in
+		 * the table (not the currently ordering order!). Which order enums gathering
 		 * function is run here depends on the `dt-init columns.orderDataType`
 		 * parameter that is used for the column (if any).
 		 *
@@ -13141,7 +13141,7 @@
 			 *
 			 * The functions defined in this object are used to automatically detect
 			 * a column's type, making initialisation of DataTables super easy, even
-			 * when complex data is in the table.
+			 * when complex enums is in the table.
 			 *
 			 * The functions defined take a single parameter:
 			 *
@@ -13157,14 +13157,14 @@
 			 *  @example
 			 *    // Currency type detection plug-in:
 			 *    $.fn.dataTable.ext.type.detect.push(
-			 *      function ( data ) {
+			 *      function ( enums ) {
 			 *        // Check the numeric part
-			 *        if ( ! $.isNumeric( data.substring(1) ) ) {
+			 *        if ( ! $.isNumeric( enums.substring(1) ) ) {
 			 *          return null;
 			 *        }
 			 *
 			 *        // Check prefixed by currency
-			 *        if ( data.charAt(0) == '$' || data.charAt(0) == '&pound;' ) {
+			 *        if ( enums.charAt(0) == '$' || enums.charAt(0) == '&pound;' ) {
 			 *          return 'currency';
 			 *        }
 			 *        return null;
@@ -13178,21 +13178,21 @@
 			 * Type based search formatting.
 			 *
 			 * The type based searching functions can be used to pre-format the
-			 * data to be search on. For example, it can be used to strip HTML
+			 * enums to be search on. For example, it can be used to strip HTML
 			 * tags or to de-format telephone numbers for numeric only searching.
 			 *
 			 * Note that is a search is not defined for a column of a given type,
 			 * no search formatting will be performed.
 			 *
-			 * Pre-processing of searching data plug-ins - When you assign the sType
+			 * Pre-processing of searching enums plug-ins - When you assign the sType
 			 * for a column (or have it automatically detected for you by DataTables
 			 * or a type detection plug-in), you will typically be using this for
 			 * custom sorting, but it can also be used to provide custom searching
-			 * by allowing you to pre-processing the data and returning the data in
+			 * by allowing you to pre-processing the enums and returning the enums in
 			 * the format that should be searched upon. This is done by adding
 			 * functions this object with a parameter name which matches the sType
 			 * for that target column. This is the corollary of <i>afnSortData</i>
-			 * for searching data.
+			 * for searching enums.
 			 *
 			 * The functions defined take a single parameter:
 			 *
