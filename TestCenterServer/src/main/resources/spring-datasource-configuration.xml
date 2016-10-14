@@ -12,7 +12,7 @@
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:property-placeholder location="classpath:properties/jdbc.properties"/>
+    <context:property-placeholder location="classpath:properties/dev/jdbc.properties"/>
 
     <bean id="ds_dev" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driver}"/>
@@ -38,9 +38,9 @@
     <bean id="dynamicDataSource" class="com.berserker.server.util.DynamicDataSourceUtil">
         <property name="targetDataSources">
             <map>
-                <entry key="dev" value-ref="ds_dev"/>
-                <entry key="sit" value-ref="ds_sit"/>
-                <entry key="uat" value-ref="ds_uat"/>
+                <entry key="0" value-ref="ds_dev"/>
+                <entry key="1" value-ref="ds_sit"/>
+                <entry key="2" value-ref="ds_uat"/>
             </map>
         </property>
         <property name="defaultTargetDataSource" ref="ds_uat"/>

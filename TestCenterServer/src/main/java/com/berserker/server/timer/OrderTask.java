@@ -26,7 +26,7 @@ public class OrderTask {
     @Scheduled(fixedRate = 600000)
     public void updateDomain(){
         //初始化domain缓存
-        String configFilePath = "/properties/config.properties";
+        String configFilePath = "/properties/dev/config.properties";
         ValueConstant.DOMAIN_CONFIG = PropertiesUtil.getValueByValue(configFilePath,"env.domain");
         logger.info("Auto Update Domain:{}", ValueConstant.DOMAIN_CONFIG);
 

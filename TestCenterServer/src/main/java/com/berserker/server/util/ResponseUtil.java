@@ -1,6 +1,6 @@
 package com.berserker.server.util;
 
-import com.berserker.testcenterapi.model.PageResponse;
+import com.berserker.testcenterapi.model.PaginatonResponse;
 import com.berserker.testcenterapi.model.ClientResponse;
 import com.github.pagehelper.PageInfo;
 
@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class ResponseUtil {
 
-    public static <T> PageResponse<T> list2PageResponse(List<T> list) {
-        PageResponse<T> pageResponse = new PageResponse<T>();
+    public static <T> PaginatonResponse<T> list2PageResponse(List<T> list) {
+        PaginatonResponse<T> pageResponse = new PaginatonResponse<T>();
         PageInfo<T> info = new PageInfo<T>(list);
         pageResponse.setTotal((int) info.getTotal());
         pageResponse.setRecords(list);

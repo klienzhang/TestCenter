@@ -1,6 +1,6 @@
 package daoTest;
 
-import com.berserker.testcenterapi.model.PageResponse;
+import com.berserker.testcenterapi.model.PaginatonResponse;
 import com.berserker.testcenterapi.model.ClientResponse;
 import com.berserker.server.model.tools.AgentCityModel;
 import com.berserker.server.model.tools.AgentDepartmentModel;
@@ -31,7 +31,7 @@ public class AgentServiceTest extends AbstractTestNGSpringContextTests {
 
     @Test(enabled = false)
     public void testGetCityList(){
-        PageResponse<AgentCityModel> response = service.getSubCityList();
+        PaginatonResponse<AgentCityModel> response = service.getSubCityList();
         List<AgentCityModel> list = service.getSubCityList().getRecords();
         for(int i=0; i< list.size(); i++){
             System.out.println(list.get(i).getCity_code());

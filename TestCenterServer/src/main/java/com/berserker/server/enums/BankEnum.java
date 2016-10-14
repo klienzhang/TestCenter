@@ -1,11 +1,9 @@
 package com.berserker.server.enums;
 
-import vo.tools.IdentificationCardModel;
+import com.berserker.server.vo.tools.IdentificationCardModel;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by klien on 2016/9/21.

@@ -31,6 +31,7 @@
         <!--</mvc:message-converters>-->
     </mvc:annotation-driven>
     <import resource="classpath:spring-datasource-configuration.xml"/>
+    <import resource="classpath:redis/redis-config.xml"/>
 
     <task:annotation-driven/>
 

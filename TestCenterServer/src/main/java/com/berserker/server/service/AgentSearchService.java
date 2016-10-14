@@ -1,6 +1,6 @@
 package com.berserker.server.service;
 
-import com.berserker.testcenterapi.model.PageResponse;
+import com.berserker.testcenterapi.model.PaginatonResponse;
 import com.berserker.testcenterapi.model.ClientResponse;
 import com.berserker.server.model.tools.*;
 
@@ -11,11 +11,11 @@ import com.berserker.server.model.tools.*;
  */
 public interface AgentSearchService {
     ClientResponse addCity(AgentCityModel model);
-    PageResponse<AgentCityModel> getSubCityList();
+    PaginatonResponse<AgentCityModel> getSubCityList();
     ClientResponse addDepartment(AgentDepartmentModel model);
-    PageResponse<AgentDepartmentModel> getDepartmentList(int isHeadQuarter);
+    PaginatonResponse<AgentDepartmentModel> getDepartmentList(int isHeadQuarter);
     ClientResponse addPosition(AgentPositionModel model);
-    PageResponse<AgentPositionModel> getPositionList(int department_code);
+    PaginatonResponse<AgentPositionModel> getPositionList(int department_code);
     ClientResponse addAgentInfo(AgentInfoModel model);
-    PageResponse<AgentInfoModel> getAgentInfos(AgentInfoModel model);
+    PaginatonResponse<AgentInfoModel> getAgentInfos(AgentInfoModel model);
 }

@@ -2,7 +2,7 @@ package com.berserker.server.service.impl;
 
 import com.berserker.server.dao.reader.tools.MobileMgrReaderMapper;
 import com.berserker.server.dao.writer.tools.MobileMgrWriterMapper;
-import com.berserker.testcenterapi.model.PageResponse;
+import com.berserker.testcenterapi.model.PaginatonResponse;
 import com.berserker.testcenterapi.model.ClientResponse;
 import com.berserker.server.model.tools.MobileDeviceModel;
 import com.berserker.server.model.tools.ToolsLeaderList;
@@ -56,12 +56,12 @@ public class MobileMgrImpl implements MobileMgrService{
         return response;
     }
 
-    public PageResponse<MobileDeviceModel> getMobileTypeList(int brand, int type) {
+    public PaginatonResponse<MobileDeviceModel> getMobileTypeList(int brand, int type) {
         List<MobileDeviceModel> list = readerMapper.getMobileDeviceList(brand, type);
         return  ResponseUtil.list2PageResponse(list);
     }
 
-    public PageResponse<ToolsLeaderList> getLeaderList() {
+    public PaginatonResponse<ToolsLeaderList> getLeaderList() {
         List<ToolsLeaderList> list = readerMapper.getLeaderList();
         return  ResponseUtil.list2PageResponse(list);
     }
@@ -77,7 +77,7 @@ public class MobileMgrImpl implements MobileMgrService{
         return response;
     }
 
-    public PageResponse<ToolsMobileMgrModel> getMobileList(ToolsMobileMgrModel mobileMgrModel, int currentPage, int pageSize) {
+    public PaginatonResponse<ToolsMobileMgrModel> getMobileList(ToolsMobileMgrModel mobileMgrModel, int currentPage, int pageSize) {
         currentPage = (currentPage < 1) ? 1 : currentPage;
         pageSize = (pageSize < 1) ? 10 : pageSize;
         PageHelper.startPage(currentPage,pageSize);

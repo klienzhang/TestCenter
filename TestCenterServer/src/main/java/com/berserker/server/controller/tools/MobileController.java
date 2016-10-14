@@ -4,7 +4,7 @@ import com.berserker.server.constants.KeyConstant;
 import com.berserker.server.constants.ValueConstant;
 import com.berserker.server.model.HtmlModel;
 import com.berserker.server.util.ResponseUtil;
-import com.berserker.testcenterapi.model.PageResponse;
+import com.berserker.testcenterapi.model.PaginatonResponse;
 import com.berserker.testcenterapi.model.ClientResponse;
 import com.berserker.server.model.tools.MobileDeviceModel;
 import com.berserker.server.model.tools.ToolsLeaderList;
@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "/tools")
@@ -48,13 +47,13 @@ public class MobileController {
 
     @RequestMapping(value = "/mobile/getLeaderList")
     @ResponseBody
-    public PageResponse<ToolsLeaderList> getLeaderList(HttpServletRequest request){
+    public PaginatonResponse<ToolsLeaderList> getLeaderList(HttpServletRequest request){
         return mobileMgrService.getLeaderList();
     }
 
     @RequestMapping(value = "/mobile/getMobileTypeList")
     @ResponseBody
-    public PageResponse<MobileDeviceModel> getMobileTypeList(HttpServletRequest request){
+    public PaginatonResponse<MobileDeviceModel> getMobileTypeList(HttpServletRequest request){
         int brand = RequestConverter.string2Integer(request.getParameter("brand"));
         int type = RequestConverter.string2Integer(request.getParameter("type"));
         logger.info("getMobileTypeList - brand:{}, type:{}", brand, type);
@@ -64,7 +63,7 @@ public class MobileController {
 
     @RequestMapping(value = "/mobile/getMobileList")
     @ResponseBody
-    public PageResponse<ToolsMobileMgrModel> getMobileList(HttpServletRequest request){
+    public PaginatonResponse<ToolsMobileMgrModel> getMobileList(HttpServletRequest request){
         ToolsMobileMgrModel model = new ToolsMobileMgrModel();
         int owner_id = RequestConverter.string2Integer(request.getParameter("id"));
         int brandId = RequestConverter.string2Integer(request.getParameter("brandId"));
@@ -76,7 +75,7 @@ public class MobileController {
         model.setOwner_id(owner_id);
         model.setBrandId(brandId);
         model.setTypeId(typeId);
-        PageResponse<ToolsMobileMgrModel> response =  mobileMgrService.getMobileList(model,currentPage,pageSize);
+        PaginatonResponse<ToolsMobileMgrModel> response =  mobileMgrService.getMobileList(model,currentPage,pageSize);
         logger.info("Total is {}, list is {}", response.getTotal(), response.getRecords());
         return response;
     }

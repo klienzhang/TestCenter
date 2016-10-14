@@ -2,7 +2,7 @@ package com.berserker.server.service.impl;
 
 import com.berserker.server.dao.reader.tools.AgentSearchReaderMapper;
 import com.berserker.server.dao.writer.tools.AgentSearchWriterMapper;
-import com.berserker.testcenterapi.model.PageResponse;
+import com.berserker.testcenterapi.model.PaginatonResponse;
 import com.berserker.testcenterapi.model.ClientResponse;
 import com.berserker.server.model.tools.*;
 import com.berserker.server.service.AgentSearchService;
@@ -58,9 +58,9 @@ public class AgentSearchImpl implements AgentSearchService {
      * 功能描述: 获取所有的分城市的名称列表
      * @return
      */
-    public PageResponse<AgentCityModel> getSubCityList() {
+    public PaginatonResponse<AgentCityModel> getSubCityList() {
 
-        PageResponse<AgentCityModel> response = null;
+        PaginatonResponse<AgentCityModel> response = null;
         try{
             List<AgentCityModel> list = readerMapper.getCityList(new AgentCityModel());
             response = ResponseUtil.list2PageResponse(list);
@@ -99,8 +99,8 @@ public class AgentSearchImpl implements AgentSearchService {
      * @param isHeadQuarter - 判断是否是总部岗位, 1(是总部岗位), 其他值(默认分城市岗位)
      * @return
      */
-    public PageResponse<AgentDepartmentModel> getDepartmentList(int isHeadQuarter) {
-        PageResponse<AgentDepartmentModel> response = null;
+    public PaginatonResponse<AgentDepartmentModel> getDepartmentList(int isHeadQuarter) {
+        PaginatonResponse<AgentDepartmentModel> response = null;
         try{
             AgentDepartmentModel model = new AgentDepartmentModel();
             model.setIsHeadQuarter(isHeadQuarter);
@@ -141,8 +141,8 @@ public class AgentSearchImpl implements AgentSearchService {
      * @param department_code
      * @return
      */
-    public PageResponse<AgentPositionModel> getPositionList(int department_code) {
-        PageResponse<AgentPositionModel> response = null;
+    public PaginatonResponse<AgentPositionModel> getPositionList(int department_code) {
+        PaginatonResponse<AgentPositionModel> response = null;
         try{
             AgentPositionModel model = new AgentPositionModel();
             model.setDepartment_code(department_code);
@@ -182,8 +182,8 @@ public class AgentSearchImpl implements AgentSearchService {
      * @param model
      * @return
      */
-    public PageResponse<AgentInfoModel> getAgentInfos(AgentInfoModel model) {
-        PageResponse<AgentInfoModel> response = null;
+    public PaginatonResponse<AgentInfoModel> getAgentInfos(AgentInfoModel model) {
+        PaginatonResponse<AgentInfoModel> response = null;
         try{
             List<AgentInfoModel> list = readerMapper.getAgentInfoList(model);
             response = ResponseUtil.list2PageResponse(list);
