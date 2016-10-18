@@ -1,8 +1,8 @@
 package com.berserker.server.dao.reader.tools;
 
-import com.berserker.server.model.tools.MobileDeviceModel;
-import com.berserker.server.model.tools.ToolsLeaderList;
-import com.berserker.server.model.tools.ToolsMobileMgrModel;
+import com.berserker.server.vo.tools.MobileDeviceModel;
+import com.berserker.server.vo.tools.ToolsLeaderList;
+import com.berserker.server.vo.tools.ToolsMobileMgrModel;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

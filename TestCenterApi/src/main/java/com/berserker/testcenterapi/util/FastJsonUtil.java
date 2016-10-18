@@ -15,6 +15,16 @@ import java.util.Map;
 public class FastJsonUtil {
 
     /**
+     * 把普通对象转换成Json字符串
+     *
+     * @param object
+     * @return
+     */
+    public static String getObject2Json(Object object){
+        return JSON.toJSONString(object);
+    }
+
+    /**
      * 把JSON数据转换成普通字符串列表
      *
      * @param jsonData

@@ -2,34 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.berserker.server.dao.writer.tools.AgentSearchWriterMapper">
-    <insert id="addCity" parameterType="com.berserker.server.model.tools.AgentCityModel">
+    <insert id="addCity" parameterType="com.berserker.server.vo.tools.AgentCityModel">
         INSERT INTO
           tools_agent_city(city_name)
         VALUES
           (#{city_name})
     </insert>
 
-    <insert id="addDepartment" parameterType="com.berserker.server.model.tools.AgentDepartmentModel">
+    <insert id="addDepartment" parameterType="com.berserker.server.vo.tools.AgentDepartmentModel">
         INSERT INTO
           tools_agent_department(name,isHeadQuarter)
         VALUES
           (#{name},#{isHeadQuarter})
     </insert>
 
-    <insert id="addPosition" parameterType="com.berserker.server.model.tools.AgentPositionModel">
+    <insert id="addPosition" parameterType="com.berserker.server.vo.tools.AgentPositionModel">
       INSERT INTO
         tools_agent_position(department_code,name)
       VALUES
         (#{department_code},#{name})
     </insert>
 
-    <insert id="addAgentInfo" parameterType="com.berserker.server.model.tools.AgentInfoModel">
+    <insert id="addAgentInfo" parameterType="com.berserker.server.vo.tools.AgentInfoModel">
         INSERT INTO
           tools_agent_collections(name,mobile,department_code,position_code,city_code,comment)
         VALUES (#{name},#{mobile},#{department_code},#{position_code},#{city_code},#{comment})
     </insert>
 
-    <update id="updateAgentInfo" parameterType="com.berserker.server.model.tools.AgentInfoModel">
+    <update id="updateAgentInfo" parameterType="com.berserker.server.vo.tools.AgentInfoModel">
       UPDATE
       tools_agent_collections a
       SET

@@ -1,6 +1,6 @@
 package com.berserker.server.dao.writer.tools;
 
-import com.berserker.server.model.tools.ToolsMobileMgrModel;
+import com.berserker.server.vo.tools.ToolsMobileMgrModel;
 import org.apache.ibatis.annotations.Param;
 
 /**

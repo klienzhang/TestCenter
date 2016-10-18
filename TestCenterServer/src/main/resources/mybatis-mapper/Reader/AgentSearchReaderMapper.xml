@@ -3,8 +3,8 @@
 
 <mapper namespace="com.berserker.server.dao.reader.tools.AgentSearchReaderMapper">
 
-    <select id="getCityList" parameterType="com.berserker.server.model.tools.AgentCityModel"
-        resultType="com.berserker.server.model.tools.AgentCityModel">
+    <select id="getCityList" parameterType="com.berserker.server.vo.tools.AgentCityModel"
+        resultType="com.berserker.server.vo.tools.AgentCityModel">
         SELECT
           c.id city_code, c.city_name city_name
         FROM
@@ -15,8 +15,8 @@
         </if>
     </select>
 
-    <select id="getDepartmentList" parameterType="com.berserker.server.model.tools.AgentDepartmentModel"
-            resultType="com.berserker.server.model.tools.AgentDepartmentModel">
+    <select id="getDepartmentList" parameterType="com.berserker.server.vo.tools.AgentDepartmentModel"
+            resultType="com.berserker.server.vo.tools.AgentDepartmentModel">
         SELECT
           a.id, a.name, a.isHeadQuarter, a.update_time, a.updater
         FROM
@@ -28,8 +28,8 @@
         </if>
     </select>
 
-    <select id="getPositionList" parameterType="com.berserker.server.model.tools.AgentPositionModel"
-            resultType="com.berserker.server.model.tools.AgentPositionModel">
+    <select id="getPositionList" parameterType="com.berserker.server.vo.tools.AgentPositionModel"
+            resultType="com.berserker.server.vo.tools.AgentPositionModel">
         SELECT
           a.id, a.department_code, a.name, a.update_time, a.updater
         FROM
@@ -41,8 +41,8 @@
         </if>
     </select>
 
-    <select id="getAgentInfoList" parameterType="com.berserker.server.model.tools.AgentInfoModel"
-            resultType="com.berserker.server.model.tools.AgentInfoModel">
+    <select id="getAgentInfoList" parameterType="com.berserker.server.vo.tools.AgentInfoModel"
+            resultType="com.berserker.server.vo.tools.AgentInfoModel">
         SELECT
           a.id, a.name, a.mobile, a.department_code, a.position_code,a.city_code, a.comment, a.update_time, a.updater,
           d.name department_name, p.name position_name

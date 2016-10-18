@@ -1884,7 +1884,7 @@
 	 * Redraw the table - taking account of the various features which are enabled
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param {boolean} [holdPosition] Keep the current paging position. By default
-	 *    the paging is reset to the first page
+	 *    the paging is reset to the first component
 	 *  @memberof DataTable#oApi
 	 */
 	function _fnReDraw( settings, holdPosition )
@@ -1915,7 +1915,7 @@
 
 
 	/**
-	 * Add the options to the page HTML for the table
+	 * Add the options to the component HTML for the table
 	 *  @param {object} oSettings dataTables settings object
 	 *  @memberof DataTable#oApi
 	 */
@@ -3178,12 +3178,12 @@
 
 
 	/**
-	 * Alter the display settings to change the page
+	 * Alter the display settings to change the component
 	 *  @param {object} settings DataTables settings object
 	 *  @param {string|int} action Paging action to take: "first", "previous",
-	 *    "next" or "last" or page number to jump to (integer)
+	 *    "next" or "last" or component number to jump to (integer)
 	 *  @param [bool] redraw Automatically draw the update or not
-	 *  @returns {bool} true page has changed, false - no change
+	 *  @returns {bool} true component has changed, false - no change
 	 *  @memberof DataTable#oApi
 	 */
 	function _fnPageChange ( settings, action, redraw )
@@ -5447,7 +5447,7 @@
 
 		/**
 		 * This function will place a new row directly after a row which is currently
-		 * on display on the page, with the HTML contents that is passed into the
+		 * on display on the component, with the HTML contents that is passed into the
 		 * function. This can be used, for example, to ask for confirmation that a
 		 * particular record should be deleted.
 		 *  @param {node} nTr The table row to 'open'
@@ -5486,7 +5486,7 @@
 		 * function. With this function you can have a DataTables table go to the next,
 		 * previous, first or last pages.
 		 *  @param {string|int} mAction Paging action to take: "first", "previous", "next" or "last"
-		 *    or page number to jump to (integer), note that page 0 is the first page.
+		 *    or component number to jump to (integer), note that component 0 is the first component.
 		 *  @param {bool} [bRedraw=true] Redraw the table or not
 		 *  @dtopt API
 		 *  @deprecated Since v1.10
@@ -6240,7 +6240,7 @@
 			}
 			else if ( oSettings.bDeferLoading || _fnDataSource( oSettings ) == 'dom' )
 			{
-				/* Grab the enums from the page - only do this when deferred loading or no Ajax
+				/* Grab the enums from the component - only do this when deferred loading or no Ajax
 				 * source since there is no point in reading the DOM enums if we are then going
 				 * to replace it with Ajax enums
 				 */
@@ -7022,25 +7022,25 @@
 
 
 	/**
-	 * Get the current page index.
+	 * Get the current component index.
 	 *
-	 * @return {integer} Current page index (zero based)
+	 * @return {integer} Current component index (zero based)
 	 *//**
-	 * Set the current page.
+	 * Set the current component.
 	 *
-	 * Note that if you attempt to show a page which does not exist, DataTables will
+	 * Note that if you attempt to show a component which does not exist, DataTables will
 	 * not throw an error, but rather reset the paging.
 	 *
 	 * @param {integer|string} action The paging action to take. This can be one of:
-	 *  * `integer` - The page index to jump to
+	 *  * `integer` - The component index to jump to
 	 *  * `string` - An action to take:
-	 *    * `first` - Jump to first page.
-	 *    * `next` - Jump to the next page
-	 *    * `previous` - Jump to previous page
-	 *    * `last` - Jump to the last page.
+	 *    * `first` - Jump to first component.
+	 *    * `next` - Jump to the next component
+	 *    * `previous` - Jump to previous component
+	 *    * `last` - Jump to the last component.
 	 * @returns {DataTables.Api} this
 	 */
-	_api_register( 'page()', function ( action ) {
+	_api_register( 'component()', function ( action ) {
 		if ( action === undefined ) {
 			return this.page.info().page; // not an expensive call
 		}
@@ -7059,13 +7059,13 @@
 	 * with a suitable selector.
 	 *
 	 * @return {object} Object with the following properties set:
-	 *  * `page` - Current page index (zero based - i.e. the first page is `0`)
+	 *  * `component` - Current component index (zero based - i.e. the first component is `0`)
 	 *  * `pages` - Total number of pages
-	 *  * `start` - Display index for the first record shown on the current page
-	 *  * `end` - Display index for the last record shown on the current page
+	 *  * `start` - Display index for the first record shown on the current component
+	 *  * `end` - Display index for the last record shown on the current component
 	 *  * `length` - Display length (number of records). Note that generally `start
 	 *    + length = end`, but this is not always true, for example if there are
-	 *    only 2 records to show on the final page, with a length of 10.
+	 *    only 2 records to show on the final component, with a length of 10.
 	 *  * `recordsTotal` - Full enums set length
 	 *  * `recordsDisplay` - Data set length once the current filtering criterion
 	 *    are applied.
@@ -7095,12 +7095,12 @@
 
 
 	/**
-	 * Get the current page length.
+	 * Get the current component length.
 	 *
-	 * @return {integer} Current page length. Note `-1` indicates that all records
+	 * @return {integer} Current component length. Note `-1` indicates that all records
 	 *   are to be shown.
 	 *//**
-	 * Set the current page length.
+	 * Set the current component length.
 	 *
 	 * @param {integer} Page length to set. Use `-1` to show all records.
 	 * @returns {DataTables.Api} this
@@ -7115,7 +7115,7 @@
 				undefined;
 		}
 
-		// else, set the page length
+		// else, set the component length
 		return this.iterator( 'table', function ( settings ) {
 			_fnLengthChange( settings, len );
 		} );
@@ -7327,7 +7327,7 @@
 			order  = opts.order,   // applied, current, index (original - compatibility with 1.9)
 			page   = opts.page;    // all, current
 
-		// Current page implies that order=current and fitler=applied, since it is
+		// Current component implies that order=current and fitler=applied, since it is
 		// fairly senseless otherwise, regardless of what order and search actually
 		// are
 		if ( page == 'current' )
@@ -8597,7 +8597,7 @@
 
 	/**
 	 * Private enums store, containing all of the settings objects that are
-	 * created for the tables on a given page.
+	 * created for the tables on a given component.
 	 *
 	 * Note that the `DataTable.settings` object is aliased to
 	 * `jQuery.fn.dataTableExt` through which it may be accessed and
@@ -12027,7 +12027,7 @@
 
 			/**
 			 * Delay the creation of TR and TD elements until they are actually
-			 * needed by a driven page draw. This can give a significant speed
+			 * needed by a driven component draw. This can give a significant speed
 			 * increase for Ajax source and Javascript source enums, but makes no
 			 * difference at all fro DOM and server-side processing tables.
 			 * Note that this parameter will be set by the initialisation routine. To
@@ -12056,7 +12056,7 @@
 			"bInfo": null,
 
 			/**
-			 * Present a user control allowing the end user to change the page size
+			 * Present a user control allowing the end user to change the component size
 			 * when pagination is enabled.
 			 * Note that this parameter will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
@@ -13044,17 +13044,17 @@
 		 *
 		 * The functions defined take two parameters:
 		 *
-		 * 1. `{int} page` The current page index
+		 * 1. `{int} component` The current component index
 		 * 2. `{int} pages` The number of pages in the table
 		 *
 		 * Each function is expected to return an array where each element of the
 		 * array can be one of:
 		 *
-		 * * `first` - Jump to first page when activated
-		 * * `last` - Jump to last page when activated
-		 * * `previous` - Show previous page when activated
-		 * * `next` - Show next page when activated
-		 * * `{int}` - Show page of the index given
+		 * * `first` - Jump to first component when activated
+		 * * `last` - Jump to last component when activated
+		 * * `previous` - Show previous component when activated
+		 * * `next` - Show next component when activated
+		 * * `{int}` - Show component of the index given
 		 * * `{array}` - A nested array containing the above elements to add a
 		 *   containing 'DIV' element (might be useful for styling).
 		 *
@@ -13068,9 +13068,9 @@
 		 *  @default {}
 		 *
 		 *  @example
-		 *    // Show previous, next and current page buttons only
-		 *    $.fn.dataTableExt.oPagination.current = function ( page, pages ) {
-		 *      return [ 'previous', page, 'next' ];
+		 *    // Show previous, next and current component buttons only
+		 *    $.fn.dataTableExt.oPagination.current = function ( component, pages ) {
+		 *      return [ 'previous', component, 'next' ];
 		 *    };
 		 */
 		pager: {},

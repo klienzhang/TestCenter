@@ -2,7 +2,8 @@ package com.berserker.server.controller.tools;
 
 import com.berserker.server.constants.KeyConstant;
 import com.berserker.server.constants.ValueConstant;
-import com.berserker.server.model.HtmlModel;
+import com.berserker.server.vo.HtmlModel;
+import com.berserker.server.service.ToolsService;
 import com.berserker.testcenterapi.model.ClientResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ChangePWDController {
 
     @Autowired
-    private PasswordService service;
+    private ToolsService service;
 
     private Logger logger = LogManager.getLogger(ChangePWDController.class);
 

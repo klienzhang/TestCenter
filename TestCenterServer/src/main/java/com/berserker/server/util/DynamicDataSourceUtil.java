@@ -1,5 +1,7 @@
 package com.berserker.server.util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
@@ -7,32 +9,28 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
  */
 public class DynamicDataSourceUtil extends AbstractRoutingDataSource{
 
-    private static ThreadLocal<Integer> currentDataSource = new ThreadLocal<Integer>();
+    private static ThreadLocal<String> currentDataSource = new ThreadLocal<String>();
+
+    private static Logger logger = LogManager.getLogger(DynamicDataSourceUtil.class);
 
     static {
-        currentDataSource.set(0);
+        currentDataSource.set("dev");
     }
 
     /**
      * 功能描述：设置动态数据库源
      * @param targetDataSource
-     *         1 - 测试数据库
-     *         2.- Beta数据库
-     *         0 - 本地数据库
      */
-    public static void setTargetDataSource(int targetDataSource){
-        if(targetDataSource != 1 || targetDataSource != 2 || targetDataSource != 0){
-            targetDataSource = 2;
+    public static void setTargetDataSource(String targetDataSource){
+        if(targetDataSource != "sit" || targetDataSource != "uat" || targetDataSource != "dev"){
+            targetDataSource = "dev";
         }
         currentDataSource.set(targetDataSource);
+        logger.debug("setDataBase to {}", targetDataSource);
     }
 
     @Override
     protected Object determineCurrentLookupKey() {
-        return getCurrentDataSource();
-    }
-
-    private int getCurrentDataSource(){
         return currentDataSource.get();
     }
 }

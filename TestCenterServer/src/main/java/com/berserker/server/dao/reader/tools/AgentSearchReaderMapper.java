@@ -1,7 +1,9 @@
 package com.berserker.server.dao.reader.tools;
 
-import com.berserker.server.model.tools.AgentCityModel;
-import com.berserker.server.model.tools.*;
+import com.berserker.server.vo.tools.AgentCityModel;
+import com.berserker.server.vo.tools.AgentDepartmentModel;
+import com.berserker.server.vo.tools.AgentInfoModel;
+import com.berserker.server.vo.tools.AgentPositionModel;
 
 import java.util.List;
 

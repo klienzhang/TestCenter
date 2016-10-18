@@ -3,7 +3,7 @@
 
 <mapper namespace="com.berserker.server.dao.reader.WelcomeMapper">
 
-    <resultMap id="notices" type="com.berserker.server.model.WelcomeNoticeResponse">
+    <resultMap id="notices" type="com.berserker.server.vo.response.BerserkerNoticeResponse">
         <id property="id" column="id"/>
         <result property="icon" column="icon"/>
         <result property="title" column="title"/>
@@ -29,7 +29,7 @@
         quicklink_menu m
     </select>
 
-    <select id="getProjectProgress" resultType="com.berserker.server.model.WelcomeProjectProgressResponse">
+    <select id="getProjectProgress" resultType="com.berserker.server.vo.response.ProjectProgressResponse">
         SELECT
           id, status, name, progress
         FROM

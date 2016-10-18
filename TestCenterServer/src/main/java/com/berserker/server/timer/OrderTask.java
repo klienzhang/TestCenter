@@ -1,7 +1,6 @@
 package com.berserker.server.timer;
 
 import com.berserker.server.constants.ValueConstant;
-import com.berserker.server.service.WelcomepageService;
 import com.berserker.testcenterapi.util.PropertiesUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

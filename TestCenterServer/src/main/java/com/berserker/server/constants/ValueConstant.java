@@ -1,7 +1,7 @@
 package com.berserker.server.constants;
 
-import com.berserker.server.model.WelcomeNoticeResponse;
-import com.berserker.server.model.WelcomeProjectProgressResponse;
+import com.berserker.server.vo.response.BerserkerNoticeResponse;
+import com.berserker.server.vo.response.ProjectProgressResponse;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ public class ValueConstant {
     //Domain配置
     public static String DOMAIN_CONFIG;
     //首页公告配置
-    public static List<WelcomeNoticeResponse> NOTICE_LIST;
+    public static List<BerserkerNoticeResponse> NOTICE_LIST;
     //
-    public static List<WelcomeProjectProgressResponse> PROGRESS_LIST;
+    public static List<ProjectProgressResponse> PROGRESS_LIST;
 
 }

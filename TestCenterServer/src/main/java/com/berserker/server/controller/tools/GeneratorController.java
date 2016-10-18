@@ -1,6 +1,6 @@
 package com.berserker.server.controller.tools;
 
-import com.berserker.server.service.ToolsBasicService;
+import com.berserker.server.service.ToolsService;
 import com.berserker.testcenterapi.model.ClientResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 public class GeneratorController {
 
     @Autowired
-    private ToolsBasicService service;
-
+    private ToolsService service;
 
     @RequestMapping(value = "/generator")
     public String getGeneratorPage(){

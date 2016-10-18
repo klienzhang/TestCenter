@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.berserker.server.dao.reader.tools.MobileMgrReaderMapper">
-    <select id="getMobileDeviceList" resultType="com.berserker.server.model.tools.MobileDeviceModel">
+    <select id="getMobileDeviceList" resultType="com.berserker.server.vo.tools.MobileDeviceModel">
         <if test="brandId == -1">
             SELECT
               distinct brand_Id brandId, brand brandName
@@ -21,15 +21,15 @@
         </if>
     </select>
 
-    <select id="getLeaderList" resultType="com.berserker.server.model.tools.ToolsLeaderList">
+    <select id="getLeaderList" resultType="com.berserker.server.vo.tools.ToolsLeaderList">
         SELECT
         id id, name leader_name
         FROM
         tools_mobile_leader
     </select>
 
-    <select id="getMobileList" parameterType="com.berserker.server.model.tools.ToolsMobileMgrModel"
-            resultType="com.berserker.server.model.tools.ToolsMobileMgrModel">
+    <select id="getMobileList" parameterType="com.berserker.server.vo.tools.ToolsMobileMgrModel"
+            resultType="com.berserker.server.vo.tools.ToolsMobileMgrModel">
         SELECT
         c.id id, c.mobile mobile, c.owner owner_id, l.name owner_name, c.user user, c.update_time update_time,
         t.id typeId, t.type typeName, t.brand_id brandId, t.brand brandName, c.serial serial, c.comment comment
@@ -48,7 +48,7 @@
         </if>
     </select>
 
-    <select id="getMobileInfo" resultType="com.berserker.server.model.tools.ToolsMobileMgrModel">
+    <select id="getMobileInfo" resultType="com.berserker.server.vo.tools.ToolsMobileMgrModel">
         SELECT
             c.id id, c.mobile mobile, c.owner owner_id, l.name owner_name, c.user user, c.update_time update_time,
             t.id typeId, t.type typeName, t.brand_id brandId, t.brand brandName, c.serial serial, c.comment comment

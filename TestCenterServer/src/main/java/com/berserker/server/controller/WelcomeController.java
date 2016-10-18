@@ -2,8 +2,8 @@ package com.berserker.server.controller;
 
 import com.berserker.server.constants.KeyConstant;
 import com.berserker.server.constants.ValueConstant;
-import com.berserker.server.model.HtmlModel;
-import com.berserker.server.service.WelcomepageService;
+import com.berserker.server.vo.HtmlModel;
+import com.berserker.server.service.WelcomePageService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class WelcomeController {
     private Logger logger = LogManager.getLogger(WelcomeController.class);
 
     @Autowired
-    private WelcomepageService welcomepageService;
+    private WelcomePageService welcomepageService;
 
     @ModelAttribute
     public void modelAttribute(Model model){

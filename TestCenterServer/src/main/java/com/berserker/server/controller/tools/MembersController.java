@@ -2,7 +2,7 @@ package com.berserker.server.controller.tools;
 
 import com.berserker.server.constants.KeyConstant;
 import com.berserker.server.constants.ValueConstant;
-import com.berserker.server.model.HtmlModel;
+import com.berserker.server.vo.HtmlModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
